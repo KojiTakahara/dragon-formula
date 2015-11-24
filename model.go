@@ -1,50 +1,59 @@
 package dragonformula
 
+import (
+	"appengine/datastore"
+	"time"
+)
+
 type Question struct { // key = 自動生成
-	Content string `datastore:",noindex"`
-	LargeCategory Key
-	MediumCategory Key
-	SmallCategory Key
-	Answer1 string `datastore:",noindex"`
-	Answer2 string `datastore:",noindex"`
-	Answer3 string `datastore:",noindex"`
-	Answer4 string `datastore:",noindex"`
-	Rubric string `datastore:",noindex"`
-	Percentage Num
-	Status string // 依頼,最終確認,承認,却下
-	userKey Key // 作成者
+	Content           string `datastore:",noindex"`
+	LargeCategoryKey  datastore.Key
+	MediumCategoryKey datastore.Key
+	SmallCategoryKey  datastore.Key
+	Answer1Key        datastore.Key
+	Answer2Key        datastore.Key
+	Answer3Key        datastore.Key
+	Answer4Key        datastore.Key
+	Rubric            string `datastore:",noindex"`
+	Percentage        float32
+	Status            string        // 依頼,最終確認,承認,却下
+	UserKey           datastore.Key // 作成者
+}
+
+type QuestionAnswer struct { // key = 自動採番
+	Content   string `datastore:",noindex"`
+	TrueFalse bool
 }
 
 type Comment struct { // key = 自動採番
-	QuestionKey Key
-	Status string // 閲覧権限
-	userKey Key // 発言者
-	createdAt Date
+	QuestionKey datastore.Key
+	Status      string        // 閲覧権限
+	UserKey     datastore.Key // 発言者
+	CreatedAt   time.Time
 }
 
 type Category struct { // key = カテゴリ英名
 	Name string
-	Type Num
+	Type int
 }
 
 type User struct { // key = ユーザID
-	Authority Num
+	Authority int
 }
 
 type UserAnswer struct { // key = ユーザID_タイムスタンプ
-	UserKey Key
-	TimeStamp string
-	CategoryKey Key
-	RightAnswer Num
-	WrongAnswer Num
-	CategoryKey Key
+	UserKey     datastore.Key
+	TimeStamp   string
+	CategoryKey datastore.Key
+	RightAnswer int
+	WrongAnswer int
 }
 
 type UserAnswerDetail struct { // key = 自動採番
-	UerAnswerKey Key
-	UserKey Key
-	QuestionKey Key
-	CategoryKey Key
-	Corrected bool
-	TimeStamp string
+	UerAnswerKey datastore.Key
+	UserKey      datastore.Key
+	QuestionKey  datastore.Key
+	CategoryKey  datastore.Key
+	Corrected    bool
+	TimeStamp    string
 }
