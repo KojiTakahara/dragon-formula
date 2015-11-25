@@ -20,22 +20,22 @@ type Question struct { // key = 自動生成
 }
 
 type QuestionChoice struct { // key = 自動採番
-	Content   string `datastore:",noindex"`
+	Content     string `datastore:",noindex"`
 	QuestionKey string
-	TrueFalse bool
+	TrueFalse   bool
 }
 
 type Comment struct { // key = 自動採番
 	QuestionKey string
-	Status      string        // 閲覧権限
+	Status      string // 閲覧権限
 	UserKey     string // 発言者
 	CreatedAt   time.Time
 }
 
 type Category struct { // key = カテゴリ英名
-	Key string
-	Name string
-	Type int
+	Key       string
+	Name      string
+	Type      int
 	ParentKey string
 }
 

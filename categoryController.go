@@ -9,9 +9,9 @@ import (
 )
 
 /**
- カテゴリの検索
- typeとparentKeyNameで検索可能
- */
+カテゴリの検索
+typeとparentKeyNameで検索可能
+*/
 func GetCategoryList(r render.Render, req *http.Request) {
 	c := appengine.NewContext(req)
 	u, _ := url.Parse(req.URL.String())
@@ -34,8 +34,8 @@ func GetCategoryList(r render.Render, req *http.Request) {
 }
 
 /**
- カテゴリの登録
- */
+カテゴリの登録
+*/
 func RegistCategory(r render.Render, req *http.Request) {
 	c := appengine.NewContext(req)
 	category := &Category{}

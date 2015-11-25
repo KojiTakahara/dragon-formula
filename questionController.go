@@ -4,14 +4,14 @@ import (
 	"appengine"
 	"appengine/datastore"
 	"github.com/martini-contrib/render"
+	"math/rand"
 	"net/http"
 	"net/url"
-	"math/rand"
 )
 
 /**
- 問題選択肢の検索
- */
+問題選択肢の検索
+*/
 func GetQuestionList(r render.Render, req *http.Request) {
 	c := appengine.NewContext(req)
 	u, _ := url.Parse(req.URL.String())
@@ -29,7 +29,7 @@ func GetQuestionList(r render.Render, req *http.Request) {
 		c.Criticalf(err.Error())
 		r.JSON(400, err)
 		return
-	}	
+	}
 	for i := 0; i < len(questions); i++ {
 		question := questions[i]
 		q := datastore.NewQuery("QuestionChoice")
@@ -42,31 +42,31 @@ func GetQuestionList(r render.Render, req *http.Request) {
 			return
 		}
 		shuffleQuestionChoice(choices)
-		
-	} 	
+
+	}
 	shuffleQuestion(questions)
 	r.JSON(200, questions)
 }
 
 func shuffleQuestion(data []Question) {
-    n := len(data)
-    for i := n - 1; i >= 0; i-- {
-        j := rand.Intn(i + 1)
-        data[i], data[j] = data[j], data[i]
-    }
+	n := len(data)
+	for i := n - 1; i >= 0; i-- {
+		j := rand.Intn(i + 1)
+		data[i], data[j] = data[j], data[i]
+	}
 }
 
 func shuffleQuestionChoice(data []QuestionChoice) {
-    n := len(data)
-    for i := n - 1; i >= 0; i-- {
-        j := rand.Intn(i + 1)
-        data[i], data[j] = data[j], data[i]
-    }
+	n := len(data)
+	for i := n - 1; i >= 0; i-- {
+		j := rand.Intn(i + 1)
+		data[i], data[j] = data[j], data[i]
+	}
 }
 
 /**
- 問題の登録
- */
+問題の登録
+*/
 func RegistQuestion(r render.Render, req *http.Request) {
 	c := appengine.NewContext(req)
 	category := &Question{}
