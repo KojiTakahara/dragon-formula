@@ -11,8 +11,8 @@ var m *martini.Martini
 func init() {
 	m := martini.Classic()
 	m.Use(render.Renderer())
-	// m.Get("/api/deck/:id", CreateDeckSheet)
-	m.Post("/api/deck", RegistDeck)
+	m.Get("/api/category", GetCategoryList)
+	m.Post("/api/category", RegistCategory)
 	http.ListenAndServe(":8080", m)
 	http.Handle("/", m)
 }
