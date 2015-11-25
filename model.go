@@ -33,8 +33,10 @@ type Comment struct { // key = 自動採番
 }
 
 type Category struct { // key = カテゴリ英名
+	KeyName string
 	Name string
 	Type int
+	ParentKeyName string
 }
 
 type User struct { // key = ユーザID
