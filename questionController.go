@@ -41,12 +41,22 @@ func GetQuestionList(r render.Render, req *http.Request) {
 			r.JSON(400, err)
 			return
 		}
+		shuffleQuestionChoice(choices)
+		
 	} 	
-	shuffle(questions)
+	shuffleQuestion(questions)
 	r.JSON(200, questions)
 }
 
-func shuffle(data []Question) {
+func shuffleQuestion(data []Question) {
+    n := len(data)
+    for i := n - 1; i >= 0; i-- {
+        j := rand.Intn(i + 1)
+        data[i], data[j] = data[j], data[i]
+    }
+}
+
+func shuffleQuestionChoice(data []QuestionChoice) {
     n := len(data)
     for i := n - 1; i >= 0; i-- {
         j := rand.Intn(i + 1)
