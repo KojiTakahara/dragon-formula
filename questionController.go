@@ -42,7 +42,10 @@ func GetQuestionList(r render.Render, req *http.Request) {
 			return
 		}
 		shuffleQuestionChoice(choices)
-
+		question.Choice1 = choices[0].Content
+		question.Choice2 = choices[1].Content
+		question.Choice3 = choices[2].Content
+		question.Choice4 = choices[3].Content
 	}
 	shuffleQuestion(questions)
 	r.JSON(200, questions)
@@ -69,18 +72,33 @@ func shuffleQuestionChoice(data []QuestionChoice) {
 */
 func RegistQuestion(r render.Render, req *http.Request) {
 	c := appengine.NewContext(req)
-	category := &Question{}
+	question := &Question{}
 	key := datastore.NewKey(c, "Question", req.FormValue("key"), 0, nil)
-	// category.Name = req.FormValue("name")
-	// category.Type = ToInt(req.FormValue("type"))
-	// category.Key = key.StringID()
-	// category.ParentKey = req.FormValue("parentKey")
-	key, err := datastore.Put(c, key, category)
+	question.Content = req.FormValue("content")
+	question.Status = "REVIEW"
+	question.LargeCategoryKey = req.FormValue("largeCategoryKey")
+	question.MediumCategoryKey = req.FormValue("mediumCategoryKey")
+	question.SmallCategoryKey = req.FormValue("smallCategoryKey")
+	// question.UserKey
+	key, err := datastore.Put(c, key, question)
 	if err != nil {
 		c.Criticalf("%s", err)
 		r.JSON(400, err)
 	} else {
-		//category.Key = key.StringID()
-		r.JSON(200, category)
+		RegistQuestionChoice(r, req, key.StringID())
+		r.JSON(200, question)
+	}
+}
+
+func RegistQuestionChoice(r render.Render, req *http.Request, keyName string) {
+	c := appengine.NewContext(req)
+	choice := &QuestionChoice{}
+	key := datastore.NewKey(c, "QuestionChoice", req.FormValue("key"), 0, nil)
+	choice.Content = req.FormValue("content")
+	choice.TrueFalse = false //ToBool req.FormValue("trueFalse")
+	choice.QuestionKey = keyName
+	key, err := datastore.Put(c, key, choice)
+	if err == nil {
+		//r.JSON(200, question)
 	}
 }
