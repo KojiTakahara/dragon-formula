@@ -15,13 +15,13 @@ import (
 func GetCategoryList(r render.Render, req *http.Request) {
 	c := appengine.NewContext(req)
 	u, _ := url.Parse(req.URL.String())
-	params := u.Query()
+	p := u.Query()
 	q := datastore.NewQuery("Category")
-	if len(params["type"]) != 0 {
-		q = q.Filter("Type=", ToInt(params["type"][0]))
+	if len(p["type"]) != 0 {
+		q = q.Filter("Type=", ToInt(p["type"][0]))
 	}
-	if len(params["parentKeyName"]) != 0 {
-		q = q.Filter("parentKeyName=", params["parentKeyName"][0])
+	if len(p["parentKey"]) != 0 {
+		q = q.Filter("ParentKey=", p["parentKey"][0])
 	}
 	categories := make([]Category, 0, 10)
 	_, err := q.GetAll(c, &categories)
@@ -39,17 +39,17 @@ func GetCategoryList(r render.Render, req *http.Request) {
 func RegistCategory(r render.Render, req *http.Request) {
 	c := appengine.NewContext(req)
 	category := &Category{}
-	key := datastore.NewKey(c, "Category", req.FormValue("keyName"), 0, nil)
+	key := datastore.NewKey(c, "Category", req.FormValue("key"), 0, nil)
 	category.Name = req.FormValue("name")
 	category.Type = ToInt(req.FormValue("type"))
-	category.KeyName = key.StringID()
-	category.ParentKeyName = req.FormValue("parentKeyName")
+	category.Key = key.StringID()
+	category.ParentKey = req.FormValue("parentKey")
 	key, err := datastore.Put(c, key, category)
 	if err != nil {
 		c.Criticalf("%s", err)
 		r.JSON(400, err)
 	} else {
-		category.KeyName = key.StringID()
+		category.Key = key.StringID()
 		r.JSON(200, category)
 	}
 }

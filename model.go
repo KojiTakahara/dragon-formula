@@ -1,42 +1,42 @@
 package dragonformula
 
 import (
-	"appengine/datastore"
 	"time"
 )
 
 type Question struct { // key = 自動生成
 	Content           string `datastore:",noindex"`
-	LargeCategoryKey  datastore.Key
-	MediumCategoryKey datastore.Key
-	SmallCategoryKey  datastore.Key
-	Answer1Key        datastore.Key
-	Answer2Key        datastore.Key
-	Answer3Key        datastore.Key
-	Answer4Key        datastore.Key
+	LargeCategoryKey  string
+	MediumCategoryKey string
+	SmallCategoryKey  string
+	Choice1           string `datastore:",noindex"`
+	Choice2           string `datastore:",noindex"`
+	Choice3           string `datastore:",noindex"`
+	Choice4           string `datastore:",noindex"`
 	Rubric            string `datastore:",noindex"`
 	Percentage        float32
-	Status            string        // 依頼,最終確認,承認,却下
-	UserKey           datastore.Key // 作成者
+	Status            string // 依頼,最終確認,承認,却下
+	UserKey           string // 作成者
 }
 
-type QuestionAnswer struct { // key = 自動採番
+type QuestionChoice struct { // key = 自動採番
 	Content   string `datastore:",noindex"`
+	QuestionKey string
 	TrueFalse bool
 }
 
 type Comment struct { // key = 自動採番
-	QuestionKey datastore.Key
+	QuestionKey string
 	Status      string        // 閲覧権限
-	UserKey     datastore.Key // 発言者
+	UserKey     string // 発言者
 	CreatedAt   time.Time
 }
 
 type Category struct { // key = カテゴリ英名
-	KeyName string
+	Key string
 	Name string
 	Type int
-	ParentKeyName string
+	ParentKey string
 }
 
 type User struct { // key = ユーザID
@@ -44,18 +44,18 @@ type User struct { // key = ユーザID
 }
 
 type UserAnswer struct { // key = ユーザID_タイムスタンプ
-	UserKey     datastore.Key
+	UserKey     string
 	TimeStamp   string
-	CategoryKey datastore.Key
+	CategoryKey string
 	RightAnswer int
 	WrongAnswer int
 }
 
 type UserAnswerDetail struct { // key = 自動採番
-	UerAnswerKey datastore.Key
-	UserKey      datastore.Key
-	QuestionKey  datastore.Key
-	CategoryKey  datastore.Key
+	UerAnswerKey string
+	UserKey      string
+	QuestionKey  string
+	CategoryKey  string
 	Corrected    bool
 	TimeStamp    string
 }
