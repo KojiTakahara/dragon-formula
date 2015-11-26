@@ -7,6 +7,8 @@ import (
 	"math/rand"
 	"net/http"
 	"net/url"
+	"strconv"
+	"fmt"
 )
 
 /**
@@ -31,9 +33,8 @@ func GetQuestionList(r render.Render, req *http.Request) {
 		return
 	}
 	for i := 0; i < len(questions); i++ {
-		question := questions[i]
 		q := datastore.NewQuery("QuestionChoice")
-		q = q.Filter("QuestionKey=", keys[i].StringID())
+		q = q.Filter("QuestionKeyId =", keys[i].IntID())
 		choices := make([]QuestionChoice, 0, 4)
 		_, err := q.GetAll(c, &choices)
 		if err != nil {
@@ -41,11 +42,15 @@ func GetQuestionList(r render.Render, req *http.Request) {
 			r.JSON(400, err)
 			return
 		}
+		if len(choices) != 4 {
+			r.JSON(400, fmt.Sprintf("size error. choices = %d", len(choices)))
+			return
+		}
 		shuffleQuestionChoice(choices)
-		question.Choice1 = choices[0].Content
-		question.Choice2 = choices[1].Content
-		question.Choice3 = choices[2].Content
-		question.Choice4 = choices[3].Content
+		questions[i].Choice1 = choices[0]
+		questions[i].Choice2 = choices[1]
+		questions[i].Choice3 = choices[2]
+		questions[i].Choice4 = choices[3]
 	}
 	shuffleQuestion(questions)
 	r.JSON(200, questions)
@@ -80,25 +85,29 @@ func RegistQuestion(r render.Render, req *http.Request) {
 	question.MediumCategoryKey = req.FormValue("mediumCategoryKey")
 	question.SmallCategoryKey = req.FormValue("smallCategoryKey")
 	// question.UserKey
-	key, err := datastore.Put(c, key, question)
+	resultkey, err := datastore.Put(c, key, question)
 	if err != nil {
 		c.Criticalf("%s", err)
 		r.JSON(400, err)
 	} else {
-		RegistQuestionChoice(r, req, key.StringID())
+    	c.Infof("%d", resultkey.IntID())
+		RegistQuestionChoice(req, resultkey.IntID(), "1")
+		RegistQuestionChoice(req, resultkey.IntID(), "2")
+		RegistQuestionChoice(req, resultkey.IntID(), "3")
+		RegistQuestionChoice(req, resultkey.IntID(), "4")	
 		r.JSON(200, question)
 	}
 }
 
-func RegistQuestionChoice(r render.Render, req *http.Request, keyName string) {
+func RegistQuestionChoice(req *http.Request, k int64, num string) {
 	c := appengine.NewContext(req)
 	choice := &QuestionChoice{}
-	key := datastore.NewKey(c, "QuestionChoice", req.FormValue("key"), 0, nil)
-	choice.Content = req.FormValue("content")
-	choice.TrueFalse = false //ToBool req.FormValue("trueFalse")
-	choice.QuestionKey = keyName
-	key, err := datastore.Put(c, key, choice)
-	if err == nil {
-		//r.JSON(200, question)
+	key := datastore.NewKey(c, "QuestionChoice", req.FormValue("choice" + num + "Key"), 0, nil)
+	choice.Content = req.FormValue("choice" + num + "Content")
+	choice.TrueFalse, _ = strconv.ParseBool(req.FormValue("choice" + num + "Bool"))
+	choice.QuestionKeyId = k
+	_, err := datastore.Put(c, key, choice)
+	if err != nil {
+		c.Criticalf("%s", err)
 	}
 }

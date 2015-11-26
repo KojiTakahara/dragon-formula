@@ -9,19 +9,20 @@ type Question struct { // key = 自動生成
 	LargeCategoryKey  string
 	MediumCategoryKey string
 	SmallCategoryKey  string
-	Choice1           string `datastore:",noindex"`
-	Choice2           string `datastore:",noindex"`
-	Choice3           string `datastore:",noindex"`
-	Choice4           string `datastore:",noindex"`
 	Rubric            string `datastore:",noindex"`
 	Percentage        float32
 	Status            string // 依頼,最終確認,承認,却下
 	UserKey           string // 作成者
+	// ignored entirely by the datastore.
+	Choice1           QuestionChoice `datastore:"-"`
+	Choice2           QuestionChoice `datastore:"-"`
+	Choice3           QuestionChoice `datastore:"-"`
+	Choice4           QuestionChoice `datastore:"-"`
 }
 
 type QuestionChoice struct { // key = 自動採番
 	Content     string `datastore:",noindex"`
-	QuestionKey string
+	QuestionKeyId int64
 	TrueFalse   bool
 }
 
