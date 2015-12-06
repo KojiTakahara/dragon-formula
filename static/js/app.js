@@ -1,6 +1,7 @@
 "use strict";
 
 var app = angular.module('app', [
+  'slick'
 ]);
 
 app.controller('indexCtrl', ['$scope', '$http', '$sce', '$window', function($scope, $http, $sce, $window) {
