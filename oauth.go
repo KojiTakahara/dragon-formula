@@ -21,9 +21,9 @@ import (
 	"time"
 )
 
-var TWITTER_CONSUMER_KEY = "cqxGJurLxEDAJhYrzpEqe9v6k"
-var TWITTER_CALLBACK_URL = "http://wixoss-tcg.appspot.com/api/twitter/callback"
-var TWITTER_CONSUMER_SECRET = "d5AwRGPkMdEGtLWZqsrNsN4C5M1lx5ez80ryVtQ5KkSDm15QhR"
+var TWITTER_CONSUMER_KEY = "tFc1luf519X71ihzPS6Mohibn"
+var TWITTER_CALLBACK_URL = "http://aqua-teacher.appspot.com/api/twitter/callback"
+var TWITTER_CONSUMER_SECRET = "KD84L4SqwdrxOiw6T2DTw4TuzcefWqdZCRCGXhxWCmj3aDSPFy"
 var TWITTER_SERVER = oauth.ServiceProvider{
 	RequestTokenUrl:   "http://api.twitter.com/oauth/request_token",
 	AuthorizeTokenUrl: "https://api.twitter.com/oauth/authorize",
