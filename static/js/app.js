@@ -5,8 +5,10 @@ var app = angular.module('app', [
 ]);
 
 app.controller('indexCtrl', ['$scope', '$http', '$sce', '$window', function($scope, $http, $sce, $window) {
-
-
+  $scope.isStarted = false;
+  $scope.start = function() {
+    $scope.isStarted = true;
+  };
 }]);
 
 app.config(['$httpProvider', '$locationProvider', function($httpProvider, $locationProvider) {

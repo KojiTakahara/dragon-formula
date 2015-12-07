@@ -10,7 +10,22 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick.css">
+    <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick-theme.css">
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+      .page-content.mdl-grid {
+        max-width: 750px;
+        padding-top: 48px;
+      }
+      .demo-card-wide > .mdl-card__title {
+        color: #fff;
+        height: 176px;
+        background: url('/img/card_1.jpg') center / cover;
+      }
+      .demo-card-wide > .mdl-card__menu {
+        color: #fff;
+      }
+    </style>
   </head>
   <body ng-app="app" ng-controller="indexCtrl">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -22,7 +37,6 @@
           <!-- Add spacer, to align navigation to the right in desktop -->
           <div class="android-header-spacer mdl-layout-spacer"></div>
           <div class="android-search-box mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
-
             <div class="mdl-textfield__expandable-holder">
               <input class="mdl-textfield__input" type="text" id="search-field">
             </div>
@@ -30,156 +44,70 @@
           <!-- Navigation -->
           <div class="android-navigation-container">
             <nav class="android-navigation mdl-navigation">
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Phones</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Tablets</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Wear</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">TV</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Auto</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">One</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Play</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Content1</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Content2</a>
             </nav>
           </div>
+          <!-- Title -->
           <span class="android-mobile-title mdl-layout-title">
             <img class="android-logo-image" src="images/android-logo.png">
           </span>
-          <button class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button">
-            <i class="material-icons">more_vert</i>
-          </button>
-          <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
-            <li class="mdl-menu__item">5.0 Lollipop</li>
-            <li class="mdl-menu__item">4.4 KitKat</li>
-            <li disabled class="mdl-menu__item">4.3 Jelly Bean</li>
-            <li class="mdl-menu__item">Android History</li>
-          </ul>
         </div>
       </div>
-
+      <!-- MainContents -->
       <div class="android-drawer mdl-layout__drawer">
         <span class="mdl-layout-title">
           <img class="android-logo-image" src="images/android-logo-white.png">
         </span>
         <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="">Phones</a>
-          <a class="mdl-navigation__link" href="">Tablets</a>
-          <a class="mdl-navigation__link" href="">Wear</a>
-          <a class="mdl-navigation__link" href="">TV</a>
-          <a class="mdl-navigation__link" href="">Auto</a>
-          <a class="mdl-navigation__link" href="">One</a>
-          <a class="mdl-navigation__link" href="">Play</a>
+          <a class="mdl-navigation__link" href="">Content1</a>
+          <a class="mdl-navigation__link" href="">Content2</a>
           <div class="android-drawer-separator"></div>
           <span class="mdl-navigation__link" href="">Versions</span>
-          <a class="mdl-navigation__link" href="">Lollipop 5.0</a>
-          <a class="mdl-navigation__link" href="">KitKat 4.4</a>
-          <a class="mdl-navigation__link" href="">Jelly Bean 4.3</a>
-          <a class="mdl-navigation__link" href="">Android history</a>
-        </nav>
-      </div>
-
-      <div class="android-content mdl-layout__content">
-        <a name="top"></a>
-        <div class="android-be-together-section mdl-typography--text-center">
-          <div class="logo-font android-slogan">be together. not the same.</div>
-          <div class="logo-font android-sub-slogan">welcome to android... be yourself. do your thing. see what's going on.</div>
-        </div>
-
-        <div>
-        <slick infinite="true" slides-to-show="3" slides-to-scroll="3">
-				  <h1>1</h1>
-				</slick>
-
-				<slick dots="true" infinite="false" speed="300" slides-to-show="5" touch-move="false" slides-to-scroll="1">
-				  <h1>2</h1>
-				</slick>
-        </div>
-
-        <div class="android-more-section">
-          <div class="android-section-title mdl-typography--display-1-color-contrast">More from Android</div>
-          <div class="android-card-container mdl-grid">
-            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-              <div class="mdl-card__media">
-                <img src="images/more-from-1.png">
-              </div>
-              <div class="mdl-card__title">
-                 <h4 class="mdl-card__title-text">Get going on Android</h4>
-              </div>
-              <div class="mdl-card__supporting-text">
-                <span class="mdl-typography--font-light mdl-typography--subhead">Four tips to make your switch to Android quick and easy</span>
-              </div>
-              <div class="mdl-card__actions">
-                 <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
-                   Make the switch
-                   <i class="material-icons">chevron_right</i>
-                 </a>
-              </div>
-            </div>
-
-            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-              <div class="mdl-card__media">
-                <img src="images/more-from-4.png">
-              </div>
-              <div class="mdl-card__title">
-                 <h4 class="mdl-card__title-text">Create your own Android character</h4>
-              </div>
-              <div class="mdl-card__supporting-text">
-                <span class="mdl-typography--font-light mdl-typography--subhead">Turn the little green Android mascot into you, your friends, anyone!</span>
-              </div>
-              <div class="mdl-card__actions">
-                 <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
-                   androidify.com
-                   <i class="material-icons">chevron_right</i>
-                 </a>
-              </div>
-            </div>
-
-            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-              <div class="mdl-card__media">
-                <img src="images/more-from-2.png">
-              </div>
-              <div class="mdl-card__title">
-                 <h4 class="mdl-card__title-text">Get a clean customisable home screen</h4>
-              </div>
-              <div class="mdl-card__supporting-text">
-                <span class="mdl-typography--font-light mdl-typography--subhead">A clean, simple, customisable home screen that comes with the power of Google Now: Traffic alerts, weather and much more, just a swipe away.</span>
-              </div>
-              <div class="mdl-card__actions">
-                 <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
-                   Download now
-                   <i class="material-icons">chevron_right</i>
-                 </a>
-              </div>
-            </div>
-
-            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-              <div class="mdl-card__media">
-                <img src="images/more-from-3.png">
-              </div>
-              <div class="mdl-card__title">
-                 <h4 class="mdl-card__title-text">Millions to choose from</h4>
-              </div>
-              <div class="mdl-card__supporting-text">
-                <span class="mdl-typography--font-light mdl-typography--subhead">Hail a taxi, find a recipe, run through a temple – Google Play has all the apps and games that let you make your Android device uniquely yours.</span>
-              </div>
-              <div class="mdl-card__actions">
-                 <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
-                   Find apps
-                   <i class="material-icons">chevron_right</i>
-                 </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <footer class="android-footer mdl-mega-footer">
+          <a class="mdl-navigation__link" href="">Admin</a>
+          <footer class="android-footer mdl-mega-footer">
           <div class="mdl-mega-footer--middle-section">
             <p class="mdl-typography--font-light">Satellite imagery: © 2014 Astrium, DigitalGlobe</p>
           </div>
         </footer>
+        </nav>
+      </div>
+      <div class="android-content mdl-layout__content">
+        
+        <div class="page-content mdl-grid">
+          <div class="demo-card-wide mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-phone" ng-hide="isStarted">
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text">
+                <b>Competition Event Management Rules</b>
+              </h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+              競技イベント運営ルールよりランダムで25問出題されます。<br>
+              (ver 2015年9月19日)
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="start()">はじめる</a>
+            </div>
+          </div>
+        </div>
+    
+    
+        
+        <div class="android-be-together-section mdl-typography--text-center" style="max-width: 750px; margin: 0 auto;">
+          <slick dots="true" class="slider single-item" current-index="index" responsive="breakpoints" slides-to-show=1 slides-to-scroll=1>
+            <div ng-repeat="i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]">
+              <h3>{{ i }}</h3>
+            </div>
+          </slick>
+        </div>
+        
       </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<script src="bower_components/slick-carousel/slick/slick.js"></script>
 		<script src="bower_components/angular-slick/dist/slick.js"></script>
+    <script src="/js/app.js"></script>
   </body>
 </html>
