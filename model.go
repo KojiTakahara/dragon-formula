@@ -14,16 +14,16 @@ type Question struct { // key = 自動生成
 	Status            string // 依頼,最終確認,承認,却下
 	UserKey           string // 作成者
 	// ignored entirely by the datastore.
-	Choice1           QuestionChoice `datastore:"-"`
-	Choice2           QuestionChoice `datastore:"-"`
-	Choice3           QuestionChoice `datastore:"-"`
-	Choice4           QuestionChoice `datastore:"-"`
+	Choice1 QuestionChoice `datastore:"-"`
+	Choice2 QuestionChoice `datastore:"-"`
+	Choice3 QuestionChoice `datastore:"-"`
+	Choice4 QuestionChoice `datastore:"-"`
 }
 
 type QuestionChoice struct { // key = 自動採番
-	Content     string `datastore:",noindex"`
+	Content       string `datastore:",noindex"`
 	QuestionKeyId int64
-	TrueFalse   bool
+	TrueFalse     bool
 }
 
 type Comment struct { // key = 自動採番
@@ -41,6 +41,9 @@ type Category struct { // key = カテゴリ英名
 }
 
 type User struct { // key = ユーザID
+	Key       string
+	Id        string
+	Token     string
 	Authority int
 }
 
