@@ -27,7 +27,7 @@
       }
     </style>
   </head>
-  <body ng-app="app" ng-controller="indexCtrl">
+  <body ng-app="app">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
       <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
         <div class="mdl-layout__header-row">
@@ -36,26 +36,15 @@
           </span>
           <!-- Add spacer, to align navigation to the right in desktop -->
           <div class="android-header-spacer mdl-layout-spacer"></div>
-          <div class="android-search-box mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
-            <div class="mdl-textfield__expandable-holder">
-              <input class="mdl-textfield__input" type="text" id="search-field">
-            </div>
-          </div>
-          <!-- Navigation -->
-          <div class="android-navigation-container">
-            <nav class="android-navigation mdl-navigation">
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Content1</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Content2</a>
-            </nav>
-          </div>
-          <!-- Title -->
-          <span class="android-mobile-title mdl-layout-title">
-            <img class="android-logo-image" src="images/android-logo.png">
+          <!-- CenterTitle -->
+          <span class="android-mobile-title mdl-layout-title" style="color:red">
+            AQUA-TEACHER
           </span>
         </div>
       </div>
-      <!-- MainContents -->
+      
       <div class="android-drawer mdl-layout__drawer">
+        <!-- SideBar -->
         <span class="mdl-layout-title">
           <img class="android-logo-image" src="images/android-logo-white.png">
         </span>
@@ -73,41 +62,21 @@
         </nav>
       </div>
       <div class="android-content mdl-layout__content">
-        
-        <div class="page-content mdl-grid">
-          <div class="demo-card-wide mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-phone" ng-hide="isStarted">
-            <div class="mdl-card__title">
-              <h2 class="mdl-card__title-text">
-                <b>Competition Event Management Rules</b>
-              </h2>
-            </div>
-            <div class="mdl-card__supporting-text">
-              競技イベント運営ルールよりランダムで25問出題されます。<br>
-              (ver 2015年9月19日)
-            </div>
-            <div class="mdl-card__actions mdl-card--border">
-              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="start()">はじめる</a>
-            </div>
-          </div>
-        </div>
-    
-    
-        
-        <div class="android-be-together-section mdl-typography--text-center" style="max-width: 750px; margin: 0 auto;">
-          <slick dots="true" class="slider single-item" current-index="index" responsive="breakpoints" slides-to-show=1 slides-to-scroll=1>
-            <div ng-repeat="i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]">
-              <h3>{{ i }}</h3>
-            </div>
-          </slick>
-        </div>
-        
+        <!-- MainContents -->
+        <div ui-view="mainContent"></div>
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 		<script src="bower_components/slick-carousel/slick/slick.js"></script>
 		<script src="bower_components/angular-slick/dist/slick.js"></script>
+    <!-- controller -->
+    <script src="/js/controller/indexController.js"></script>
+    <script src="/js/controller/competitionController.js"></script>
+    <!-- service -->
+    <script src="/js/service/questionService.js"></script>
     <script src="/js/app.js"></script>
   </body>
 </html>

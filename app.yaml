@@ -28,7 +28,15 @@ handlers:
   static_files: static/font/\1
   upload: static/font/(.*\.(eot|svg|ttf|woff))
 
+- url: /view/(.*\.html)
+  static_files: static/view/\1
+  upload: static/view/(.*\.html)
+
 - url: /
+  static_files: static/index.html
+  upload: static/index.html
+  
+- url: /competition
   static_files: static/index.html
   upload: static/index.html
 
