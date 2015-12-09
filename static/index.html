@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick.css">
     <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick-theme.css">
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.light_blue-pink.min.css" />
     <link rel="stylesheet" href="css/styles.css">
     <style>
       .page-content.mdl-grid {
@@ -25,6 +26,9 @@
       .demo-card-wide > .mdl-card__menu {
         color: #fff;
       }
+      body {
+      	background-color: #3498db;
+      }
     </style>
   </head>
   <body ng-app="app">
@@ -32,17 +36,19 @@
       <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
         <div class="mdl-layout__header-row">
           <span class="android-title mdl-layout-title" style="color:red">
-            AQUA-TEACHER
+          	<a href="/">
+          		<img src="/img/logo.png">
+          	</a>
           </span>
           <!-- Add spacer, to align navigation to the right in desktop -->
           <div class="android-header-spacer mdl-layout-spacer"></div>
           <!-- CenterTitle -->
           <span class="android-mobile-title mdl-layout-title" style="color:red">
-            AQUA-TEACHER
+            <img src="/img/logo.png" style="max-width: 150px; margin-top: 5px;">
           </span>
         </div>
       </div>
-      
+
       <div class="android-drawer mdl-layout__drawer">
         <!-- SideBar -->
         <span class="mdl-layout-title">
