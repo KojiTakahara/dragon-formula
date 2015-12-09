@@ -1,7 +1,44 @@
-<div class="android-be-together-section mdl-typography--text-center" style="max-width: 750px; margin: 0 auto;">
+<style>
+.mdl-radio {
+  display: block;
+  margin-bottom: 10px;
+}
+.mdl-typography--text-center {
+	text-align: left !important;
+}
+h4 {
+	margin-top: 0px;
+}
+
+</style>
+
+<div class="android-be-together-section mdl-typography--text-center" style="max-width: 750px; min-height: 100px; margin: 0 auto;">
 	<slick dots="true" class="slider single-item" current-index="index" responsive="breakpoints" slides-to-show=1 slides-to-scroll=1>
-	<div ng-repeat="i in questions">
-		<h3>{{ i }}</h3>
+	<div ng-repeat="i in questions" style="margin:30px 30px 30px 30px;">
+		
+		<h4>問{{i}}.</h4>
+		<div style="font-size:40px;word-wrap: break-word; margin-bottom: 20px;">
+			xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+		</div>
+		
+		<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+			<input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1">
+			<span class="mdl-radio__label">１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０</span>
+		</label>
+		<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+			<input type="radio" id="option-2" class="mdl-radio__button" name="options" value="1">
+			<span class="mdl-radio__label">あいうえおかきくけこ</span>
+		</label>
+		<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+			<input type="radio" id="option-3" class="mdl-radio__button" name="options" value="1">
+			<span class="mdl-radio__label">さしすせそたちつてと</span>
+		</label>
+		<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-4">
+			<input type="radio" id="option-4" class="mdl-radio__button" name="options" value="1">
+			<span class="mdl-radio__label">なにぬねのはひふへほ</span>
+		</label>
+		
+		<hr style="margin-bottom: 30px;">
 	</div>
 	</slick>
 </div>
