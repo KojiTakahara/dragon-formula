@@ -6,7 +6,7 @@
 .mdl-typography--text-center {
 	text-align: left !important;
 }
-h4 {
+h5 {
 	margin-top: 0px;
 }
 
@@ -14,20 +14,20 @@ h4 {
 
 <div class="android-be-together-section mdl-typography--text-center" style="max-width: 750px; min-height: 100px; margin: 0 auto;">
 	<slick dots="false" class="slider single-item" current-index="index" responsive="breakpoints" slides-to-show=1 slides-to-scroll=1>
-	<div ng-repeat="i in questions" style="margin:30px 30px 30px 30px;">
-		<div style="background-color:white; padding:20px;">
-			<h4>問{{i}}.</h4>
-			<div style="font-size:40px;word-wrap: break-word; margin-bottom: 20px;">
-				xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+	<div ng-repeat="i in questions" style="margin:15px 30px 20px 30px;">
+		<div style="background-color:white; padding:20px;color: rgba(0,0,0,.54);">
+			<h5>問{{i}}.</h5>
+			<div style="font-size:20px;word-wrap: break-word; margin-bottom: 20px;">
+				イベントの開催について正しいのは次の内どれか
 			</div>
 
 			<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
 				<input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1">
-				<span class="mdl-radio__label">１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０</span>
+				<span class="mdl-radio__label">イベントのフォーマットは構築またはリミテッドで開催可能である。</span>
 			</label>
 			<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
 				<input type="radio" id="option-2" class="mdl-radio__button" name="options" value="1">
-				<span class="mdl-radio__label">あいうえおかきくけこ</span>
+				<span class="mdl-radio__label">イベントのフォーマットは構築のみ開催可能である。</span>
 			</label>
 			<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
 				<input type="radio" id="option-3" class="mdl-radio__button" name="options" value="1">
@@ -41,8 +41,8 @@ h4 {
 	</div>
 	</slick>
 	<div style="margin-top: -40px; text-align: center;">
-		<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-		  回答を送信する
-		</button>
+		<md-button class="md-warn md-raised" ng-click="showConfirm($event)" flex-sm="100" flex-md="100" flex-gt-md="auto">
+			回答を送信する
+		</md-button>
 	</div>
 </div>

@@ -24,12 +24,12 @@ a img{
 }
 
 ::-moz-selection {
-  background-color: #6ab344;
+  background-color: #3498db;
   color: #fff;
 }
 
 ::selection {
-  background-color: #6ab344;
+  background-color: #3498db;
   color: #fff;
 }
 
@@ -153,7 +153,7 @@ a img{
 
   .android-drawer .mdl-layout-title {
     position: relative;
-    background: #6ab344;
+    background: #3498db;
     height: 160px;
   }
 
