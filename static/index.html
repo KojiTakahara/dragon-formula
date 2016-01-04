@@ -59,14 +59,14 @@
           <img class="android-logo-image" src="images/android-logo-white.png">
         </span>
         <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="">Content1</a>
-          <a class="mdl-navigation__link" href="">Content2</a>
+          <a class="mdl-navigation__link" href="/submission" onclick="closeSideMenu()">出題問題の投稿</a>
           <div class="android-drawer-separator"></div>
-          <span class="mdl-navigation__link" href="">Versions</span>
-          <a class="mdl-navigation__link" href="">Admin</a>
+          <!--
+          <a class="mdl-navigation__link" href="">管理者</a>
+          -->
           <footer class="android-footer mdl-mega-footer">
           <div class="mdl-mega-footer--middle-section">
-            <p class="mdl-typography--font-light">Satellite imagery: © 2014 Astrium, DigitalGlobe</p>
+            <p class="mdl-typography--font-light">author: <a href="https://twitter.com/dm_plateau" target="_blank">@dm_plateau</a></p>
           </div>
         </footer>
         </nav>
@@ -89,8 +89,10 @@
     <!-- controller -->
     <script src="/js/controller/indexController.js"></script>
     <script src="/js/controller/competitionController.js"></script>
+    <script src="/js/controller/submissionController.js"></script>
     <!-- service -->
     <script src="/js/service/questionService.js"></script>
+    <script src="/js/service/categoryService.js"></script>
     <script src="/js/app.js"></script>
   </body>
 </html>

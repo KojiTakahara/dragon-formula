@@ -1,0 +1,55 @@
+<style>
+.submission-form {
+	margin: 25px 25px 50px 25px;
+	padding: 25px;
+}
+.mdl-typography--text-center {
+	text-align: left !important;
+}
+</style>
+
+<div class="android-be-together-section mdl-typography--text-center" style="max-width: 750px; min-height: 100px; margin: 0 auto;">
+	
+	<md-content class="autoScroll submission-form">
+    	<md-input-container class="md-icon-float md-block">
+      		<label>問題文</label>
+      		<input ng-model="question.content" type="text">
+    	</md-input-container>
+		
+		<md-input-container class="md-icon-float md-block">
+      		<label>正答</label>
+      		<input ng-model="question.correctAnswer" type="text">
+    	</md-input-container>
+		
+		<md-input-container class="md-icon-float md-block">
+      		<label>誤答1</label>
+      		<input ng-model="question.wrongAnswer1" type="text">
+    	</md-input-container>
+		
+		<md-input-container class="md-icon-float md-block">
+      		<label>誤答2</label>
+      		<input ng-model="question.wrongAnswer2" type="text">
+    	</md-input-container>
+		
+		<md-input-container class="md-icon-float md-block">
+      		<label>誤答3</label>
+      		<input ng-model="question.wrongAnswer3" type="text">
+    	</md-input-container>
+		
+		<md-input-container>
+			<label>カテゴリー</label>
+			<md-select ng-model="question.category">
+			<md-option ng-repeat="category in categories" value="{{category.Key}}">
+				{{category.Name}}
+			</md-option>
+			</md-select>
+		</md-input-container>
+
+	</md-content>
+
+	<div style="margin-top: -40px; text-align: center;">
+		<md-button class="md-warn md-raised" ng-click="showConfirm($event)" flex-sm="100" flex-md="100" flex-gt-md="auto">
+			送信する
+		</md-button>
+	</div>
+</div>

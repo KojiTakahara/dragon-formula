@@ -3,12 +3,18 @@
 var app = angular.module('app', [
   'indexCtrl',
   'competitionCtrl',
+  'submissionCtrl',
+  'categoryService',
   'questionService',
   'ui.router',
   'slick',
   'ngMaterial',
   'angular-loading-bar'
 ]);
+
+var closeSideMenu = function() {
+  angular.element(".mdl-layout__obfuscator").click();
+}
 
 app.config(['$httpProvider', '$locationProvider', '$stateProvider', '$urlRouterProvider', 'cfpLoadingBarProvider',
 function($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, cfpLoadingBarProvider) {
@@ -41,6 +47,15 @@ function($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, c
       mainContent: {
         templateUrl: '/view/competition.html',
         controller: 'competitionCtrl'
+      }
+    }
+  });
+  $stateProvider.state('submission', {
+    url: '/submission',
+    views: {
+      mainContent: {
+        templateUrl: '/view/submission.html',
+        controller: 'submissionCtrl'
       }
     }
   });
