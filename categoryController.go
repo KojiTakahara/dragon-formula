@@ -44,6 +44,7 @@ func RegistCategory(r render.Render, req *http.Request) {
 	category.Type = ToInt(req.FormValue("type"))
 	category.Key = key.StringID()
 	category.ParentKey = req.FormValue("parentKey")
+	category.Number = req.FormValue("number")
 	key, err := datastore.Put(c, key, category)
 	if err != nil {
 		c.Criticalf("%s", err)

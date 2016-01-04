@@ -37,11 +37,14 @@
     	</md-input-container>
 		
 		<md-input-container>
-			<label>カテゴリー</label>
+			<label>カテゴリー</label>			
 			<md-select ng-model="question.category">
-			<md-option ng-repeat="category in categories" value="{{category.Key}}">
-				{{category.Name}}
-			</md-option>
+				<md-optgroup label="総合ゲームルール">
+					<md-option ng-value="category.Key" ng-repeat="category in rule1Categories">{{category.Name}}</md-option>
+				</md-optgroup>
+				<md-optgroup label="競技イベント運営ルール">
+					<md-option ng-value="category.Key" ng-repeat="category in rule2Categories">{{category.Name}}</md-option>
+				</md-optgroup>
 			</md-select>
 		</md-input-container>
 

@@ -4,8 +4,11 @@ var app = angular.module('submissionCtrl', []);
 app.controller('submissionCtrl', ['$scope', '$http', '$sce', '$window', '$mdDialog', 'categoryService',
 function($scope, $http, $sce, $window, $mdDialog, categoryService) {
 	var init = function() {
-    categoryService.search().then(function(data) {
-			$scope.categories = data;
+    categoryService.search(null, "rule_1").then(function(data) {
+			$scope.rule1Categories = data;
+		});
+    categoryService.search(null, "rule_2").then(function(data) {
+			$scope.rule2Categories = data;
 		});
 	};
 	init();
