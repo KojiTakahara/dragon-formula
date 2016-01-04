@@ -2,7 +2,7 @@
 URL=http://localhost:8080/api/
 CATEGORY=category
 callAPI () {
-  wget --post-data=$2 $URL$CATEGORY
+  wget --post-data=$1 $URL$CATEGORY
   rm $CATEGORY
 }
 
