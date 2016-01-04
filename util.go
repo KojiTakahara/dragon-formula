@@ -20,6 +20,16 @@ func ToInt(v string) int {
 	return i
 }
 
+func ToFloat32(v string) float64 {
+	f, _ := strconv.ParseFloat(v, 32)
+	return f
+}
+
+func ToFloat64(v string) float64 {
+	f, _ := strconv.ParseFloat(v, 64)
+	return f
+}
+
 /**
  * Getリクエストを送る
  * @function

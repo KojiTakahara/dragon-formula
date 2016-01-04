@@ -9,48 +9,48 @@
 </style>
 
 <div class="android-be-together-section mdl-typography--text-center" style="max-width: 750px; min-height: 100px; margin: 0 auto;">
-	
+
 	<md-content class="autoScroll submission-form">
     	<md-input-container class="md-icon-float md-block">
       		<label>問題文</label>
       		<input ng-model="question.content" type="text">
     	</md-input-container>
-		
+
 		<md-input-container class="md-icon-float md-block">
       		<label>正答</label>
       		<input ng-model="question.correctAnswer" type="text">
     	</md-input-container>
-		
+
 		<md-input-container class="md-icon-float md-block">
       		<label>誤答1</label>
       		<input ng-model="question.wrongAnswer1" type="text">
     	</md-input-container>
-		
+
 		<md-input-container class="md-icon-float md-block">
       		<label>誤答2</label>
       		<input ng-model="question.wrongAnswer2" type="text">
     	</md-input-container>
-		
+
 		<md-input-container class="md-icon-float md-block">
       		<label>誤答3</label>
       		<input ng-model="question.wrongAnswer3" type="text">
     	</md-input-container>
-		
+
 		<md-input-container>
-			<label>カテゴリー</label>			
+			<label>カテゴリー</label>
 			<md-select ng-model="question.category">
 				<md-optgroup label="総合ゲームルール">
-					<md-option ng-value="category.Key" ng-repeat="category in rule1Categories">{{category.Name}}</md-option>
+					<md-option ng-value="category.Key" ng-repeat="category in rule1Categories">{{category.Number}}  {{category.Name}}</md-option>
 				</md-optgroup>
 				<md-optgroup label="競技イベント運営ルール">
-					<md-option ng-value="category.Key" ng-repeat="category in rule2Categories">{{category.Name}}</md-option>
+					<md-option ng-value="category.Key" ng-repeat="category in rule2Categories">{{category.Number}}  {{category.Name}}</md-option>
 				</md-optgroup>
 			</md-select>
 		</md-input-container>
 
 	</md-content>
 
-	<div style="margin-top: -40px; text-align: center;">
+	<div style="margin: -40px 0 20px 0; text-align: center;">
 		<md-button class="md-warn md-raised" ng-click="showConfirm($event)" flex-sm="100" flex-md="100" flex-gt-md="auto">
 			送信する
 		</md-button>

@@ -39,7 +39,7 @@ type Category struct { // key = カテゴリ英名
 	Name      string
 	Type      int
 	ParentKey string
-	Number    string
+	Number    float64
 }
 
 type User struct { // key = ユーザID

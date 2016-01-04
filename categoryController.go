@@ -23,6 +23,7 @@ func GetCategoryList(r render.Render, req *http.Request) {
 	if len(p["parentKey"]) != 0 {
 		q = q.Filter("ParentKey=", p["parentKey"][0])
 	}
+	q = q.Order("Number")
 	categories := make([]Category, 0, 10)
 	_, err := q.GetAll(c, &categories)
 	if err != nil {
@@ -44,7 +45,7 @@ func RegistCategory(r render.Render, req *http.Request) {
 	category.Type = ToInt(req.FormValue("type"))
 	category.Key = key.StringID()
 	category.ParentKey = req.FormValue("parentKey")
-	category.Number = req.FormValue("number")
+	category.Number = ToFloat64(req.FormValue("number"))
 	key, err := datastore.Put(c, key, category)
 	if err != nil {
 		c.Criticalf("%s", err)
