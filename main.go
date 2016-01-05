@@ -15,6 +15,7 @@ func init() {
 	m.Post("/api/question", RegistQuestion)
 	m.Get("/api/category", GetCategoryList)
 	m.Post("/api/category", RegistCategory)
+	m.Get("/api/loginUser", LoginUser)
 	m.Get("/api/twitter/login", LoginTwitter)
 	m.Get("/api/twitter/callback", CallbackTwitter)
 	m.Get("/api/twitter/user/:userId", GetTwitterUserById)

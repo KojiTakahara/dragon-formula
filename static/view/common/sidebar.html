@@ -1,0 +1,27 @@
+<div>
+	<span class="mdl-layout-title">
+		<a href='#' ng-if="user" ng-click="login()">
+			<img src='/img/twitter.png' class="android-logo-image">
+		</a>
+		<img ng-src="{{user.profile_image_url}}" class="circle" ng-if="user">
+	</span>
+	<nav class="mdl-navigation">
+		<a class="mdl-navigation__link" href="/submission" onclick="closeSideMenu()">出題問題の投稿</a>
+		<div class="android-drawer-separator"></div>
+		<a class="mdl-navigation__link" href="http://dm.takaratomy.co.jp/wp-content/files/pdf/dm_rule_20151215.pdf" target="_blank" onclick="closeSideMenu()">
+		総合ゲームルール <i class="material-icons" style="font-size: 13px;">launch</i>
+		</a>
+		<a class="mdl-navigation__link" href="http://dm.takaratomy.co.jp/wp-content/files/pdf/dm_competition_rule_20151218.pdf" target="_blank" onclick="closeSideMenu()">
+		競技イベント運営ルール <i class="material-icons" style="font-size: 13px;">launch</i>
+		</a>
+		<div class="android-drawer-separator"></div>
+		<!--
+		<a class="mdl-navigation__link" href="">管理者</a>
+		-->
+		<footer class="android-footer mdl-mega-footer">
+		<div class="mdl-mega-footer--middle-section">
+		<p class="mdl-typography--font-light">author: <a href="https://twitter.com/dm_plateau" target="_blank">@dm_plateau</a></p>
+		</div>
+	</footer>
+	</nav>
+</div>

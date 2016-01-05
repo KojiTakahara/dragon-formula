@@ -62,8 +62,9 @@ a img{
 
 
 .android-logo-image {
-  height: 28px;
-  width: 140px;
+  height: 64px;
+  width: 64px;
+  padding-left: 150px;
 }
 
 
@@ -154,13 +155,13 @@ a img{
   .android-drawer .mdl-layout-title {
     position: relative;
     background: #3498db;
-    height: 160px;
+    height: 95px;
   }
 
-    .android-drawer .android-logo-image {
-      position: absolute;
-      bottom: 16px;
-    }
+.android-drawer .android-logo-image {
+  position: absolute;
+  bottom: 15px;
+}
 
 .android-be-together-section {
   position: relative;

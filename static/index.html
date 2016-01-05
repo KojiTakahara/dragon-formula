@@ -55,28 +55,7 @@
 
       <div class="android-drawer mdl-layout__drawer">
         <!-- SideBar -->
-        <span class="mdl-layout-title">
-          <img class="android-logo-image" src="images/android-logo-white.png">
-        </span>
-        <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="/submission" onclick="closeSideMenu()">出題問題の投稿</a>
-          <div class="android-drawer-separator"></div>
-          <a class="mdl-navigation__link" href="http://dm.takaratomy.co.jp/wp-content/files/pdf/dm_rule_20151215.pdf" target="_blank" onclick="closeSideMenu()">
-            総合ゲームルール <i class="material-icons" style="font-size: 13px;">launch</i>
-          </a>
-          <a class="mdl-navigation__link" href="http://dm.takaratomy.co.jp/wp-content/files/pdf/dm_competition_rule_20151218.pdf" target="_blank" onclick="closeSideMenu()">
-            競技イベント運営ルール <i class="material-icons" style="font-size: 13px;">launch</i>
-          </a>
-          <div class="android-drawer-separator"></div>
-          <!--
-          <a class="mdl-navigation__link" href="">管理者</a>
-          -->
-          <footer class="android-footer mdl-mega-footer">
-          <div class="mdl-mega-footer--middle-section">
-            <p class="mdl-typography--font-light">author: <a href="https://twitter.com/dm_plateau" target="_blank">@dm_plateau</a></p>
-          </div>
-        </footer>
-        </nav>
+        <sidebar></sidebar>
       </div>
       <div class="android-content mdl-layout__content">
         <!-- MainContents -->
@@ -100,6 +79,9 @@
     <!-- service -->
     <script src="/js/service/questionService.js"></script>
     <script src="/js/service/categoryService.js"></script>
+    <script src="/js/service/userService.js"></script>
+    <!-- directive -->
+    <script src="/js/directive/sidebarDirective.js"></script>
     <script src="/js/app.js"></script>
   </body>
 </html>
