@@ -18,7 +18,6 @@ type Question struct { // key = 自動生成
 	Choice1 QuestionChoice `datastore:"-"`
 	Choice2 QuestionChoice `datastore:"-"`
 	Choice3 QuestionChoice `datastore:"-"`
-	Choice4 QuestionChoice `datastore:"-"`
 }
 
 type QuestionChoice struct { // key = 自動採番

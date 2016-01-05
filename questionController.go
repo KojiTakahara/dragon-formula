@@ -35,14 +35,14 @@ func GetQuestionList(r render.Render, req *http.Request) {
 	for i := 0; i < len(questions); i++ {
 		q := datastore.NewQuery("QuestionChoice")
 		q = q.Filter("QuestionKeyId =", keys[i].IntID())
-		choices := make([]QuestionChoice, 0, 4)
+		choices := make([]QuestionChoice, 0, 3)
 		_, err := q.GetAll(c, &choices)
 		if err != nil {
 			c.Criticalf(err.Error())
 			r.JSON(400, err)
 			return
 		}
-		if len(choices) != 4 {
+		if len(choices) != 3 {
 			r.JSON(400, fmt.Sprintf("size error. choices = %d", len(choices)))
 			return
 		}
@@ -50,9 +50,12 @@ func GetQuestionList(r render.Render, req *http.Request) {
 		questions[i].Choice1 = choices[0]
 		questions[i].Choice2 = choices[1]
 		questions[i].Choice3 = choices[2]
-		questions[i].Choice4 = choices[3]
 	}
 	shuffleQuestion(questions)
+	if len(p["limit"]) != 0  {
+		limit := ToInt(p["limit"][0])
+		questions = questions[0:limit]
+	}
 	r.JSON(200, questions)
 }
 
@@ -93,8 +96,7 @@ func RegistQuestion(r render.Render, req *http.Request) {
     	c.Infof("%d", resultkey.IntID())
 		RegistQuestionChoice(req, resultkey.IntID(), "1")
 		RegistQuestionChoice(req, resultkey.IntID(), "2")
-		RegistQuestionChoice(req, resultkey.IntID(), "3")
-		RegistQuestionChoice(req, resultkey.IntID(), "4")	
+		RegistQuestionChoice(req, resultkey.IntID(), "3")	
 		r.JSON(200, question)
 	}
 }

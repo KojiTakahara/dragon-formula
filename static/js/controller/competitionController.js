@@ -4,7 +4,7 @@ var app = angular.module('competitionCtrl', []);
 app.controller('competitionCtrl', ['$scope', '$http', '$sce', '$window', '$mdDialog', 'questionService',
 function($scope, $http, $sce, $window, $mdDialog, questionService) {
 	var init = function() {
-    	questionService.search().then(function(data) {
+    	questionService.search("rule_2", null, 15).then(function(data) {
 			$scope.questions = data;
 		});
 	};
