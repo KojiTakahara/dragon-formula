@@ -50,6 +50,7 @@ func GetQuestionList(r render.Render, req *http.Request) {
 		questions[i].Choice1 = choices[0]
 		questions[i].Choice2 = choices[1]
 		questions[i].Choice3 = choices[2]
+		questions[i].Key = keys[i].IntID()
 	}
 	shuffleQuestion(questions)
 	if len(p["limit"]) != 0  {

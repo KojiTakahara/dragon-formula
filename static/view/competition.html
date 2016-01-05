@@ -9,7 +9,6 @@
 h5 {
 	margin-top: 0px;
 }
-
 </style>
 
 <div class="mdl-typography--text-center" style="max-width: 750px; min-height: 100px; margin: 0 auto;">
@@ -20,17 +19,16 @@ h5 {
 			<div style="font-size:20px;word-wrap: break-word; margin-bottom: 20px;">
 				{{q.Content}}
 			</div>
-
-			<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-				<input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1">
+			<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="{{q.Key}}-1">
+				<input type="radio" id="{{q.Key}}-1" class="mdl-radio__button" name="options" value="1">
 				<span class="mdl-radio__label">{{q.Choice1.Content}}</span>
 			</label>
-			<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-				<input type="radio" id="option-2" class="mdl-radio__button" name="options" value="1">
+			<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="{{q.Key}}-2">
+				<input type="radio" id="{{q.Key}}-2" class="mdl-radio__button" name="options" value="1">
 				<span class="mdl-radio__label">{{q.Choice2.Content}}</span>
 			</label>
-			<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-				<input type="radio" id="option-3" class="mdl-radio__button" name="options" value="1">
+			<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="{{q.Key}}-3">
+				<input type="radio" id="{{q.Key}}-3" class="mdl-radio__button" name="options" value="1">
 				<span class="mdl-radio__label">{{q.Choice3.Content}}</span>
 			</label>
 		</div>
