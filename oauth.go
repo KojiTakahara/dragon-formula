@@ -106,7 +106,7 @@ func CallbackTwitter(r render.Render, w http.ResponseWriter, req *http.Request, 
 			c.Infof("")
 		}
 		// TODO トップページへリダイレクト
-		r.Redirect("/mypage")
+		r.Redirect("/")
 	} else { //　ログイン失敗
 		r.Redirect("/")
 	}
