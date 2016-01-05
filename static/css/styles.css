@@ -1,3 +1,9 @@
+img.circle {
+  -webkit-border-radius: 500px;
+  -moz-border-radius: 500px;
+  border-radius: 500px;
+}
+
 /**
  * Copyright 2015 Google Inc. All Rights Reserved.
  *
@@ -62,9 +68,9 @@ a img{
 
 
 .android-logo-image {
-  height: 64px;
-  width: 64px;
-  padding-left: 150px;
+  height: 48px;
+  width: 48px;
+  margin-left: 20px;
 }
 
 
@@ -155,12 +161,12 @@ a img{
   .android-drawer .mdl-layout-title {
     position: relative;
     background: #3498db;
-    height: 95px;
+    height: 70px;
   }
 
 .android-drawer .android-logo-image {
   position: absolute;
-  bottom: 15px;
+  bottom: 10px;
 }
 
 .android-be-together-section {

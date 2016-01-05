@@ -1,9 +1,20 @@
 <div>
+	<style>
+	.user_name {
+		padding: 30px 0px 0px 75px;
+		font-size: 14px;
+		color: white;
+	}
+	</style>
 	<span class="mdl-layout-title">
-		<a href='#' ng-if="user" ng-click="login()">
+		<a href='#' ng-if="!user" ng-click="login()" style="text-decoration: none;">
 			<img src='/img/twitter.png' class="android-logo-image">
+			<div class="user_name">ログイン</div>
 		</a>
-		<img ng-src="{{user.profile_image_url}}" class="circle" ng-if="user">
+		<div ng-if="user">
+			<img ng-src="{{user.profile_image_url}}" class="circle android-logo-image">
+			<div class="user_name">{{user.screen_name}}</div>
+		</div>
 	</span>
 	<nav class="mdl-navigation">
 		<a class="mdl-navigation__link" href="/submission" onclick="closeSideMenu()">出題問題の投稿</a>

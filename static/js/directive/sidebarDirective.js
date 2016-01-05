@@ -15,11 +15,11 @@ dir.directive('sidebar', function() {
       /**
        * セッションからログインユーザの情報をとる
        */
-      // userService.getLoginUser().then(function(data) {
-      //   $scope.user = data; // 成功
-      // }, function(e) {
-      //   $scope.user = undefined;
-      // });
+      userService.getLoginUser().then(function(data) {
+        $scope.user = data; // 成功
+      }, function(e) {
+        $scope.user = undefined;
+      });
     }]
   };
 });
