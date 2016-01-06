@@ -6,6 +6,7 @@ var app = angular.module('app', [
   'submissionCtrl',
   'categoryService',
   'questionService',
+  'userAnswerService',
   'userService',
   'sidebarDirective',
   'ui.router',
