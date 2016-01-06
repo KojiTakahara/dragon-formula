@@ -13,21 +13,21 @@ function($scope, $http, $sce, $window, $mdDialog, userService) {
   });
 
   $scope.movePage = function(ev, nextPageUrl) {
-    console.log(nextPageUrl);
-    if ($scope.user) {
-      $window.location.href = nextPageUrl;
-    } else {
-      var confirm = $mdDialog.confirm()
-          .title('Twitterを使ってログインします。よろしいですか？')
-          .targetEvent(ev)
-          .ok('OK')
-          .cancel('キャンセル');
-      $mdDialog.show(confirm).then(function() {
-        $window.location.href = '/api/twitter/login';
-      }, function() { // cancel
-        // none
-      });
-    }
+    $window.location.href = nextPageUrl;
+    // if ($scope.user) {
+    //   $window.location.href = nextPageUrl;
+    // } else {
+    //   var confirm = $mdDialog.confirm()
+    //       .title('Twitterを使ってログインします。よろしいですか？')
+    //       .targetEvent(ev)
+    //       .ok('OK')
+    //       .cancel('キャンセル');
+    //   $mdDialog.show(confirm).then(function() {
+    //     $window.location.href = '/api/twitter/login';
+    //   }, function() { // cancel
+    //     // none
+    //   });
+    // }
   };
 
 }]);

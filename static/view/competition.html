@@ -9,9 +9,18 @@
 h5 {
 	margin-top: 0px;
 }
+.result_box {
+	margin: 15px 30px 20px;
+	background-color: white;
+    padding: 20px;
+    color: rgba(0,0,0,.54);
+}
 </style>
 
 <div class="mdl-typography--text-center" style="max-width: 750px; min-height: 100px; margin: 0 auto;">
+	<div class="result_box">
+		<h3>10/15</h3>
+	</div>
 	<slick dots="false" class="slider single-item" current-index="index" responsive="breakpoints" slides-to-show=1 slides-to-scroll=1>
 	<div ng-repeat="q in questions" style="margin:15px 30px 20px 30px;">
 		<div style="background-color:white; padding:20px;color: rgba(0,0,0,.54);">
@@ -35,7 +44,7 @@ h5 {
 	</div>
 	</slick>
 	<div style="margin-top: -40px; text-align: center;">
-		<md-button class="md-warn md-raised" ng-click="showConfirm($event)" flex-sm="100" flex-md="100" flex-gt-md="auto">
+		<md-button class="md-warn md-raised" ng-click="showConfirm($event)" flex-sm="100" flex-md="100" flex-gt-md="auto" ng-disabled="processed"><!--|| !user-->
 			回答を送信する
 		</md-button>
 	</div>
