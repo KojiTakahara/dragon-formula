@@ -53,15 +53,14 @@ type UserAnswer struct { // key = ユーザID_タイムスタンプ
 	UserKey     string
 	TimeStamp   string
 	CategoryKey string
-	RightAnswer int
-	WrongAnswer int
+	RightAnswer int // 正答数
+	WrongAnswer int // 誤答数
 }
 
-type UserAnswerDetail struct { // key = 自動採番
+type UserAnswerDetail struct { // key = ユーザID_タイムスタンプ_問番号
 	UerAnswerKey string
 	UserKey      string
 	QuestionKey  string
 	CategoryKey  string
 	Corrected    bool
-	TimeStamp    string
 }
