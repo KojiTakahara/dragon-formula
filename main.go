@@ -16,6 +16,7 @@ func init() {
 	m.Use(sessions.Sessions(SESSION_KEY, sessions.NewCookieStore([]byte(SESSION_KEY))))
 	m.Get("/api/question", GetQuestionList)
 	m.Post("/api/question", RegistQuestion)
+	m.Post("/api/questionStatus", UpdateQuestionStatus)
 	m.Get("/api/category", GetCategoryList)
 	m.Post("/api/category", RegistCategory)
 	m.Get("/api/loginUser", LoginUser)

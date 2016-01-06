@@ -11,7 +11,7 @@ type Question struct { // key = 自動生成
 	SmallCategoryKey  string
 	Rubric            string `datastore:",noindex"`
 	Percentage        float32
-	Status            string // 依頼,最終確認,承認,却下
+	Status            string // 依頼(REVIEW),最終確認,承認(APPROVED),却下
 	Level             string
 	UserKey           string // 作成者
 	// ignored entirely by the datastore.

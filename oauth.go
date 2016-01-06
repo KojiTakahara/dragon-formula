@@ -340,15 +340,3 @@ func GetAccessToken(session sessions.Session) *oauth.AccessToken {
 		Secret: secret.(string),
 	}
 }
-
-func SetTestSettion(r render.Render, req *http.Request, session sessions.Session) {
-	token := req.FormValue("token")
-	secret := req.FormValue("secret")
-	if token == "" || secret == "" {
-		r.JSON(400, "fail")
-		return
-	}
-	session.Set("accessToken", req.FormValue("token"))
-	session.Set("accessTokenSecret", req.FormValue("secret"))
-	r.JSON(200, "success")
-}

@@ -17,8 +17,10 @@
 		</div>
 	</span>
 	<nav class="mdl-navigation">
-		<a class="mdl-navigation__link" href="/submission" onclick="closeSideMenu()">出題問題の投稿</a>
-		<div class="android-drawer-separator"></div>
+		<div ng-if="user">
+			<a class="mdl-navigation__link" href="/submission" onclick="closeSideMenu()">出題問題の投稿</a>
+			<div class="android-drawer-separator"></div>
+		</div>
 		<a class="mdl-navigation__link" href="http://dm.takaratomy.co.jp/wp-content/files/pdf/dm_rule_20151215.pdf" target="_blank" onclick="closeSideMenu()">
 		総合ゲームルール <i class="material-icons" style="font-size: 13px;">launch</i>
 		</a>

@@ -88,6 +88,7 @@ func RegistQuestion(r render.Render, req *http.Request) {
 	question.LargeCategoryKey = req.FormValue("largeCategoryKey")
 	question.MediumCategoryKey = req.FormValue("mediumCategoryKey")
 	question.SmallCategoryKey = req.FormValue("smallCategoryKey")
+	question.UserKey = req.FormValue("userKey")
 	// question.UserKey
 	resultkey, err := datastore.Put(c, key, question)
 	if err != nil {
@@ -98,6 +99,27 @@ func RegistQuestion(r render.Render, req *http.Request) {
 		RegistQuestionChoice(req, resultkey.IntID(), "1")
 		RegistQuestionChoice(req, resultkey.IntID(), "2")
 		RegistQuestionChoice(req, resultkey.IntID(), "3")	
+		r.JSON(200, question)
+	}
+}
+
+/**
+問題ステータスの更新
+**/
+func UpdateQuestionStatus(r render.Render, req *http.Request) {
+	c := appengine.NewContext(req)	
+	id, _ := strconv.Atoi(req.FormValue("key"))
+	key := datastore.NewKey(c, "Question", "", int64(id), nil)
+	var question Question
+	if err := datastore.Get(c, key, &question); err != nil {
+		c.Criticalf(err.Error())
+	}
+	question.Status = req.FormValue("status")
+	_, err := datastore.Put(c, key, question)
+	if err != nil {
+		c.Criticalf("%s", err)
+		r.JSON(400, err)
+	} else {	
 		r.JSON(200, question)
 	}
 }
