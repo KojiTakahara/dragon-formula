@@ -20,7 +20,7 @@ func GetQuestionList(r render.Render, req *http.Request) {
 	p := u.Query()
 	q := datastore.NewQuery("Question")
 	if len(p["status"]) != 0 { // ステータスフィルター
-		q = q.Filter("Status", p["status"][0])
+		q = q.Filter("Status=", p["status"][0])
 	}
 	if len(p["largeCategoryKey"]) != 0 { // 大項目フィルター
 		q = q.Filter("LargeCategoryKey=", p["largeCategoryKey"][0])

@@ -1,8 +1,8 @@
 #!/bin/bash
-URL=http://localhost:8080/api/
+URL=http://aqua-teacher.appspot.com/api/
 CATEGORY=question
 callAPI () {
-  data="content="$1"&choice1Content="$2"&choice2Content="$3"&choice3Content="$4"&choice1Bool=true&choice2Bool=false&choice3Bool=false&largeCategoryKey=rule_2&mediumCategoryKey="$5"&smallCategoryKey="$6
+  data="status=APPROVED&content="$1"&choice1Content="$2"&choice2Content="$3"&choice3Content="$4"&choice1Bool=true&choice2Bool=false&choice3Bool=false&largeCategoryKey=rule_2&mediumCategoryKey="$5"&smallCategoryKey="$6
   wget --post-data=$data $URL$CATEGORY
   rm $CATEGORY
 }
@@ -11,10 +11,10 @@ q1 () {
   choice1=遅刻した。
   choice2=過剰なカードを見た。
   choice3=過剰なカードを引いた。
-  callAPI $content $choice1 $choice2 $choice3 "rule_2_13" ""
+  callAPI $content $choice1 $choice2 $choice3 "rule_2_13" "rule_2_13"
 }
 q2 () {
-  content=マッチにおける先手後手の決定方法として間違っているものは次のうちどれか。
+  content=マッチにおける先手後手の決定方法として誤っているのは次のうちどれか。
   choice1=ゲームが引き分けの場合、じゃんけんに勝利したプレイヤーが次のゲームの先攻となる。
   choice2=決勝ラウンドのマッチは、スイスラウンドの成績上位者が第1ゲームの先攻となる。
   choice3=マッチの第1ゲームば、じゃんけんに勝利したプレイヤーが先攻となる。
@@ -56,7 +56,7 @@ q7 () {
   callAPI $content $choice1 $choice2 $choice3 "rule_2_3" "rule_2_3_7"
 }
 q8 () {
-  content=非紳士的行為に当てはまらないのは次のうちどれか。
+  content=非紳士的行為ではないのは次のうちどれか。
   choice1=フロアジャッジの裁定に納得できず、ヘッドジャッジを呼んだ。
   choice2=スタッフに対して、けんか腰に振舞った。
   choice3=他の参加者を威嚇する為にソーシャルメディアを使った。
@@ -78,9 +78,9 @@ q10 () {
 }
 q11 () {
   content=ブースタードラフトの手順として正しいのは次のうちどれか。
-  choice1=手にしているカードの束からカードを1枚選び、残りのカードを裏向きで左隣のプレイヤーに渡す。
-  choice2=手にしているカードの束からカードを1枚選び、残りのカードを裏向きで右隣のプレイヤーに渡す。
-  choice3=手にしているカードの束からカードを1枚選び、2週目の場合、残りのカードを裏向きで右隣のプレイヤーに渡す。
+  choice1=カードの束から1枚選び、常に、残りのカードを裏向きで左隣のプレイヤーに渡す。
+  choice2=カードの束から1枚選び、常に、残りのカードを裏向きで右隣のプレイヤーに渡す。
+  choice3=カードの束から1枚選び、2週目の場合、残りのカードを裏向きで右隣のプレイヤーに渡す。
   callAPI $content $choice1 $choice2 $choice3 "rule_2_7" "rule_2_7_5"
 }
 q12 () {
@@ -98,28 +98,28 @@ q13 () {
   callAPI $content $choice1 $choice2 $choice3 "rule_2_8" "rule_2_8_1"
 }
 q14 () {
-  content=非紳士的行為の具体例として、「軽度」には当てはまらないものは次のうちどれか。
+  content=非紳士的行為の具体例として、「軽度」ではないのは次のうちどれか。
   choice1=対戦相手を人種差別的言辞で中傷した。
   choice2=ゲームに負けた後、デッキを床にばらまいた。
   choice3=プレイ終了後、プレイ場所に大量のゴミを残していった。
   callAPI $content $choice1 $choice2 $choice3 "rule_2_12" "rule_2_12_1"
 }
 q15 () {
-  content=非紳士的行為の具体例として、「捏造」には当てはまらないものは次のうちどれか。
+  content=非紳士的行為の具体例として、「捏造」ではないのは次のうちどれか。
   choice1=賞金を山分けにする代わりに投了してくれるよう、対戦相手に頼んだ。
   choice2=勝敗を決めるために、２人のプレイヤーがじゃんけんで勝者を決めた。
   choice3=勝敗を決めるために、２人のプレイヤーが山札の一番上のカードのマナ・コストを比較した。
   callAPI $content $choice1 $choice2 $choice3 "rule_2_12" "rule_2_12_3"
 }
 q16 () {
-  content=非紳士的行為の具体例として、「攻撃的行為」には当てはまらないものは次のうちどれか。
+  content=非紳士的行為の具体例として、「攻撃的行為」ではないのは次のうちどれか。
   choice1=対戦相手のカードを盗んだ。
   choice2=他のプレイヤーのカードを引き裂いた。
   choice3=故意にテーブルをひっくり返した。
   callAPI $content $choice1 $choice2 $choice3 "rule_2_12" "rule_2_12_5"
 }
 q17 () {
-  content=非紳士的行為の具体例として、「遅延行為」には当てはまらないものは次のうちどれか。
+  content=非紳士的行為の具体例として、「遅延行為」ではないのは次のうちどれか。
   choice1=裁定を受けた後に、ジャッジに脅迫的な態度を見せた。
   choice2=優勢なプレイヤーが、対戦相手に逆転のチャンスを与えないように明らかにプレイのペースを落
 としていた。
@@ -127,7 +127,7 @@ q17 () {
   callAPI $content $choice1 $choice2 $choice3 "rule_2_12" "rule_2_12_7"
 }
 q18 () {
-  content=非紳士的行為の具体例として、「故意の違反」には当てはまらないものは次のうちどれか。
+  content=非紳士的行為の具体例として、「故意の違反」ではないのは次のうちどれか。
   choice1=手札にゲームに大した意味のある行動を取れない状況で時間をかけて『考え込んで』いて、時間を食いつぶしていた。
   choice2=自分の主張を強めるため、ゲーム中に何が起こったかについてイベント・スタッフに嘘をついた。
   choice3=対戦相手のクリーチャーが破壊されていないにもかかわらず、対戦相手がそれを墓地に置くことを放置した。
@@ -138,7 +138,7 @@ q19 () {
   choice1=ゲームに負けた後、デッキを床にばらまいた。
   choice2=勝者をじゃんけんで決めようと対戦相手に提案した。
   choice3=故意に時間切れになるよう、プレイのペースを落とした。
-  callAPI $content $choice1 $choice2 $choice3 "rule_2_13" ""
+  callAPI $content $choice1 $choice2 $choice3 "rule_2_13" "rule_2_13"
 }
 q20 () {
   content=ペナルティ「注意」の定義として正しいのは次のうちどれか。
@@ -169,7 +169,7 @@ q23 () {
   callAPI $content $choice1 $choice2 $choice3 "rule_2_1" "rule_2_1_3"
 }
 q24 () {
-  content=フロアジャッジの役割として誤っているものは次のうちどれか。
+  content=フロアジャッジの役割として誤っているのは次のうちどれか。
   choice1=上訴に対し最終裁定を下す。
   choice2=不正なプレイを処理する。
   choice3=観客の質問に答える。

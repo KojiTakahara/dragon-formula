@@ -11,7 +11,7 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
   var questionCount = 15;
 
   var init = function() {
-    questionService.search("rule_2", null, questionCount).then(function(data) {
+    questionService.search("rule_2", "APPROVED", questionCount).then(function(data) {
 			$scope.questions = data;
       setTimeout(function() {
         $(".carousel").slick({
