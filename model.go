@@ -25,6 +25,8 @@ type QuestionChoice struct { // key = 自動採番
 	Content       string `datastore:",noindex"`
 	QuestionKeyId int64
 	TrueFalse     bool
+	// ignored entirely by the datastore.
+	Key           int64 `datastore:"-"`
 }
 
 type Comment struct { // key = 自動採番

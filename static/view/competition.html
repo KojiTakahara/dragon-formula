@@ -15,37 +15,72 @@ h5 {
     padding: 20px;
     color: rgba(0,0,0,.54);
 }
+.answer_icon {
+	font-size: 15px;
+    margin-left: -26px;
+    padding-right: 10px;
+}
+.selected_answer {
+	color: rgba(255,64,129,0.87);
+	font-weight: bold;
+}
 </style>
 
 <div class="mdl-typography--text-center" style="max-width: 750px; min-height: 100px; margin: 0 auto;">
-	<div class="result_box">
-		<h3>10/15</h3>
-	</div>
-	<slick dots="false" class="slider single-item" current-index="index" responsive="breakpoints" slides-to-show=1 slides-to-scroll=1>
-	<div ng-repeat="q in questions" style="margin:15px 30px 20px 30px;">
-		<div style="background-color:white; padding:20px;color: rgba(0,0,0,.54);">
-			<h5>問{{$index + 1}}.</h5>
-			<div style="font-size:20px;word-wrap: break-word; margin-bottom: 20px;">
-				{{q.Content}}
+	<div ng-if="showAnswerResult">
+		<div class="result_box" style="text-align: center;">
+			<h3>解答結果</h3>
+			<h2>{{rightAnswer}}点/15</h2>
+		</div>
+		<div style="text-align: center;">
+			<md-button ng-click="moveTopPage()" class="md-warn md-raised" flex-sm="100" flex-md="100" flex-gt-md="auto">
+				トップページに戻る
+			</md-button>
+		</div>
+		<div class="result_box">
+			<div ng-repeat="q in questions" style="margin:15px 30px 20px 30px;">
+				<div style="word-wrap: break-word; margin-bottom: 20px;">
+					問{{$index + 1}}. {{q.Content}}
+				</div>
+				<ul style="list-style:none;">
+					<li ng-class="q.Choice1.TrueFalse ? 'selected_answer' : ''">
+						<i class="material-icons answer_icon" ng-if="q.selected == q.Choice1.Key">check</i>{{q.Choice1.Content}}
+					</li>
+					<li ng-class="q.Choice2.TrueFalse ? 'selected_answer' : ''">
+						<i class="material-icons answer_icon" ng-if="q.selected == q.Choice2.Key">check</i>{{q.Choice2.Content}}
+					</li>
+					<li ng-class="q.Choice3.TrueFalse ? 'selected_answer' : ''">
+						<i class="material-icons answer_icon" ng-if="q.selected == q.Choice3.Key">check</i>{{q.Choice3.Content}}
+					</li>
+				</ul>
 			</div>
-			<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="{{q.Key}}-1">
-				<input type="radio" id="{{q.Key}}-1" class="mdl-radio__button" name="options" value="1">
-				<span class="mdl-radio__label">{{q.Choice1.Content}}</span>
-			</label>
-			<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="{{q.Key}}-2">
-				<input type="radio" id="{{q.Key}}-2" class="mdl-radio__button" name="options" value="1">
-				<span class="mdl-radio__label">{{q.Choice2.Content}}</span>
-			</label>
-			<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="{{q.Key}}-3">
-				<input type="radio" id="{{q.Key}}-3" class="mdl-radio__button" name="options" value="1">
-				<span class="mdl-radio__label">{{q.Choice3.Content}}</span>
-			</label>
+		</div>
+		<div style="text-align: center;">
+			<md-button ng-click="moveTopPage()" class="md-warn md-raised" flex-sm="100" flex-md="100" flex-gt-md="auto">
+				トップページに戻る
+			</md-button>
 		</div>
 	</div>
-	</slick>
-	<div style="margin-top: -40px; text-align: center;">
-		<md-button class="md-warn md-raised" ng-click="showConfirm($event)" flex-sm="100" flex-md="100" flex-gt-md="auto" ng-disabled="processed"><!--|| !user-->
-			回答を送信する
-		</md-button>
+	<div ng-if="!showAnswerResult" ng-cloak>
+		<slick dots="false" class="slider single-item" current-index="index" responsive="breakpoints" slides-to-show=1 slides-to-scroll=1>
+			<div ng-repeat="q in questions" style="margin:15px 30px 20px 30px;">
+				<div style="background-color:white; padding:20px;color: rgba(0,0,0,.54);">
+					<h5>問{{$index + 1}}.</h5>
+					<div style="font-size:20px;word-wrap: break-word; margin-bottom: 20px;">
+						{{q.Content}}
+					</div>
+					<md-radio-group ng-model="q.selected">
+						<md-radio-button value="{{q.Choice1.Key}}">{{q.Choice1.Content}}</md-radio-button>
+						<md-radio-button value="{{q.Choice2.Key}}"> {{q.Choice2.Content}} </md-radio-button>
+						<md-radio-button value="{{q.Choice3.Key}}">{{q.Choice3.Content}}</md-radio-button>
+					</md-radio-group>
+				</div>
+			</div>
+		</slick>
+		<div style="margin-top: -40px; text-align: center;">
+			<md-button class="md-warn md-raised" ng-click="showConfirm($event)" flex-sm="100" flex-md="100" flex-gt-md="auto" ng-disabled="processed"><!--|| !user-->
+				回答を送信する
+			</md-button>
+		</div>
 	</div>
 </div>

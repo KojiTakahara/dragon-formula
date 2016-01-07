@@ -36,7 +36,7 @@ func GetQuestionList(r render.Render, req *http.Request) {
 		q := datastore.NewQuery("QuestionChoice")
 		q = q.Filter("QuestionKeyId =", keys[i].IntID())
 		choices := make([]QuestionChoice, 0, 3)
-		_, err := q.GetAll(c, &choices)
+		choicesKeys, err := q.GetAll(c, &choices)
 		if err != nil {
 			c.Criticalf(err.Error())
 			r.JSON(400, err)
@@ -45,6 +45,9 @@ func GetQuestionList(r render.Render, req *http.Request) {
 		if len(choices) != 3 {
 			r.JSON(400, fmt.Sprintf("size error. choices = %d", len(choices)))
 			return
+		}
+		for i := 0; i < len(choices); i++ {
+			choices[i].Key = choicesKeys[i].IntID()
 		}
 		shuffleQuestionChoice(choices)
 		questions[i].Choice1 = choices[0]

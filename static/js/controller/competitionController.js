@@ -1,13 +1,19 @@
 "use strict";
 
-var app = angular.module('competitionCtrl', []);
+var app = angular.module('competitionCtrl', [
+  'slick'
+]);
 app.controller('competitionCtrl', ['$scope', '$http', '$sce', '$window', '$mdDialog', 'questionService', 'userService', 'userAnswerService',
 function($scope, $http, $sce, $window, $mdDialog, questionService, userService, userAnswerService) {
   $scope.user = {};
   $scope.processed = false;
+  $scope.showAnswerResult = false;
+  $scope.rightAnswer = 0;
+  $scope.questions = [];
+  var questionCount = 15;
   
   var init = function() {
-    	questionService.search("rule_2", null, 15).then(function(data) {
+    	questionService.search("rule_2", null, questionCount).then(function(data) {
 			$scope.questions = data;
 		});
     userService.getLoginUser().then(function(data) {
@@ -25,7 +31,7 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
     $scope.processed = true;
     var confirm = $mdDialog.confirm()
           .title('送信してもよろしいですか？')
-          .textContent('回答数 1/' + $scope.questions.length)
+          .textContent('回答数 ' + getQuantityResponses() + '/' + $scope.questions.length)
           .targetEvent(ev)
           .ok('OK')
           .cancel('キャンセル');
@@ -38,18 +44,50 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
   
   var createUserAnswer = function() {
     var answer = {
-      userKey: $scope.user.screen_name,
+      //userKey: $scope.user.screen_name,
       categoryKey: "rule_2",
-      rightAnswer: 1, // TODO
-      wrongAnswer: 1  // TODO
-    };
+    }, wrongAnswer = 0;
     for (var i = 1; i <= $scope.questions.length; i++) {
       answer['question' + i] = $scope.questions[i - 1].Key;
       answer['category' + i] = $scope.questions[i - 1].SmallCategoryKey;
-      answer['corrected' + i] = ""; // TODO
+      var result = getTrueFalse($scope.questions[i -1]);
+      answer['corrected' + i] = result;
+      result ? $scope.rightAnswer++ : wrongAnswer++;
     }
-    userAnswerService.create(answer).then(function(data) {
-		});
+    answer.rightAnswer = $scope.rightAnswer;
+    answer.wrongAnswer = wrongAnswer;
+    // userAnswerService.create(answer).then(function(data) {
+      $scope.showAnswerResult = true;
+		// });
+  };
+  
+  var getTrueFalse = function(question) {
+    switch (question.selected - 0) {
+      case question.Choice1.Key:
+        return question.Choice1.TrueFalse;
+      case question.Choice2.Key:
+        return question.Choice2.TrueFalse;
+      case question.Choice3.Key:
+        return question.Choice3.TrueFalse;
+    }
+    return false;
+  };
+  
+  /**
+   * 回答数のカウント
+   */
+  var getQuantityResponses = function() {
+    var result = 0;
+    for (var i = 0; i < $scope.questions.length; i++) {
+      if ($scope.questions[i].selected) {
+        result++;
+      } 
+    }
+    return result;
+  };
+  
+  $scope.moveTopPage = function() {
+    $window.location.href = "/";
   };
 
 }]);
