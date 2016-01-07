@@ -9,9 +9,9 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
   $scope.rightAnswer = 0;
   $scope.questions = [];
   var questionCount = 15;
-  
+
   var init = function() {
-    	questionService.search("rule_2", null, questionCount).then(function(data) {
+    questionService.search("rule_2", null, questionCount).then(function(data) {
 			$scope.questions = data;
       setTimeout(function() {
         $(".carousel").slick({
@@ -22,13 +22,17 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
         $('.slick-prev').css("display", "none");
         $('.slick-next').css("display", "none");
       }, 0);
-		});
+      $scope.processed = false;
+		}, function(e) {
+      $scope.processed = true;
+      console.log(e);
+    });
     userService.getLoginUser().then(function(data) {
       $scope.user = data; // 成功
     }, function(e) {
       $scope.user = undefined;
     });
-    
+
 	};
 	init();
 
@@ -49,7 +53,7 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
       $scope.processed = false;
     });
   };
-  
+
   var createUserAnswer = function() {
     var answer = {
       userKey: $scope.user.screen_name,
@@ -68,7 +72,7 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
       $scope.showAnswerResult = true;
 		});
   };
-  
+
   var getTrueFalse = function(question) {
     switch (question.selected - 0) {
       case question.Choice1.Key:
@@ -80,7 +84,7 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
     }
     return false;
   };
-  
+
   /**
    * 回答数のカウント
    */
@@ -89,11 +93,11 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
     for (var i = 0; i < $scope.questions.length; i++) {
       if ($scope.questions[i].selected) {
         result++;
-      } 
+      }
     }
     return result;
   };
-  
+
   $scope.moveTopPage = function() {
     $window.location.href = "/";
   };

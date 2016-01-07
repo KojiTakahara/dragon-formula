@@ -3,12 +3,12 @@ package dragonformula
 import (
 	"appengine"
 	"appengine/datastore"
+	"fmt"
 	"github.com/martini-contrib/render"
 	"math/rand"
 	"net/http"
 	"net/url"
 	"strconv"
-	"fmt"
 )
 
 /**
@@ -56,7 +56,7 @@ func GetQuestionList(r render.Render, req *http.Request) {
 		questions[i].Key = keys[i].IntID()
 	}
 	shuffleQuestion(questions)
-	if len(p["limit"]) != 0  {
+	if len(p["limit"]) != 0 {
 		limit := ToInt(p["limit"][0])
 		questions = questions[0:limit]
 	}
@@ -98,10 +98,10 @@ func RegistQuestion(r render.Render, req *http.Request) {
 		c.Criticalf("%s", err)
 		r.JSON(400, err)
 	} else {
-    	c.Infof("%d", resultkey.IntID())
+		c.Infof("%d", resultkey.IntID())
 		RegistQuestionChoice(req, resultkey.IntID(), "1")
 		RegistQuestionChoice(req, resultkey.IntID(), "2")
-		RegistQuestionChoice(req, resultkey.IntID(), "3")	
+		RegistQuestionChoice(req, resultkey.IntID(), "3")
 		r.JSON(200, question)
 	}
 }
@@ -110,7 +110,7 @@ func RegistQuestion(r render.Render, req *http.Request) {
 問題ステータスの更新
 **/
 func UpdateQuestionStatus(r render.Render, req *http.Request) {
-	c := appengine.NewContext(req)	
+	c := appengine.NewContext(req)
 	id, _ := strconv.Atoi(req.FormValue("key"))
 	key := datastore.NewKey(c, "Question", "", int64(id), nil)
 	var question Question
@@ -122,7 +122,7 @@ func UpdateQuestionStatus(r render.Render, req *http.Request) {
 	if err != nil {
 		c.Criticalf("%s", err)
 		r.JSON(400, err)
-	} else {	
+	} else {
 		r.JSON(200, question)
 	}
 }
@@ -130,7 +130,7 @@ func UpdateQuestionStatus(r render.Render, req *http.Request) {
 func RegistQuestionChoice(req *http.Request, k int64, num string) {
 	c := appengine.NewContext(req)
 	choice := &QuestionChoice{}
-	key := datastore.NewKey(c, "QuestionChoice", req.FormValue("choice" + num + "Key"), 0, nil)
+	key := datastore.NewKey(c, "QuestionChoice", req.FormValue("choice"+num+"Key"), 0, nil)
 	choice.Content = req.FormValue("choice" + num + "Content")
 	choice.TrueFalse, _ = strconv.ParseBool(req.FormValue("choice" + num + "Bool"))
 	choice.QuestionKeyId = k
