@@ -82,13 +82,13 @@ h5 {
 			</div>
 		</div>
 		<div style="text-align: center;">
-			<md-button class="md-icon-button move_button" ng-click="prev()" ng-disabled="processed">
+			<md-button class="md-icon-button move_button" ng-click="prev()" ng-disabled="processed || !user">
 				<i class="material-icons">arrow_back</i>
 			</md-button>
-			<md-button class="md-warn md-raised" ng-click="showConfirm($event)" flex-sm="100" flex-md="10" flex-gt-md="auto" ng-disabled="processed"><!--|| !user-->
+			<md-button class="md-warn md-raised" ng-click="showConfirm($event)" flex-sm="100" flex-md="10" flex-gt-md="auto" ng-disabled="processed || !user">
 				回答を送信する
 			</md-button>
-			<md-button class="md-icon-button move_button" ng-click="next()" ng-disabled="processed">
+			<md-button class="md-icon-button move_button" ng-click="next()" ng-disabled="processed || !user">
 				<i class="material-icons">arrow_forward</i>
 			</md-button>
 		</div>

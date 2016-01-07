@@ -9,16 +9,6 @@ import (
 	"strconv"
 )
 
-/**
-userKey
-categoryKey
-rightAnswer
-wrongAnswer
-question1
-category1
-corrected1
-...
-**/
 func RegistUserAnswer(r render.Render, req *http.Request) {
 	c := appengine.NewContext(req)
 	unix := time.Now().Unix()

@@ -52,7 +52,7 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
   
   var createUserAnswer = function() {
     var answer = {
-      //userKey: $scope.user.screen_name,
+      userKey: $scope.user.screen_name,
       categoryKey: "rule_2",
     }, wrongAnswer = 0;
     for (var i = 1; i <= $scope.questions.length; i++) {
@@ -64,9 +64,9 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
     }
     answer.rightAnswer = $scope.rightAnswer;
     answer.wrongAnswer = wrongAnswer;
-    // userAnswerService.create(answer).then(function(data) {
+    userAnswerService.create(answer).then(function(data) {
       $scope.showAnswerResult = true;
-		// });
+		});
   };
   
   var getTrueFalse = function(question) {
