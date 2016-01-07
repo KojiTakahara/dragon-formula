@@ -1,8 +1,6 @@
 "use strict";
 
-var app = angular.module('competitionCtrl', [
-  'slick'
-]);
+var app = angular.module('competitionCtrl', []);
 app.controller('competitionCtrl', ['$scope', '$http', '$sce', '$window', '$mdDialog', 'questionService', 'userService', 'userAnswerService',
 function($scope, $http, $sce, $window, $mdDialog, questionService, userService, userAnswerService) {
   $scope.user = {};
@@ -15,12 +13,22 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
   var init = function() {
     	questionService.search("rule_2", null, questionCount).then(function(data) {
 			$scope.questions = data;
+      setTimeout(function() {
+        $(".carousel").slick({
+          infinite: false,
+          dots: false,
+          arrows: true,
+        });
+        $('.slick-prev').css("display", "none");
+        $('.slick-next').css("display", "none");
+      }, 0);
 		});
     userService.getLoginUser().then(function(data) {
       $scope.user = data; // 成功
     }, function(e) {
       $scope.user = undefined;
     });
+    
 	};
 	init();
 
@@ -88,6 +96,12 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
   
   $scope.moveTopPage = function() {
     $window.location.href = "/";
+  };
+  $scope.prev = function() {
+    $('.slick-prev').click();
+  };
+  $scope.next = function() {
+    $('.slick-next').click();
   };
 
 }]);

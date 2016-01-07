@@ -24,6 +24,10 @@ h5 {
 	color: rgba(255,64,129,0.87);
 	font-weight: bold;
 }
+.move_button {
+	color: white;
+    top: 7px;
+}
 </style>
 
 <div class="mdl-typography--text-center" style="max-width: 750px; min-height: 100px; margin: 0 auto;">
@@ -62,7 +66,7 @@ h5 {
 		</div>
 	</div>
 	<div ng-if="!showAnswerResult" ng-cloak>
-		<slick dots="false" class="slider single-item" current-index="index" responsive="breakpoints" slides-to-show=1 slides-to-scroll=1>
+		<div class="carousel">
 			<div ng-repeat="q in questions" style="margin:15px 30px 20px 30px;">
 				<div style="background-color:white; padding:20px;color: rgba(0,0,0,.54);">
 					<h5>問{{$index + 1}}.</h5>
@@ -76,10 +80,16 @@ h5 {
 					</md-radio-group>
 				</div>
 			</div>
-		</slick>
-		<div style="margin-top: -40px; text-align: center;">
-			<md-button class="md-warn md-raised" ng-click="showConfirm($event)" flex-sm="100" flex-md="100" flex-gt-md="auto" ng-disabled="processed"><!--|| !user-->
+		</div>
+		<div style="text-align: center;">
+			<md-button class="md-icon-button move_button" ng-click="prev()" ng-disabled="processed">
+				<i class="material-icons">arrow_back</i>
+			</md-button>
+			<md-button class="md-warn md-raised" ng-click="showConfirm($event)" flex-sm="100" flex-md="10" flex-gt-md="auto" ng-disabled="processed"><!--|| !user-->
 				回答を送信する
+			</md-button>
+			<md-button class="md-icon-button move_button" ng-click="next()" ng-disabled="processed">
+				<i class="material-icons">arrow_forward</i>
 			</md-button>
 		</div>
 	</div>
