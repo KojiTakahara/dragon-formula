@@ -1,5 +1,5 @@
 #!/bin/bash
-URL=http://aqua-teacher.appspot.com/api/
+URL=http://localhost:8080/api/
 CATEGORY=question
 callAPI () {
   data="status=APPROVED&content="$1"&choice1Content="$2"&choice2Content="$3"&choice3Content="$4"&choice1Bool=true&choice2Bool=false&choice3Bool=false&largeCategoryKey=rule_2&mediumCategoryKey="$5"&smallCategoryKey="$6
@@ -121,8 +121,7 @@ q16 () {
 q17 () {
   content=非紳士的行為の具体例として、「遅延行為」ではないのは次のうちどれか。
   choice1=裁定を受けた後に、ジャッジに脅迫的な態度を見せた。
-  choice2=優勢なプレイヤーが、対戦相手に逆転のチャンスを与えないように明らかにプレイのペースを落
-としていた。
+  choice2=優勢なプレイヤーが、対戦相手に逆転のチャンスを与えないように明らかにプレイのペースを落としていた。
   choice3=遅いプレイをしていたプレイヤーが【警告】を受けた際、考える時間を稼ぐために上訴した。
   callAPI $content $choice1 $choice2 $choice3 "rule_2_12" "rule_2_12_7"
 }
