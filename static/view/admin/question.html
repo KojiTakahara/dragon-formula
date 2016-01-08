@@ -1,0 +1,39 @@
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+  <thead>
+    <tr>
+      <th>
+        <a href="#" ng-click="sortType = 'Content'; sortReverse = !sortReverse">
+          Content
+          <i class="material-icons" ng-show="sortType == 'Content' && !sortReverse">expand_less</i>
+          <i class="material-icons" ng-show="sortType == 'Content' && sortReverse">expand_more</i>
+        </a>
+      </th>
+      <th>
+        <a href="#" ng-click="sortType = 'SmallCategoryKey'; sortReverse = !sortReverse">
+          SmallCategoryKey
+          <i class="material-icons" ng-show="sortType == 'SmallCategoryKey' && !sortReverse">expand_less</i>
+          <i class="material-icons" ng-show="sortType == 'SmallCategoryKey' && sortReverse">expand_more</i>
+        </a>
+      </th>
+      <th>
+        <a href="#" ng-click="sortType = 'Status'; sortReverse = !sortReverse">
+          Status
+          <i class="material-icons" ng-show="sortType == 'Status' && !sortReverse">expand_less</i>
+          <i class="material-icons" ng-show="sortType == 'Status' && sortReverse">expand_more</i>
+        </a>
+      </th>
+    </tr>
+    <tr>
+      <th><input type="text" ng-model="qFilter.Content" /></th>
+      <th><input type="text" ng-model="qFilter.SmallCategoryKey" /></th>
+      <th><input type="text" ng-model="qFilter.Status" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="q in questions | orderBy:sortType:sortReverse | filter:qFilter">
+      <td>{{q.Content | abbreviate:15}}</td>
+      <td>{{q.SmallCategoryKey}}</td>
+      <td>{{q.Status}}</td>
+    </tr>
+  </tbody>
+</table>

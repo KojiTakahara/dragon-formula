@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AQUA-TEACHER-ADMIN</title>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0-rc7/angular-material.min.css">
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.light_blue-pink.min.css" />
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+      .material-icons {
+        top: 45%;
+        position: absolute;
+        font-size: 15px;
+      }
+    </style>
+  </head>
+  <body ng-app="app" ng-controller="indexCtrl">
+	<div ng-include="'/view/admin/question.html'" style="padding:20px;"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0-rc7/angular-material.min.js"></script>
+    <!-- service -->
+    <script src="/js/service/questionService.js"></script>
+    <script src="/js/service/categoryService.js"></script>
+    <script src="/js/service/userAnswerService.js"></script>
+    <script src="/js/service/userService.js"></script>
+    <!-- filter -->
+    <script src="/js/filter/stringFilter.js"></script>
+	<script src="/js/admin.js"></script>
+  </body>
+</html>

@@ -8,6 +8,8 @@ skip_files:
 
 handlers:
 
+# main
+
 - url: /(.*\.(gif|png|jpg|pdf))
   static_files: static/\1
   upload: static/img/(.*\.(gif|png|jpg|pdf))
@@ -49,3 +51,15 @@ handlers:
 
 - url: /api/.*
   script: _go_app
+  
+# admin
+  
+- url: /admin
+  static_files: static/view/admin/index.html
+  login: admin
+  upload: static/view/admin/index.html
+
+- url: /admin/(.*\.html)
+  static_files: static/view/admin/\1
+  login: admin
+  upload: static/view/admin/(.*\.html)
