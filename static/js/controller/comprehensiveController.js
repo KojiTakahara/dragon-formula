@@ -1,7 +1,7 @@
 "use strict";
 
-var app = angular.module('competitionCtrl', []);
-app.controller('competitionCtrl', ['$scope', '$http', '$sce', '$window', '$mdDialog', 'questionService', 'userService', 'userAnswerService',
+var app = angular.module('comprehensiveCtrl', []);
+app.controller('comprehensiveCtrl', ['$scope', '$http', '$sce', '$window', '$mdDialog', 'questionService', 'userService', 'userAnswerService',
 function($scope, $http, $sce, $window, $mdDialog, questionService, userService, userAnswerService) {
   $scope.user = {};
   $scope.processed = false;
@@ -9,7 +9,7 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
   $scope.rightAnswer = 0;
   $scope.questions = [];
   var questionCount = 15;
-  var ruleCategory = "rule_2";
+  var ruleCategory = "rule_1";
 
   /**
    * 初期処理
@@ -86,5 +86,4 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
   $scope.next = function() {
     $('.slick-next').click();
   };
-
 }]);

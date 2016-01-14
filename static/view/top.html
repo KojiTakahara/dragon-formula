@@ -1,15 +1,7 @@
 <div class="page-content mdl-grid">
-	<div class="demo-card-wide mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-phone" ng-hide="isStarted">
-	<div class="mdl-card__title">
-		<h2 class="mdl-card__title-text">
-		<b>Competition Event Management Rules</b>
-		</h2>
-	</div>
-	<div class="mdl-card__supporting-text">
-		競技イベント運営ルールよりランダムで15問出題されます。
-	</div>
-	<div class="mdl-card__actions mdl-card--border">
-		<a ng-click="movePage($event, '/competition')" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">はじめる</a>
-	</div>
-	</div>
+    <maincard image="card_1" title="Comprehensive Game Rules" description="総合ゲームルールよりランダムで15問出題されます。" link="comprehensive" />
+    <div style="margin:10px;"></div>
+    <maincard image="card_2" title="Competition Event Management Rules" description="競技イベント運営ルールよりランダムで15問出題されます。" link="competition" />
+    <div style="margin:10px;"></div>
+    <maincard image="card_3" title="All" description="全ての問題からランダムで15問出題されます。" link="all" />
 </div>

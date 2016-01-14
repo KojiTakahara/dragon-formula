@@ -1,42 +1,10 @@
-<style>
-.mdl-radio {
-  display: block;
-  margin-bottom: 10px;
-}
-.mdl-typography--text-center {
-	text-align: left !important;
-}
-h5 {
-	margin-top: 0px;
-}
-.result_box {
-	margin: 15px 30px 20px;
-	background-color: white;
-    padding: 20px;
-    color: rgba(0,0,0,.54);
-}
-.answer_icon {
-	font-size: 15px;
-    margin-left: -26px;
-    padding-right: 10px;
-}
-.selected_answer {
-	color: rgba(255,64,129,0.87);
-	font-weight: bold;
-}
-.move_button {
-	color: white;
-    top: 7px;
-}
-</style>
-
 <div class="mdl-typography--text-center" style="max-width: 750px; min-height: 100px; margin: 0 auto;">
 	<div ng-if="showAnswerResult">
-		<div class="result_box" style="text-align: center;">
+		<div class="result_box t_center">
 			<h3>解答結果</h3>
 			<h2>{{rightAnswer}}点/15</h2>
 		</div>
-		<div style="text-align: center;">
+		<div class="t_center">
 			<md-button ng-click="moveTopPage()" class="md-warn md-raised" flex-sm="100" flex-md="100" flex-gt-md="auto">
 				トップページに戻る
 			</md-button>
@@ -59,7 +27,7 @@ h5 {
 				</ul>
 			</div>
 		</div>
-		<div style="text-align: center;">
+		<div class="t_center">
 			<md-button ng-click="moveTopPage()" class="md-warn md-raised" flex-sm="100" flex-md="100" flex-gt-md="auto">
 				トップページに戻る
 			</md-button>
@@ -68,9 +36,9 @@ h5 {
 	<div ng-if="!showAnswerResult" ng-cloak>
 		<div class="carousel">
 			<div ng-repeat="q in questions" style="margin:15px 30px 20px 30px;">
-				<div style="background-color:white; padding:20px;color: rgba(0,0,0,.54);">
-					<h5>問{{$index + 1}}.</h5>
-					<div style="font-size:20px;word-wrap: break-word; margin-bottom: 20px;">
+				<div style="background-color:white; padding: 1px 20px 5px 20px; color: rgba(0,0,0,.54);">
+					<h6>問{{$index + 1}}.</h6>
+					<div style="font-size:20px;word-wrap: break-word; margin-bottom: 18px;">
 						{{q.Content}}
 					</div>
 					<md-radio-group ng-model="q.selected">
@@ -79,18 +47,18 @@ h5 {
 						<md-radio-button value="{{q.Choice3.Key}}">{{q.Choice3.Content}}</md-radio-button>
 					</md-radio-group>
 				</div>
+                <div class="t_center">
+                    <md-button class="md-icon-button move_button" ng-click="prev()" ng-disabled="processed || !user">
+                        <i class="material-icons">arrow_back</i>
+                    </md-button>
+                    <md-button class="md-warn md-raised" ng-click="showConfirm($event)" flex-sm="100" flex-md="10" flex-gt-md="auto" ng-disabled="processed || !user">
+                        送信する
+                    </md-button>
+                    <md-button class="md-icon-button move_button" ng-click="next()" ng-disabled="processed || !user">
+                        <i class="material-icons">arrow_forward</i>
+                    </md-button>
+                </div>
 			</div>
-		</div>
-		<div style="text-align: center;">
-			<md-button class="md-icon-button move_button" ng-click="prev()" ng-disabled="processed || !user">
-				<i class="material-icons">arrow_back</i>
-			</md-button>
-			<md-button class="md-warn md-raised" ng-click="showConfirm($event)" flex-sm="100" flex-md="10" flex-gt-md="auto" ng-disabled="processed || !user">
-				送信する
-			</md-button>
-			<md-button class="md-icon-button move_button" ng-click="next()" ng-disabled="processed || !user">
-				<i class="material-icons">arrow_forward</i>
-			</md-button>
 		</div>
 	</div>
 </div>

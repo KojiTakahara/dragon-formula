@@ -3,6 +3,70 @@ img.circle {
   -moz-border-radius: 500px;
   border-radius: 500px;
 }
+.user_name {
+    padding: 85px 0px 0px 16px;
+    font-size: 12px;
+    color: white;
+}
+.t_decoration_none {
+    text-decoration: none;
+}
+.side_menu_icon {
+    font-size: 13px !important;
+}
+.mdl-radio {
+  display: block;
+  margin-bottom: 10px;
+}
+.mdl-typography--text-center {
+	text-align: left !important;
+}
+h5 {
+	margin-top: 0px;
+}
+.result_box {
+	margin: 15px 30px 20px;
+	background-color: white;
+    padding: 20px;
+    color: rgba(0,0,0,.54);
+}
+.answer_icon {
+	font-size: 15px;
+    margin-left: -26px;
+    padding-right: 10px;
+}
+.selected_answer {
+	color: rgba(255,64,129,0.87);
+	font-weight: bold;
+}
+.move_button {
+	color: white;
+    top: 7px;
+}
+.t_center {
+    text-align: center;
+}
+.page-content.mdl-grid {
+    max-width: 750px;
+    padding-top: 48px;
+}
+.demo-card-wide > .mdl-card__title {
+    color: #fff;
+    height: 176px;
+    background: url('/img/card_1.png') center / cover;
+}
+.demo-card-wide > .mdl-card__title.card_2 {
+    background: url('/img/card_2.png') center / cover;
+}
+.demo-card-wide > .mdl-card__title.card_3 {
+    background: url('/img/card_3.png') center / cover;
+}
+.demo-card-wide > .mdl-card__menu {
+    color: #fff;
+}
+body {
+    background-color: #3498db;
+}
 
 /**
  * Copyright 2015 Google Inc. All Rights Reserved.
@@ -70,7 +134,7 @@ a img{
 .android-logo-image {
   height: 48px;
   width: 48px;
-  margin-left: 20px;
+  margin-left: 15px;
 }
 
 
@@ -161,12 +225,12 @@ a img{
   .android-drawer .mdl-layout-title {
     position: relative;
     background: #3498db;
-    height: 70px;
+    height: 115px;
   }
 
 .android-drawer .android-logo-image {
   position: absolute;
-  bottom: 10px;
+  bottom: 50px;
 }
 
 .android-be-together-section {

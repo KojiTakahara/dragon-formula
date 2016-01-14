@@ -2,7 +2,9 @@
 
 var app = angular.module('app', [
   'indexCtrl',
+  'allCtrl',
   'competitionCtrl',
+  'comprehensiveCtrl',
   'submissionCtrl',
   'categoryService',
   'questionService',
@@ -45,8 +47,26 @@ function($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider) {
     url: '/competition',
     views: {
       mainContent: {
-        templateUrl: '/view/competition.html',
+        templateUrl: '/view/answer_page.html',
         controller: 'competitionCtrl'
+      }
+    }
+  });
+  $stateProvider.state('comprehensive', {
+    url: '/comprehensive',
+    views: {
+      mainContent: {
+        templateUrl: '/view/answer_page.html',
+        controller: 'comprehensiveCtrl'
+      }
+    }
+  });
+  $stateProvider.state('all', {
+    url: '/all',
+    views: {
+      mainContent: {
+        templateUrl: '/view/answer_page.html',
+        controller: 'allCtrl'
       }
     }
   });
