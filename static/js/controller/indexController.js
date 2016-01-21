@@ -17,7 +17,7 @@ function($scope, $http, $sce, $window, $mdDialog, userService) {
    * 次画面への遷移. 次画面URLを受け取って, ログインしていればOK.
    */
   $scope.movePage = function(ev, nextPageUrl) {
-    if (true){//$scope.user) {
+    if ($scope.user) {
       $window.location.href = nextPageUrl;
     } else {
       var confirm = $mdDialog.confirm()
