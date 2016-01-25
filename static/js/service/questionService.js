@@ -40,6 +40,32 @@ service.factory('questionService', ['$http', '$q', function($http, $q) {
     });
     return deferred.promise;
   };
+  
+  
+  service.getTrueFalse = function(question) {
+    switch (question.selected - 0) {
+      case question.Choice1.Key:
+        return question.Choice1.TrueFalse;
+      case question.Choice2.Key:
+        return question.Choice2.TrueFalse;
+      case question.Choice3.Key:
+        return question.Choice3.TrueFalse;
+    }
+    return false;
+  };
+  
+  /**
+   * 回答数のカウント
+   */
+  service.getQuantityResponses = function(questions) {
+    var result = 0;
+    for (var i = 0; i < questions.length; i++) {
+      if (questions[i].selected) {
+        result++;
+      }
+    }
+    return result;
+  };
 
   return service;
 }]);

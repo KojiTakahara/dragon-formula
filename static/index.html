@@ -17,23 +17,6 @@
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.light_blue-pink.min.css" />
     <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
     <link rel="stylesheet" href="css/styles.css">
-    <style>
-      .page-content.mdl-grid {
-        max-width: 750px;
-        padding-top: 48px;
-      }
-      .demo-card-wide > .mdl-card__title {
-        color: #fff;
-        height: 176px;
-        background: url('/img/card_1.png') center / cover;
-      }
-      .demo-card-wide > .mdl-card__menu {
-        color: #fff;
-      }
-      body {
-      	background-color: #3498db;
-      }
-    </style>
   </head>
   <body ng-app="app">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -65,16 +48,18 @@
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0-rc7/angular-material.min.js"></script>
 		<script src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>				
     <!-- controller -->
+    <script src="/js/controller/allController.js"></script>
     <script src="/js/controller/indexController.js"></script>
     <script src="/js/controller/competitionController.js"></script>
+    <script src="/js/controller/comprehensiveController.js"></script>
     <script src="/js/controller/submissionController.js"></script>
     <!-- service -->
     <script src="/js/service/questionService.js"></script>

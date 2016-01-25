@@ -87,7 +87,7 @@ func RegistQuestion(r render.Render, req *http.Request) {
 	question := &Question{}
 	key := datastore.NewKey(c, "Question", req.FormValue("key"), 0, nil)
 	question.Content = req.FormValue("content")
-	question.Status = "REVIEW"
+	question.Status = req.FormValue("status")
 	question.LargeCategoryKey = req.FormValue("largeCategoryKey")
 	question.MediumCategoryKey = req.FormValue("mediumCategoryKey")
 	question.SmallCategoryKey = req.FormValue("smallCategoryKey")

@@ -1,7 +1,8 @@
 application: aqua-teacher
-version: 1-0-0
+version: 1-1-0
 runtime: go
 api_version: go1
+default_expiration: "7d"
 skip_files:
   - ^(.*/)?.*/node_modules/.*
   - ^(.*/)?.*/test/.*
@@ -39,6 +40,14 @@ handlers:
   upload: static/index.html
   
 - url: /competition
+  static_files: static/index.html
+  upload: static/index.html
+
+- url: /comprehensive
+  static_files: static/index.html
+  upload: static/index.html
+
+- url: /all
   static_files: static/index.html
   upload: static/index.html
 
