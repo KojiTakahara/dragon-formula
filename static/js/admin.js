@@ -23,7 +23,16 @@ function($scope, $http, $sce, $window, $mdDialog, questionService) {
     console.log(e);
   });
   
-  
+  $scope.updateStatus = function(ev, status) {
+    var confirm = $mdDialog.confirm()
+          .title('ステータスを変更してもよろしいですか？')
+          .targetEvent(ev)
+          .ok('OK')
+          .cancel('キャンセル');
+    $mdDialog.show(confirm).then(function() {
+       
+    });
+  };
 
 }]);
 

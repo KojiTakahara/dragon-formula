@@ -26,11 +26,11 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
     }, function(e) {
       $scope.processed = true;
     });
-    userService.getLoginUser().then(function(data) {
-      $scope.user = data;
-    }, function(e) {
-      $scope.user = undefined;
-    });
+    // userService.getLoginUser().then(function(data) {
+    //   $scope.user = data;
+    // }, function(e) {
+    //   $scope.user = undefined;
+    // });
   };
   init();
 
@@ -58,7 +58,7 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
    */
   var postUserAnswer = function() {
     var answer = {
-      userKey: $scope.user.screen_name,
+      userKey: $rootScope.user.screen_name,
       categoryKey: ruleCategory,
     }, wrongAnswer = 0;
     for (var i = 1; i <= $scope.questions.length; i++) {

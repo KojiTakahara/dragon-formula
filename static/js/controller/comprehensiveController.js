@@ -26,11 +26,11 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
     }, function(e) {
       $scope.processed = true;
     });
-    userService.getLoginUser().then(function(data) {
-      $scope.user = data;
-    }, function(e) {
-      $scope.user = undefined;
-    });
+    // userService.getLoginUser().then(function(data) {
+    //   $scope.user = data;
+    // }, function(e) {
+    //   $scope.user = undefined;
+    // });
   };
   init();
 

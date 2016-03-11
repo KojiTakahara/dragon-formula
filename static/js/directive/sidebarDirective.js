@@ -7,18 +7,18 @@ dir.directive('sidebar', function() {
     restrict: 'E',
     replace: true,
     templateUrl: '/view/common/sidebar.html',
-    controller: ['$scope', '$window', '$location', 'userService', function($scope, $window, $location, userService) {
+    controller: ['$rootScope', '$scope', '$window', '$location', 'userService', function($rootScope, $scope, $window, $location, userService) {
       $scope.login = function() {
         $window.location.href = '/api/twitter/login';
       };
-      $scope.user = {};
+      $rootScope.user = {};
       /**
        * セッションからログインユーザの情報をとる
        */
       userService.getLoginUser().then(function(data) {
-        $scope.user = data; // 成功
+        $rootScope.user = data; // 成功
       }, function(e) {
-        $scope.user = undefined;
+        $rootScope.user = undefined;
       });
     }]
   };

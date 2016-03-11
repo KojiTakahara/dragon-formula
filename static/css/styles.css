@@ -68,6 +68,22 @@ body {
     background-color: #3498db;
 }
 
+.submission-form {
+	margin: 25px 25px 50px 25px;
+	padding: 25px;
+}
+.mdl-typography--text-center {
+	text-align: left !important;
+}
+.md-input-messages-animation > div {
+	font-size: 10px;
+}
+
+.md-select-menu-container {
+	top: 300px !important;
+    left: 10% !important;
+}
+
 /**
  * Copyright 2015 Google Inc. All Rights Reserved.
  *
@@ -156,6 +172,10 @@ a img{
     color: #757575;
     font-weight: 700;
     font-size: 14px;
+  }
+
+  .back_issues {
+    padding: 0px 0px 0px 35px !important;
   }
 
   .android-navigation-container {

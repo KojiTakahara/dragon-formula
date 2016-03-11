@@ -33,7 +33,13 @@
     <tr ng-repeat="q in questions | orderBy:sortType:sortReverse | filter:qFilter">
       <td>{{q.Content | abbreviate:15}}</td>
       <td>{{q.SmallCategoryKey}}</td>
-      <td>{{q.Status}}</td>
+      <td>
+        <md-select ng-model="q.Status" ng-change="updateStatus($event, q.Status)">
+          <md-option ng-value="'REVIEW'">REVIEW</md-option>
+          <md-option ng-value="'APPROVED'">APPROVED</md-option>
+          <md-option ng-value="'REJECTED'">REJECTED</md-option>
+        </md-select>
+      </td>
     </tr>
   </tbody>
 </table>

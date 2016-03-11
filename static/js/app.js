@@ -5,12 +5,14 @@ var app = angular.module('app', [
   'allCtrl',
   'competitionCtrl',
   'comprehensiveCtrl',
+  'postedContentCtrl',
   'submissionCtrl',
   'categoryService',
   'questionService',
   'userAnswerService',
   'userService',
   'sidebarDirective',
+  'stringFilter',
   'ui.router',
   'ngMaterial',
 ]);
@@ -76,6 +78,15 @@ function($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider) {
       mainContent: {
         templateUrl: '/view/submission.html',
         controller: 'submissionCtrl'
+      }
+    }
+  });
+  $stateProvider.state('posted_content', {
+    url: '/posted_content',
+    views: {
+      mainContent: {
+        templateUrl: '/view/posted_content.html',
+        controller: 'postedContentCtrl'
       }
     }
   });
