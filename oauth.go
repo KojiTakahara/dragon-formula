@@ -42,7 +42,11 @@ func LoginTwitter(w http.ResponseWriter, r *http.Request) {
 func LoginUser(r render.Render, req *http.Request, session sessions.Session) {
 	accessToken := GetAccessToken(session)
 	if accessToken != nil {
-		r.JSON(200, GetTwitterUser(req, accessToken))
+        result := GetTwitterUser(req, accessToken)
+        if result == nil {
+            r.JSON(400, "")
+        }
+		r.JSON(200, result)
 		return
 	} else {
 		r.JSON(400, "")
@@ -55,17 +59,17 @@ func GetTwitterUser(req *http.Request, accessToken *oauth.AccessToken) mxj.Map {
 	response, _ := consumer.Get("https://api.twitter.com/1.1/account/verify_credentials.json", nil, accessToken)
 	result := make([]byte, 1024*1024)
 	response.Body.Read(result)
-	resultString := string(result)
-	datas := strings.Split(strings.Trim(resultString, "\x00"), "&")
-	if datas[0] == "" {
+	resultString := string(result)    
+    trimStr := strings.Trim(resultString, "\x00")
+	if trimStr == "" {
 		return nil
 	}
-	accountInfo, _ := mxj.NewMapJson([]byte(datas[0]))
-	return accountInfo
+	accountInfo, _ := mxj.NewMapJson([]byte(trimStr))   
+    return accountInfo
 }
 
 /**
- * ?oauth_token=IKhZRSoIr6ECH9m93qAaDlVfN6GGssNX&oauth_verifier=HlFWsejO7vhpScFgtubBkjp8jvQSyrEO
+ * Twitterからのコールバックを受け取って、セッションに詰める。ユーザの登録・更新を行う。
  **/
 func CallbackTwitter(r render.Render, w http.ResponseWriter, req *http.Request, session sessions.Session) {
 	c := appengine.NewContext(req)
@@ -88,9 +92,9 @@ func CallbackTwitter(r render.Render, w http.ResponseWriter, req *http.Request, 
 		result := make([]byte, 1024*1024)
 		response.Body.Read(result)
 		resultString := string(result)
-		datas := strings.Split(strings.Trim(resultString, "\x00"), "&")
+		trimStr := strings.Trim(resultString, "\x00")
 
-		accountInfo, _ := mxj.NewMapJson([]byte(datas[0]))
+		accountInfo, _ := mxj.NewMapJson([]byte(trimStr))
 
 		// User登録
 		screenName := accountInfo["screen_name"].(string)

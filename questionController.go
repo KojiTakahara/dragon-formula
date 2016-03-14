@@ -25,6 +25,9 @@ func GetQuestionList(r render.Render, req *http.Request) {
 	if len(p["largeCategoryKey"]) != 0 { // 大項目フィルター
 		q = q.Filter("LargeCategoryKey=", p["largeCategoryKey"][0])
 	}
+    if len(p["userKey"]) != 0 { // userKeyフィルター
+		q = q.Filter("UserKey=", p["userKey"][0])
+	}
 	questions := make([]Question, 0, 10)
 	keys, err := q.GetAll(c, &questions)
 	if err != nil {

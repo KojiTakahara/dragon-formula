@@ -5,7 +5,7 @@ service.factory('questionService', ['$http', '$q', function($http, $q) {
   /**
    * 検索
    */
-  service.search = function(largeCategory, status, limit) {
+  service.search = function(largeCategory, status, limit, userKey) {
     var deferred = $q.defer();
     $http({
       method: 'GET',
@@ -13,7 +13,8 @@ service.factory('questionService', ['$http', '$q', function($http, $q) {
       params: {
         largeCategoryKey: largeCategory,
         status:status,
-        limit: limit
+        limit: limit,
+        userKey: userKey
       },
       cache: true
     }).success(function(data, status, headers, config) {

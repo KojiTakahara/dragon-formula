@@ -10,16 +10,29 @@
 		</div>
 	</span>
 	<nav class="mdl-navigation">
-		<div ng-if="user">
+		<div ng-if="!user">
 			<a class="mdl-navigation__link" href="/submission" onclick="closeSideMenu()">出題問題の投稿</a>
-			<div class="android-drawer-separator"></div>
+            <!--
+            <a class="mdl-navigation__link" href="/posted_content" onclick="closeSideMenu()">投稿問題の確認</a>
+			-->
+            <div class="android-drawer-separator"></div>
 		</div>
-		<a class="mdl-navigation__link" href="http://dm.takaratomy.co.jp/wp-content/files/pdf/dm_rule_20151215.pdf" target="_blank" onclick="closeSideMenu()">
+		<a class="mdl-navigation__link" href="http://dm.takaratomy.co.jp/wp-content/files/pdf/dm_rule_20160201.pdf" target="_blank" onclick="closeSideMenu()">
 		総合ゲームルール <i class="material-icons side_menu_icon">launch</i>
 		</a>
-		<a class="mdl-navigation__link" href="http://dm.takaratomy.co.jp/wp-content/files/pdf/dm_competition_rule_20151218.pdf" target="_blank" onclick="closeSideMenu()">
+        <div>
+            <a class="mdl-navigation__link back_issues" href="http://dm.takaratomy.co.jp/wp-content/files/pdf/dm_rule_20151215.pdf" target="_blank" onclick="closeSideMenu()">
+                2015/12/15
+            </a>
+        </div>
+		<a class="mdl-navigation__link" href="http://dm.takaratomy.co.jp/wp-content/files/pdf/dm_competition_rule_20160209.pdf" target="_blank" onclick="closeSideMenu()">
 		競技イベント運営ルール <i class="material-icons side_menu_icon">launch</i>
 		</a>
+        <div>
+            <a class="mdl-navigation__link back_issues" href="http://dm.takaratomy.co.jp/wp-content/files/pdf/dm_competition_rule_20151218.pdf" target="_blank" onclick="closeSideMenu()">
+                2015/12/18
+            </a>
+        </div>
 		<div class="android-drawer-separator"></div>
 		<!--
 		<a class="mdl-navigation__link" href="">管理者</a>

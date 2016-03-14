@@ -1,0 +1,57 @@
+<style>
+.postedContent {
+    margin: 25px 25px 50px 25px;
+    padding: 25px;
+    max-width: 750px;
+    min-height: 100px;
+}
+</style>
+<div class="mdl-typography--text-center postedContent">
+
+    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+    <thead>
+        <tr>
+            <th>
+                <a href="#" ng-click="sortType = 'Content'; sortReverse = !sortReverse">
+                問題文
+                <i class="material-icons" ng-show="sortType == 'Content' && !sortReverse">expand_less</i>
+                <i class="material-icons" ng-show="sortType == 'Content' && sortReverse">expand_more</i>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'Status'; sortReverse = !sortReverse">
+                ステータス
+                <i class="material-icons" ng-show="sortType == 'Status' && !sortReverse">expand_less</i>
+                <i class="material-icons" ng-show="sortType == 'Status' && sortReverse">expand_more</i>
+                </a>
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="q in postedQuestions | orderBy:sortType:sortReverse | filter:qFilter">
+        <td>
+            {{q.Content | abbreviate:40}}
+        </td>
+        <td>{{q.Status | statusToJapanese}}</td>
+        <td style="padding:0px;">
+            <md-button class="md-raised md-primary" style="font-size:13px;">
+				編集
+			</md-button>
+        </td>
+        <td style="padding:0px;">
+            <md-button class="md-raised" ng-click="showConfirm($event)" style="font-size:13px;">
+				取り下げ
+			</md-button>
+        </td>
+        </tr>
+        <tr ng-if="postedQuestions.length == 0">
+            <td colspan="4">
+                投稿はありません。
+            </td>
+        </tr>
+    </tbody>
+    </table>
+
+</div>

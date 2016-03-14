@@ -1,5 +1,5 @@
 application: aqua-teacher
-version: 1-1-0
+version: 1-1-1
 runtime: go
 api_version: go1
 default_expiration: "7d"
@@ -55,6 +55,10 @@ handlers:
   static_files: static/index.html
   upload: static/index.html
   
+- url: /posted_content
+  static_files: static/index.html
+  upload: static/index.html
+
 - url: /googled39548f713433868.html
   static_files: static/googled39548f713433868.html
   upload: static/googled39548f713433868.html

@@ -6,8 +6,8 @@ var app = angular.module('submissionCtrl', [
 ]);
 app.controller('submissionCtrl', ['$scope', '$http', '$sce', '$window', '$mdDialog', 'categoryService', 'questionService', 'userService',
 function($scope, $http, $sce, $window, $mdDialog, categoryService, questionService, userService) {
-	$scope.processed = false;
-  $scope.user = {};
+  $scope.processed = false;
+  //$scope.user = {};
   
   var init = function() {
     categoryService.search(null, "rule_1").then(function(data) {
@@ -16,13 +16,13 @@ function($scope, $http, $sce, $window, $mdDialog, categoryService, questionServi
     categoryService.search(null, "rule_2").then(function(data) {
 			$scope.rule2Categories = data;
 		});
-    userService.getLoginUser().then(function(data) {
-      $scope.user = data; // 成功
-    }, function(e) {
-      $scope.user = undefined;
-    });
-	};
-	init();
+    // userService.getLoginUser().then(function(data) {
+    //   $scope.user = data; // 成功
+    // }, function(e) {
+    //   $scope.user = undefined;
+    // });
+  };	
+  init();
 
   /**
    * 送信ダイアログを表示する

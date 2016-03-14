@@ -16,3 +16,20 @@ f.filter('abbreviate', function () {
     }
   };
 });
+
+f.filter("statusToJapanese", function() {
+    return function(status) {
+        switch(status) {
+        case "REVIEW":
+            return "レビュー待ち";
+        case "FINALCHECK":
+            return "最終確認";
+        case "APPROVED":
+            return "承認済み";
+        case "TURNDOWN":
+            return "取り下げ";
+        default:
+            return "";
+        }
+    };
+});
