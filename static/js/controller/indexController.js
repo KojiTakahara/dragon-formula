@@ -7,11 +7,6 @@ var app = angular.module('indexCtrl', [
 app.controller('indexCtrl', ['$rootScope', '$scope', '$http', '$sce', '$window', '$mdDialog', 'userService',
 function($rootScope, $scope, $http, $sce, $window, $mdDialog, userService) {
   $scope.user = {};
-//   userService.getLoginUser().then(function(data) {
-//     $scope.user = data;
-//   }, function(e) {
-//     $scope.user = undefined;
-//   });
 
   /**
    * 次画面への遷移. 次画面URLを受け取って, ログインしていればOK.
