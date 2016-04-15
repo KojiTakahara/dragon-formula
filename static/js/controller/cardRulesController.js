@@ -1,8 +1,8 @@
-/** 全カテゴリクイズコントローラー */
+/** カードルールコントローラー */
 "use strict";
 
-var app = angular.module('allCtrl', []);
-app.controller('allCtrl', ['$scope', '$http', '$sce', '$window', '$mdDialog', 'questionService', 'userService', 'userAnswerService',
+var app = angular.module('cardRulesCtrl', []);
+app.controller('cardRulesCtrl', ['$scope', '$http', '$sce', '$window', '$mdDialog', 'questionService', 'userService', 'userAnswerService',
 function($scope, $http, $sce, $window, $mdDialog, questionService, userService, userAnswerService) {
   $scope.user = {};
   $scope.processed = false;
@@ -10,7 +10,7 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
   $scope.rightAnswer = 0;
   $scope.questions = [];
   var questionCount = 15;
-  var ruleCategory = null;
+  var ruleCategory = "rule_3";
 
   /**
    * 初期処理

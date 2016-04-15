@@ -1,30 +1,32 @@
 "use strict";
 
-var app = angular.module('app', [
-  'indexCtrl',
-  'allCtrl',
-  'competitionCtrl',
-  'comprehensiveCtrl',
-  'postedContentCtrl',
-  'submissionCtrl',
-  'categoryService',
-  'questionService',
-  'userAnswerService',
-  'userService',
-  'sidebarDirective',
-  'stringFilter',
-  'ui.router',
-  'ngMaterial',
+var app = angular.module("app", [
+  "indexCtrl",
+  "allCtrl",
+  "cardRulesCtrl",
+  "competitionCtrl",
+  "comprehensiveCtrl",
+  "postedContentCtrl",
+  "submissionCtrl",
+  "categoryService",
+  "questionService",
+  "userAnswerService",
+  "userService",
+  "cardTextDirective",
+  "sidebarDirective",
+  "stringFilter",
+  "ui.router",
+  "ngMaterial",
 ]);
 
 var closeSideMenu = function() {
   angular.element(".mdl-layout__obfuscator").click();
 }
 
-app.config(['$httpProvider', '$locationProvider', '$stateProvider', '$urlRouterProvider',
+app.config(["$httpProvider", "$locationProvider", "$stateProvider", "$urlRouterProvider",
 function($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider) {
-  $httpProvider.defaults.headers.common = {'X-Requested-With': 'XMLHttpRequest'};
-  $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=utf-8';
+  $httpProvider.defaults.headers.common = {"X-Requested-With": "XMLHttpRequest"};
+  $httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8";
   $httpProvider.defaults.transformRequest = function(data) {
     if (data === undefined) {
       return data;
@@ -36,57 +38,66 @@ function($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider) {
     requireBase: false
   });
   $urlRouterProvider.otherwise("");
-  $stateProvider.state('top', {
-    url: '/',
+  $stateProvider.state("top", {
+    url: "/",
     views: {
       mainContent: {
-        templateUrl: '/view/top.html',
-        controller: 'indexCtrl'
+        templateUrl: "/view/top.html",
+        controller: "indexCtrl"
       }
     }
   });
-  $stateProvider.state('competition', {
-    url: '/competition',
+  $stateProvider.state("cardRules", {
+    url: "/cardrules",
     views: {
       mainContent: {
-        templateUrl: '/view/answer_page.html',
-        controller: 'competitionCtrl'
+        templateUrl: "/view/answer_page.html",
+        controller: "cardRulesCtrl"
       }
     }
   });
-  $stateProvider.state('comprehensive', {
-    url: '/comprehensive',
+  $stateProvider.state("competition", {
+    url: "/competition",
     views: {
       mainContent: {
-        templateUrl: '/view/answer_page.html',
-        controller: 'comprehensiveCtrl'
+        templateUrl: "/view/answer_page.html",
+        controller: "competitionCtrl"
       }
     }
   });
-  $stateProvider.state('all', {
-    url: '/all',
+  $stateProvider.state("comprehensive", {
+    url: "/comprehensive",
     views: {
       mainContent: {
-        templateUrl: '/view/answer_page.html',
-        controller: 'allCtrl'
+        templateUrl: "/view/answer_page.html",
+        controller: "comprehensiveCtrl"
       }
     }
   });
-  $stateProvider.state('submission', {
-    url: '/submission',
+  $stateProvider.state("all", {
+    url: "/all",
     views: {
       mainContent: {
-        templateUrl: '/view/submission.html',
-        controller: 'submissionCtrl'
+        templateUrl: "/view/answer_page.html",
+        controller: "allCtrl"
       }
     }
   });
-  $stateProvider.state('posted_content', {
-    url: '/posted_content',
+  $stateProvider.state("submission", {
+    url: "/submission",
     views: {
       mainContent: {
-        templateUrl: '/view/posted_content.html',
-        controller: 'postedContentCtrl'
+        templateUrl: "/view/submission.html",
+        controller: "submissionCtrl"
+      }
+    }
+  });
+  $stateProvider.state("posted_content", {
+    url: "/posted_content",
+    views: {
+      mainContent: {
+        templateUrl: "/view/posted_content.html",
+        controller: "postedContentCtrl"
       }
     }
   });

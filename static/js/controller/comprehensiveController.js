@@ -1,3 +1,4 @@
+/** 総合ゲームルールコントローラー */
 "use strict";
 
 var app = angular.module('comprehensiveCtrl', []);
@@ -52,19 +53,7 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
    * ユーザの解答データを送信する
    */
   var postUserAnswer = function() {
-    var answer = {
-      userKey: $scope.user.screen_name,
-      categoryKey: ruleCategory,
-    }, wrongAnswer = 0;
-    for (var i = 1; i <= $scope.questions.length; i++) {
-      answer['question' + i] = $scope.questions[i - 1].Key;
-      answer['category' + i] = $scope.questions[i - 1].SmallCategoryKey;
-      var result = questionService.getTrueFalse($scope.questions[i -1]);
-      answer['corrected' + i] = result;
-      result ? $scope.rightAnswer++ : wrongAnswer++;
-    }
-    answer.rightAnswer = $scope.rightAnswer;
-    answer.wrongAnswer = wrongAnswer;
+    var answer = userAnswerService.convertData($scope.questions, $scope.rightAnswer, ruleCategory, $rootScope.user.screen_name, questionService);
     userAnswerService.create(answer).then(function(data) {
       $scope.showAnswerResult = true;
 	});
