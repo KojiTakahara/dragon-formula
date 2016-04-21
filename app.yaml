@@ -45,6 +45,10 @@ handlers:
 - url: /
   static_files: static/index.html
   upload: static/index.html
+
+- url: /cardrules
+  static_files: static/index.html
+  upload: static/index.html
   
 - url: /competition
   static_files: static/index.html
