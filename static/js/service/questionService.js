@@ -42,6 +42,22 @@ service.factory('questionService', ['$http', '$q', function($http, $q) {
     return deferred.promise;
   };
   
+  /**
+   * 更新
+   */
+  service.update = function(question) {
+    var deferred = $q.defer();
+    $http({
+      method: 'PUT',
+      url: '/api/question',
+      params: question,
+    }).success(function(data, status, headers, config) {
+      deferred.resolve(data);
+    }).error(function(data, status, headers, config) {
+      deferred.reject(data);
+    });
+    return deferred.promise;
+  };
   
   service.getTrueFalse = function(question) {
     switch (question.selected - 0) {

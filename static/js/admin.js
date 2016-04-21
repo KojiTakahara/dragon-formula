@@ -10,8 +10,8 @@ var app = angular.module('app', [
   'ngMaterial',
 ]);
 
-app.controller('indexCtrl', ['$scope', '$http', '$sce', '$window', '$mdDialog', 'questionService',
-function($scope, $http, $sce, $window, $mdDialog, questionService) {
+app.controller('indexCtrl', ['$scope', '$http', '$sce', '$window', '$mdDialog', '$mdToast', 'questionService',
+function($scope, $http, $sce, $window, $mdDialog, $mdToast, questionService) {
 
   $scope.qFilter = {};
   $scope.sortReverse = false;
@@ -20,19 +20,48 @@ function($scope, $http, $sce, $window, $mdDialog, questionService) {
   questionService.search(null, null, null).then(function(data) {
     $scope.questions = data; 
   }, function(e) {
+    $mdToast.showSimple(e);
     console.log(e);
   });
   
-  $scope.updateStatus = function(ev, status) {
-    var confirm = $mdDialog.confirm()
-          .title('ステータスを変更してもよろしいですか？')
-          .targetEvent(ev)
-          .ok('OK')
-          .cancel('キャンセル');
-    $mdDialog.show(confirm).then(function() {
-       
+  var reDialog = function(ev, question) {
+    $scope.showDialog(ev, question);
+  }
+  
+  $scope.showDialog = function($event, question) {
+    $mdDialog.show({
+      clickOutsideToClose: true,
+      parent: angular.element(document.body),
+      targetEvent: $event,
+      templateUrl: "/admin/questionModal.html",
+      locals: {
+        question: question
+      },
+      controller: function ModalController($scope, $mdDialog, question) {
+        console.log(question);
+        $scope.question = question;
+        $scope.update = function(ev, question) {
+          var confirm = $mdDialog.confirm()
+                .title('変更してもよろしいですか？')
+                .targetEvent(ev)
+                .ok('OK')
+                .cancel('キャンセル');
+          $mdDialog.show(confirm).then(function() {
+            questionService.update(question).then(function(data) {
+              $mdToast.showSimple('成功しました');
+            }, function(e) {
+              $mdToast.showSimple('失敗しました');
+            });
+          }, function() {
+            reDialog(ev, question);
+          });
+        };
+        $scope.closeDialog = function() {
+          $mdDialog.hide();
+        };
+      }
     });
-  };
+  }
 
 }]);
 

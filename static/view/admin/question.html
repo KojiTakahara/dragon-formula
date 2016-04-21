@@ -1,4 +1,4 @@
-<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" style="width: 100%;">
   <thead>
     <tr>
       <th>
@@ -28,17 +28,18 @@
       <th><input type="text" ng-model="qFilter.SmallCategoryKey" /></th>
       <th><input type="text" ng-model="qFilter.Status" /></th>
     </tr>
+    <tr>
+    </tr>
   </thead>
   <tbody>
     <tr ng-repeat="q in questions | orderBy:sortType:sortReverse | filter:qFilter">
-      <td>{{q.Content | abbreviate:15}}</td>
+      <td>{{q.Content | abbreviate:30}}</td>
       <td>{{q.SmallCategoryKey}}</td>
       <td>
-        <md-select ng-model="q.Status" ng-change="updateStatus($event, q.Status)">
-          <md-option ng-value="'REVIEW'">REVIEW</md-option>
-          <md-option ng-value="'APPROVED'">APPROVED</md-option>
-          <md-option ng-value="'REJECTED'">REJECTED</md-option>
-        </md-select>
+        {{q.Status}}
+      </td>
+      <td>
+        <md-button class="md-raised" ng-click="showDialog($event, q)">編集</md-button>
       </td>
     </tr>
   </tbody>
