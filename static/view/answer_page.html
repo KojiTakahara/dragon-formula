@@ -25,6 +25,9 @@
 						<i class="material-icons answer_icon" ng-if="q.selected == q.Choice3.Key">check</i>{{q.Choice3.Content}}
 					</li>
 				</ul>
+				<div class="t_center" ng-if="q.Rubric !== ''">
+					<rubric-button text="{{q.Rubric}}"></rubric-button>
+				</div>
 			</div>
 		</div>
 		<div class="t_center">

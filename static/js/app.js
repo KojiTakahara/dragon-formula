@@ -13,6 +13,7 @@ var app = angular.module("app", [
   "userAnswerService",
   "userService",
   "cardTextDirective",
+  "rubricDirective",
   "sidebarDirective",
   "stringFilter",
   "ui.router",

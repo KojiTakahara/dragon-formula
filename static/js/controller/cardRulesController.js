@@ -56,7 +56,7 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
     var answer = userAnswerService.convertData($scope.questions, $scope.rightAnswer, ruleCategory, $rootScope.user.screen_name, questionService);
     userAnswerService.create(answer).then(function(data) {
       $scope.showAnswerResult = true;
-	});
+	  });
   };
 
   $scope.moveTopPage = function() {
