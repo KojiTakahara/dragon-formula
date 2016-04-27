@@ -1,9 +1,9 @@
 /** 競技イベントルールコントローラー */
 "use strict";
 
-var app = angular.module('competitionCtrl', []);
-app.controller('competitionCtrl', ['$scope', '$http', '$sce', '$window', '$mdDialog', 'questionService', 'userService', 'userAnswerService',
-function($scope, $http, $sce, $window, $mdDialog, questionService, userService, userAnswerService) {
+var app = angular.module("competitionCtrl", []);
+app.controller("competitionCtrl", ["$scope", "$rootScope", "$http", "$sce", "$window", "$mdDialog", "questionService", "userService", "userAnswerService",
+function($scope, $rootScope, $http, $sce, $window, $mdDialog, questionService, userService, userAnswerService) {
   $scope.user = {};
   $scope.processed = false;
   $scope.showAnswerResult = false;
@@ -20,8 +20,8 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
 	  $scope.questions = data;
       setTimeout(function() {
         $(".carousel").slick({infinite: false, dots: false, arrows: true});
-        $('.slick-prev').css("display", "none");
-        $('.slick-next').css("display", "none");
+        $(".slick-prev").css("display", "none");
+        $(".slick-next").css("display", "none");
       }, 0);
       $scope.processed = false;
     }, function(e) {
@@ -37,11 +37,11 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
     $scope.processed = true;
     var quantity = questionService.getQuantityResponses($scope.questions);
     var confirm = $mdDialog.confirm()
-          .title('送信してもよろしいですか？')
-          .textContent('回答数 ' + quantity + '/' + $scope.questions.length)
+          .title("送信してもよろしいですか？")
+          .textContent("回答数 " + quantity + "/" + $scope.questions.length)
           .targetEvent(ev)
-          .ok('OK')
-          .cancel('キャンセル');
+          .ok("OK")
+          .cancel("キャンセル");
     $mdDialog.show(confirm).then(function() {
       postUserAnswer();
     }, function() {
@@ -64,11 +64,11 @@ function($scope, $http, $sce, $window, $mdDialog, questionService, userService, 
   };
 
   $scope.prev = function() {
-    $('.slick-prev').click();
+    $(".slick-prev").click();
   };
   
   $scope.next = function() {
-    $('.slick-next').click();
+    $(".slick-next").click();
   };
 
 }]);

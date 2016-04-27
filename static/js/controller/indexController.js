@@ -1,10 +1,10 @@
 "use strict";
 
-var app = angular.module('indexCtrl', [
-  'userService'
+var app = angular.module("indexCtrl", [
+  "userService"
 ]);
 
-app.controller('indexCtrl', ['$rootScope', '$scope', '$http', '$sce', '$window', '$mdDialog', 'userService',
+app.controller("indexCtrl", ["$rootScope", "$scope", "$http", "$sce", "$window", "$mdDialog", "userService",
 function($rootScope, $scope, $http, $sce, $window, $mdDialog, userService) {
   $scope.user = {};
 
@@ -12,16 +12,17 @@ function($rootScope, $scope, $http, $sce, $window, $mdDialog, userService) {
    * 次画面への遷移. 次画面URLを受け取って, ログインしていればOK.
    */
   $scope.movePage = function(ev, nextPageUrl) {
+    // if (true) {
     if ($rootScope.user) {
       $window.location.href = nextPageUrl;
     } else {
       var confirm = $mdDialog.confirm()
-          .title('Twitterを使ってログインします。よろしいですか？')
+          .title("Twitterを使ってログインします。よろしいですか？")
           .targetEvent(ev)
-          .ok('OK')
-          .cancel('キャンセル');
+          .ok("OK")
+          .cancel("キャンセル");
       $mdDialog.show(confirm).then(function() {
-        $window.location.href = '/api/twitter/login';
+        $window.location.href = "/api/twitter/login";
       });
     }
   };
@@ -38,7 +39,7 @@ app.directive("maincard", function() {
       link: "@",
       image: "@"
     },
-    templateUrl: '/view/common/top_card.html',
+    templateUrl: "/view/common/top_card.html",
     controller: "indexCtrl"
   };
 });
