@@ -1,8 +1,10 @@
-application: aqua-teacher
+application: stg-aqua-teacher
+#application: aqua-teacher
 version: 1-1-1
 runtime: go
 api_version: go1
-default_expiration: "7d"
+# default_expiration: "7d"
+default_expiration: "1m"
 instance_class: F1
 automatic_scaling:
   min_idle_instances: automatic

@@ -1,52 +1,73 @@
 <div class="mdl-typography--text-center" style="max-width: 750px; min-height: 100px; margin: 0 auto;">
 	<form name="form">
 		<md-content class="autoScroll submission-form">
-			<md-input-container class="md-icon-float md-block">
-				<label>問題文</label>
-				<input ng-model="question.content" name="content" required>
-				<div ng-messages="form.content.$error">
-					<div ng-if="form.content.$error.required">問題文は必須です。</div>
-				</div>
-			</md-input-container>
-	
-			<md-input-container class="md-icon-float md-block">
-				<label>正答</label>
-				<input ng-model="question.correctAnswer" name="correctAnswer" required>
-				<div ng-messages="form.correctAnswer.$error">
-					<div ng-if="form.correctAnswer.$error.required">正答は必須です。</div>
-				</div>
-			</md-input-container>
-	
-			<md-input-container class="md-icon-float md-block">
-				<label>誤答1</label>
-				<input ng-model="question.wrongAnswer1" name="wrongAnswer1" required>
-				<div ng-messages="form.question.wrongAnswer1.$error">
-					<div ng-if="form.wrongAnswer1.$error.required">誤答1は必須です。</div>
-				</div>
-			</md-input-container>
-	
-			<md-input-container class="md-icon-float md-block">
-				<label>誤答2</label>
-				<input ng-model="question.wrongAnswer2" name="wrongAnswer2" required>
-				<div ng-messages="form.question.wrongAnswer2.$error">
-					<div ng-if="form.wrongAnswer2.$error.required">誤答2は必須です。</div>
-				</div>
-			</md-input-container>
-	
-			<md-input-container>
+            
+            <md-input-container>
 				<label>カテゴリー</label>
-				<md-select ng-model="question.category" required>
-					<md-optgroup label="総合ゲームルール">
-						<md-option ng-value="category.Key" ng-repeat="category in rule1Categories">{{category.Number}}  {{category.Name}}</md-option>
-					</md-optgroup>
-					<md-optgroup label="競技イベント運営ルール">
-						<md-option ng-value="category.Key" ng-repeat="category in rule2Categories">{{category.Number}}  {{category.Name}}</md-option>
-					</md-optgroup>
+				<md-select ng-model="question.categoryName" required>
+					<md-option ng-value="category" ng-repeat="category in categories">{{category}}</md-option>
 				</md-select>
-				<div class="errors" ng-messages="form.question.category.$error" ng-if="form.question.category.$dirty">
-					<div ng-message="required">カテゴリーは必須です</div>
-				</div>
 			</md-input-container>
+            
+            
+            <div ng-if="question.categoryName != undefined && question.categoryName === 'カードルール'">
+                <md-input-container class="md-icon-float md-block">
+                    <label>問題文</label>
+                    <input md-maxlength="150" ng-model="question.content" name="content" required>
+                    <div ng-messages="form.content.$error">
+                        <div>問題文は必須です。</div>
+                    </div>
+                </md-input-container>
+                
+                <md-input-container>
+                    <label>正誤</label>
+                    <md-select ng-model="question.trueFalse" required>
+                        <md-option ng-value="obj" ng-repeat="obj in trueFalse">{{obj}}</md-option>
+                    </md-select>
+                    <div ng-messages="form.content.$error">
+                        <div>正誤は必須です。</div>
+                    </div>
+                </md-input-container>
+                
+                <md-input-container class="md-icon-float md-block">
+                    <label>解説</label>
+                    <input ng-model="question.rubric" name="content">
+                </md-input-container>
+            </div>
+            
+            <div ng-if="question.categoryName != undefined && question.categoryName !== 'カードルール'">
+                <md-input-container class="md-icon-float md-block">
+                    <label>問題文</label>
+                    <input ng-model="question.content" name="content" required>
+                    <div ng-messages="form.content.$error">
+                        <div ng-if="form.content.$error.required">問題文は必須です。</div>
+                    </div>
+                </md-input-container>
+        
+                <md-input-container class="md-icon-float md-block">
+                    <label>正答</label>
+                    <input ng-model="question.correctAnswer" name="correctAnswer" required>
+                    <div ng-messages="form.correctAnswer.$error">
+                        <div ng-if="form.correctAnswer.$error.required">正答は必須です。</div>
+                    </div>
+                </md-input-container>
+        
+                <md-input-container class="md-icon-float md-block">
+                    <label>誤答1</label>
+                    <input ng-model="question.wrongAnswer1" name="wrongAnswer1" required>
+                    <div ng-messages="form.question.wrongAnswer1.$error">
+                        <div ng-if="form.wrongAnswer1.$error.required">誤答1は必須です。</div>
+                    </div>
+                </md-input-container>
+        
+                <md-input-container class="md-icon-float md-block">
+                    <label>誤答2</label>
+                    <input ng-model="question.wrongAnswer2" name="wrongAnswer2" required>
+                    <div ng-messages="form.question.wrongAnswer2.$error">
+                        <div ng-if="form.wrongAnswer2.$error.required">誤答2は必須です。</div>
+                    </div>
+                </md-input-container>
+            </div>
 		</md-content>
 		<div style="margin: -40px 0 20px 0; text-align: center;">
 			<md-button ng-disabled="form.$error.required || processed" class="md-warn md-raised" ng-click="showConfirm($event)" flex-sm="100" flex-md="100" flex-gt-md="auto">

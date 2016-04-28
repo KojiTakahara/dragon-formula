@@ -9,6 +9,14 @@ function($scope, $http, $sce, $window, $mdDialog, categoryService, questionServi
   $scope.processed = false;
   
   var init = function() {
+    $scope.categories = [
+        "カードルール",
+        "総合ゲームルール",
+        "競技イベント運営ルール"
+    ];
+    $scope.trueFalse = ["○", "×"];
+    
+      
     categoryService.search(null, "rule_1").then(function(data) {
 		$scope.rule1Categories = data;
 	});
@@ -36,6 +44,24 @@ function($scope, $http, $sce, $window, $mdDialog, categoryService, questionServi
   };
   
   var submission = function(ev) {
+    switch ($scope.question.categoryName) {
+      case "カードルール":
+        $scope.question.category = "rule_3";
+        $scope.question.correctAnswer = $scope.question.trueFalse;
+        if ($scope.question.trueFalse === "○") {
+          $scope.question.wrongAnswer1 = "×";
+        } else if ($scope.question.trueFalse === "×") {
+          $scope.question.wrongAnswer1 = "○";
+        }
+        break;
+      case "競技イベント運営ルール":
+        $scope.question.category = "rule_2";
+        break;
+      case "総合ゲームルール":
+        $scope.question.category = "rule_1";
+        break;
+    }
+
     var question = {
       content: $scope.question.content,
       choice1Content: $scope.question.correctAnswer,
@@ -47,8 +73,17 @@ function($scope, $http, $sce, $window, $mdDialog, categoryService, questionServi
       largeCategoryKey: null,
       mediumCategoryKey: null,
       smallCategoryKey: $scope.question.category,
-      userKey: $scope.user.screen_name
+      rubric: $scope.question.rubric,
+      userKey: "test" //$scope.user.screen_name
     };
+    
+    if ($scope.question.category === "rule_3" && $scope.question.correctAnswer === "×") {
+      question.choice1Content = $scope.question.wrongAnswer1;
+      question.choice2Content = $scope.question.correctAnswer;
+      question.choice1Bool = false;
+      question.choice2Bool = true;
+    }
+    
     questionService.create(question).then(function(data) {
       var confirm = $mdDialog.confirm()
           .title('送信完了しました。')
