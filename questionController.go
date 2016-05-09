@@ -57,9 +57,15 @@ func GetQuestionList(r render.Render, req *http.Request) {
 		if questions[i].LargeCategoryKey != "rule_3" {
 			shuffleQuestionChoice(choices)	
 		}
-		questions[i].Choice1 = choices[0]
-		questions[i].Choice2 = choices[1]
-		questions[i].Choice3 = choices[2]
+		if 3 <= len(choices) {
+			questions[i].Choice3 = choices[2]	
+		}
+		if 2 <= len(choices) {
+			questions[i].Choice2 = choices[1]	
+		}
+		if 1 <= len(choices) {
+			questions[i].Choice1 = choices[0]	
+		}
 		questions[i].Key = keys[i].IntID()
 	}
 	shuffleQuestion(questions)
