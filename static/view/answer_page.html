@@ -42,7 +42,7 @@
 				<div style="background-color:white; padding: 1px 20px 5px 20px; color: rgba(0,0,0,.54);">
 					<h6>問{{$index + 1}}.</h6>
 					<div style="font-size:20px;word-wrap: break-word; margin-bottom: 18px; line-height: 1.4em;">
-                        <replacecardtext text="{{q.Content}}"></replacecardtext>
+						<replacecardtext text="{{q.Content}}" annotations="{{q.Annotations}}"></replacecardtext>
 					</div>
 					<md-radio-group ng-model="q.selected">
 						<md-radio-button value="{{q.Choice1.Key}}" ng-if="q.Choice1.Content !== ''">{{q.Choice1.Content}}</md-radio-button>

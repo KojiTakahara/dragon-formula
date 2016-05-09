@@ -10,6 +10,7 @@ var app = angular.module("app", [
   "submissionCtrl",
   "categoryService",
   "questionService",
+  "questionAnnotationService",
   "userAnswerService",
   "userService",
   "cardTextDirective",

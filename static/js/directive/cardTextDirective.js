@@ -1,31 +1,34 @@
-var dir = angular.module('cardTextDirective', [
+var dir = angular.module("cardTextDirective", [
 ]);
 
-dir.directive('replacecardtext', function() {
+dir.directive("replacecardtext", function() {
   return {
-    restrict: 'E',
+    restrict: "E",
     replace: true,
     scope: {
-      text: '@'
+      text: "@",
+      annotations: "@"
     },
-    template: '<div compile="text | addModalLink"></div>',
-    controller: ['$scope', '$sce', '$mdDialog', function($scope, $sce, $mdDialog) {
+    template: "<div compile=\"text | addModalLink\"></div>",
+    controller: ["$scope", "$sce", "$mdDialog", "questionAnnotationService", function($scope, $sce, $mdDialog, questionAnnotationService) {
       $scope.showModal = function(cardName, ev) {
+        var annotations = JSON.parse($scope.annotations);
         var text = "";
-        // TODO データから名前に一致するテキストを取得する仕組みを作る
-        if (cardName == "ガンリキ・インディゴ・カイザー") {
-            text = "相手がクリーチャーを召喚した時または呪文を唱えた時、このターン、相手のクリーチャーは、攻撃またはブロックできない。";
-        } else {
-            text = "スピードアタッカー";
+        if (!angular.isUndefined(annotations)) {
+          for (var i = 0; i < annotations.length; i++) {
+            if (cardName === annotations[i].CardName) {
+              text = annotations[i].Annotation;
+            }
+          }
         }
-        var alert = $mdDialog.alert().content(text).ok('閉じる');
+        var alert = $mdDialog.alert().content(text).ok("閉じる");
         $mdDialog.show(alert);
       };
     }]
   };
 });
 
-dir.filter('addModalLink', [function() {
+dir.filter("addModalLink", [function() {
   return function(text) {
     var result = text.replace( /(《)((?!《》).)*?(》)/g , function(all) {
       var name = all.substr(1);
@@ -36,7 +39,7 @@ dir.filter('addModalLink', [function() {
   }
 }]);
 
-dir.directive('compile', ['$compile', function ($compile) {
+dir.directive("compile", ["$compile", function ($compile) {
   return function(scope, element, attrs) {
     scope.$watch(
       function(scope) {
