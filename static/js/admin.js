@@ -42,6 +42,18 @@ function($scope, $http, $sce, $window, $mdDialog, $mdToast, questionService, que
         console.log(question);
         $scope.annotations = [];
         $scope.question = question;
+        
+        questionAnnotationService.search(question.Key).then(function(data) {
+          console.log(data);
+          $scope.annotations = data; 
+        }, function(e) {
+          $mdToast.showSimple(e);
+          console.log(e);
+        });
+        
+        
+        
+        
         $scope.update = function(ev, question) {
           var confirm = $mdDialog.confirm()
                 .title("変更してもよろしいですか？")
@@ -76,20 +88,23 @@ function($scope, $http, $sce, $window, $mdDialog, $mdToast, questionService, que
           if (angular.isUndefined(annotation.Key)) {
             $scope.annotations.splice(i, 1); 
           } else {
-            
+            questionAnnotationService.delete(annotation).then(function() {
+              alert("success");
+              $scope.annotations.splice(i, 1);
+            });
           }
         };
         // 登録・更新
         $scope.submitAnnotation = function(i) {
           var annotation = $scope.annotations[i];
           if (angular.isUndefined(annotation.Key)) {
-            // 登録
-            console.log(annotation);
             questionAnnotationService.create(annotation).then(function() {
               alert("success");
             });
           } else {
-            // 更新            
+            questionAnnotationService.update(annotation).then(function() {
+              alert("success");
+            });
           }
         };
       }

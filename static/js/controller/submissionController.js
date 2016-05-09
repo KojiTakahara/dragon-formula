@@ -74,9 +74,12 @@ function($scope, $http, $sce, $window, $mdDialog, categoryService, questionServi
       mediumCategoryKey: null,
       smallCategoryKey: $scope.question.category,
       rubric: $scope.question.rubric,
+      status: "REVIEW",
       userKey: "test" //$scope.user.screen_name
     };
-    
+    if ($scope.question.category === "rule_3") {
+      $scope.question.largeCategoryKey = "rule_3";
+    }
     if ($scope.question.category === "rule_3" && $scope.question.correctAnswer === "×") {
       question.choice1Content = $scope.question.wrongAnswer1;
       question.choice2Content = $scope.question.correctAnswer;

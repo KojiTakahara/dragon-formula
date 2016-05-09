@@ -56,5 +56,22 @@ service.factory('questionAnnotationService', ['$http', '$q', function($http, $q)
     return deferred.promise;
   };
   
+  /**
+   * 削除
+   */
+  service.delete = function(qa) {
+    var deferred = $q.defer();
+    $http({
+      method: 'DELETE',
+      url: '/api/questionAnnotation',
+      params: qa,
+    }).success(function(data, status, headers, config) {
+      deferred.resolve(data);
+    }).error(function(data, status, headers, config) {
+      deferred.reject(data);
+    });
+    return deferred.promise;
+  };
+  
   return service;
 }]);

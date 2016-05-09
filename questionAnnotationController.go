@@ -18,14 +18,17 @@ func GetQuestionAnnotationList(r render.Render, req *http.Request) {
 	p := u.Query()
 	q := datastore.NewQuery("QuestionAnnotation")
   if len(p["questionKeyId"]) != 0 {
-		q = q.Filter("QuestionKeyId=", p["questionKeyId"][0])
+		q = q.Filter("QuestionKeyId=", ToInt64(p["questionKeyId"][0]))
 	}
   qaList := make([]QuestionAnnotation, 0, 10)
-	_, err := q.GetAll(c, &qaList)
+	keys, err := q.GetAll(c, &qaList)
 	if err != nil {
 		c.Criticalf(err.Error())
 		r.JSON(400, err)
 		return
+	}
+	for i := range qaList {
+		qaList[i].Key = keys[i].IntID()
 	}
   r.JSON(200, qaList)
 }
@@ -70,4 +73,19 @@ func UpdateQuestionAnnotation(r render.Render, req *http.Request) {
 	} else {
 		r.JSON(200, qa)
 	}
+}
+
+/**
+ * 削除
+ */
+func DeleteQuestionAnnotation(r render.Render, req *http.Request) {
+	c := appengine.NewContext(req)
+	id, _ := strconv.Atoi(req.FormValue("Key"))
+	key := datastore.NewKey(c, "QuestionAnnotation", "", int64(id), nil)
+	err := datastore.Delete(c, key)
+	if err != nil {
+		r.JSON(400, "削除に失敗しました")
+		return
+	}
+	r.JSON(200, "成功")
 }

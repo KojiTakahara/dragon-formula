@@ -20,6 +20,7 @@ func init() {
 	m.Get("/api/questionAnnotation", GetQuestionAnnotationList)
 	m.Post("/api/questionAnnotation", RegistQuestionAnnotation)
 	m.Put("/api/questionAnnotation", UpdateQuestionAnnotation)
+	m.Delete("/api/questionAnnotation", DeleteQuestionAnnotation)
 	m.Get("/api/category", GetCategoryList)
 	m.Post("/api/category", RegistCategory)
 	m.Post("/api/userAnswer", RegistUserAnswer)
