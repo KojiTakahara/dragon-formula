@@ -5,24 +5,30 @@
     max-width: 750px;
     min-height: 100px;
 }
+table .material-icons {
+    top: 45%;
+    position: absolute;
+    font-size: 15px;
+}
 </style>
 <div class="mdl-typography--text-center postedContent">
 
-    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
     <thead>
         <tr>
             <th>
                 <a href="#" ng-click="sortType = 'Content'; sortReverse = !sortReverse">
-                問題文
-                <i class="material-icons" ng-show="sortType == 'Content' && !sortReverse">expand_less</i>
-                <i class="material-icons" ng-show="sortType == 'Content' && sortReverse">expand_more</i>
+                    問題文
+                    <i class="material-icons" ng-show="sortType == 'Content' && !sortReverse">expand_less</i>
+                    <i class="material-icons" ng-show="sortType == 'Content' && sortReverse">expand_more</i>
                 </a>
+                <input style="margin-left: 20px;" type="text" ng-model="qFilter.Content" placeholder="フィルター" />
             </th>
             <th>
                 <a href="#" ng-click="sortType = 'Status'; sortReverse = !sortReverse">
-                ステータス
-                <i class="material-icons" ng-show="sortType == 'Status' && !sortReverse">expand_less</i>
-                <i class="material-icons" ng-show="sortType == 'Status' && sortReverse">expand_more</i>
+                    ステータス
+                    <i class="material-icons" ng-show="sortType == 'Status' && !sortReverse">expand_less</i>
+                    <i class="material-icons" ng-show="sortType == 'Status' && sortReverse">expand_more</i>
                 </a>
             </th>
             <th></th>
@@ -31,20 +37,18 @@
     </thead>
     <tbody>
         <tr ng-repeat="q in postedQuestions | orderBy:sortType:sortReverse | filter:qFilter">
-        <td>
-            {{q.Content | abbreviate:40}}
-        </td>
-        <td>{{q.Status | statusToJapanese}}</td>
-        <td style="padding:0px;">
-            <md-button class="md-raised md-primary" style="font-size:13px;">
-				編集
-			</md-button>
-        </td>
-        <td style="padding:0px;">
-            <md-button class="md-raised" ng-click="showConfirm($event)" style="font-size:13px;">
-				取り下げ
-			</md-button>
-        </td>
+            <td>{{q.Content | abbreviate:40}}</td>
+            <td>{{q.Status | statusToJapanese}}</td>
+            <td style="padding:0px;">
+                <md-button class="md-raised" ng-click="showContentModal($event, q)" style="font-size:13px;">
+                    確認
+                </md-button>
+            </td>
+            <td style="padding:0px;">
+                <md-button class="md-raised" ng-click="showConfirm($event, q)" style="font-size:13px;" ng-disabled="q.Status === 'TURNDOWN'">
+                    取り下げ
+                </md-button>
+            </td>
         </tr>
         <tr ng-if="postedQuestions.length == 0">
             <td colspan="4">

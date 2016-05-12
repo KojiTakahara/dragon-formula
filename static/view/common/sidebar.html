@@ -10,11 +10,15 @@
 		</div>
 	</span>
 	<nav class="mdl-navigation">
+		<div>
+			<a class="mdl-navigation__link" href="/submission" onclick="closeSideMenu()">すべての出題問題</a>
+			<div class="android-drawer-separator"></div>
+		</div>
 		<div ng-if="!user">
 			<a class="mdl-navigation__link" href="/submission" onclick="closeSideMenu()">出題問題の投稿</a>
-            <!--
-            <a class="mdl-navigation__link" href="/posted_content" onclick="closeSideMenu()">投稿問題の確認</a>
-			-->
+            
+            <a class="mdl-navigation__link" href="/posted_content" onclick="closeSideMenu()">投稿済み出題問題</a>
+			
             <div class="android-drawer-separator"></div>
 		</div>
 		<a class="mdl-navigation__link" href="http://dm.takaratomy.co.jp/wp-content/files/pdf/dm_rule_20160201.pdf" target="_blank" onclick="closeSideMenu()">
