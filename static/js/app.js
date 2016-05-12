@@ -3,6 +3,7 @@
 var app = angular.module("app", [
   "indexCtrl",
   "allCtrl",
+  "allContentCtrl",
   "cardRulesCtrl",
   "competitionCtrl",
   "comprehensiveCtrl",
@@ -100,6 +101,15 @@ function($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider) {
       mainContent: {
         templateUrl: "/view/posted_content.html",
         controller: "postedContentCtrl"
+      }
+    }
+  });
+  $stateProvider.state("all_content", {
+    url: "/all_content",
+    views: {
+      mainContent: {
+        templateUrl: "/view/all_content.html",
+        controller: "allContentCtrl"
       }
     }
   });
