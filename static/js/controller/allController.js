@@ -23,14 +23,6 @@ function($scope, $rootScope, $http, $sce, $window, $mdDialog, questionService, q
         $(".slick-prev").css("display", "none");
         $(".slick-next").css("display", "none");
       }, 0);
-      for (var i = 0; i < $scope.questions.length; i++) {
-        var q = $scope.questions[i];
-        if (q.LargeCategoryKey === "rule_3") {
-          questionAnnotationService.search(q.Key).then(function(data) {
-            $scope.questions.Annotations = data;
-          });  
-        } 
-      }
       $scope.processed = false;
     }, function(e) {
       $scope.processed = true;

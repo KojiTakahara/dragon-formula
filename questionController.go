@@ -36,6 +36,7 @@ func GetQuestionList(r render.Render, req *http.Request) {
 		return
 	}
 	for i := 0; i < len(questions); i++ {
+		// Get Choice
 		q := datastore.NewQuery("QuestionChoice")
 		q = q.Filter("QuestionKeyId =", keys[i].IntID())
 		choices := make([]QuestionChoice, 0, 3)
@@ -66,6 +67,22 @@ func GetQuestionList(r render.Render, req *http.Request) {
 		if 1 <= len(choices) {
 			questions[i].Choice1 = choices[0]	
 		}
+		
+		// Get Annotations
+		q = datastore.NewQuery("QuestionAnnotation")
+		if len(p["questionKeyId"]) != 0 {
+			q = q.Filter("QuestionKeyId=", keys[i].IntID())
+		}
+		qaList := make([]QuestionAnnotation, 0, 10)
+		annotationkeys, err := q.GetAll(c, &qaList)
+		if err != nil {
+			c.Criticalf(err.Error())
+		}
+		for i := range qaList {
+			qaList[i].Key = annotationkeys[i].IntID()
+		}
+		questions[i].Annotations = qaList
+		
 		questions[i].Key = keys[i].IntID()
 	}
 	shuffleQuestion(questions)

@@ -12,6 +12,9 @@ dir.directive("replacecardtext", function() {
     template: "<div compile=\"text | addModalLink\"></div>",
     controller: ["$scope", "$sce", "$mdDialog", "questionAnnotationService", function($scope, $sce, $mdDialog, questionAnnotationService) {
       $scope.showModal = function(cardName, ev) {
+        if ($scope.annotations === "") {
+          return;
+        }
         var annotations = JSON.parse($scope.annotations);
         var text = "";
         if (!angular.isUndefined(annotations)) {
