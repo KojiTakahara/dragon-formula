@@ -36,9 +36,27 @@
             </div>
             
             <div ng-if="question.categoryName != undefined && question.categoryName !== 'カードルール'">
+                {{question.smallCategoryName}}
+                <div ng-if="question.categoryName != undefined && question.categoryName !== '競技イベント運営ルール'">
+                    <md-input-container>
+                        <label>小カテゴリ</label>
+                        <md-select ng-model="question.smallCategory" required>
+                            <md-option ng-value="category" ng-repeat="category in rule1Categories">{{category.Number}}. {{category.Name}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div ng-if="question.categoryName != undefined && question.categoryName !== '総合ゲームルール'">
+                    <md-input-container>
+                        <label>小カテゴリ</label>
+                        <md-select ng-model="question.smallCategory" required>
+                            <md-option ng-value="category" ng-repeat="category in rule2Categories">{{category.Number}}. {{category.Name}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                
                 <md-input-container class="md-icon-float md-block">
                     <label>問題文</label>
-                    <input ng-model="question.content" name="content" required>
+                    <input md-maxlength="80" ng-model="question.content" name="content" required>
                     <div ng-messages="form.content.$error">
                         <div ng-if="form.content.$error.required">問題文は必須です。</div>
                     </div>
@@ -46,7 +64,7 @@
         
                 <md-input-container class="md-icon-float md-block">
                     <label>正答</label>
-                    <input ng-model="question.correctAnswer" name="correctAnswer" required>
+                    <input md-maxlength="60" ng-model="question.correctAnswer" name="correctAnswer" required>
                     <div ng-messages="form.correctAnswer.$error">
                         <div ng-if="form.correctAnswer.$error.required">正答は必須です。</div>
                     </div>
@@ -54,7 +72,7 @@
         
                 <md-input-container class="md-icon-float md-block">
                     <label>誤答1</label>
-                    <input ng-model="question.wrongAnswer1" name="wrongAnswer1" required>
+                    <input md-maxlength="60" ng-model="question.wrongAnswer1" name="wrongAnswer1" required>
                     <div ng-messages="form.question.wrongAnswer1.$error">
                         <div ng-if="form.wrongAnswer1.$error.required">誤答1は必須です。</div>
                     </div>
@@ -62,7 +80,7 @@
         
                 <md-input-container class="md-icon-float md-block">
                     <label>誤答2</label>
-                    <input ng-model="question.wrongAnswer2" name="wrongAnswer2" required>
+                    <input md-maxlength="60" ng-model="question.wrongAnswer2" name="wrongAnswer2" required>
                     <div ng-messages="form.question.wrongAnswer2.$error">
                         <div ng-if="form.wrongAnswer2.$error.required">誤答2は必須です。</div>
                     </div>
@@ -70,7 +88,7 @@
             </div>
 		</md-content>
 		<div style="margin: -40px 0 20px 0; text-align: center;">
-			<md-button ng-disabled="form.$error.required || processed" class="md-warn md-raised" ng-click="showConfirm($event)" flex-sm="100" flex-md="100" flex-gt-md="auto">
+            <md-button ng-disabled="form.$error.required || form.$error['md-maxlength'] || processed" class="md-warn md-raised" ng-click="showConfirm($event)" flex-sm="100" flex-md="100" flex-gt-md="auto">
 				送信する
 			</md-button>
 		</div>
