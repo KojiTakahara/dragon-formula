@@ -6,14 +6,13 @@ var app = angular.module("indexCtrl", [
 
 app.controller("indexCtrl", ["$rootScope", "$scope", "$http", "$sce", "$window", "$mdDialog", "userService",
 function($rootScope, $scope, $http, $sce, $window, $mdDialog, userService) {
-  $scope.user = {};
 
   /**
    * 次画面への遷移. 次画面URLを受け取って, ログインしていればOK.
    */
   $scope.movePage = function(ev, nextPageUrl) {
-    if (true) {
-    // if ($rootScope.user) {
+    // if (true) {
+    if ($rootScope.user) {
       $window.location.href = nextPageUrl;
     } else {
       var confirm = $mdDialog.confirm()

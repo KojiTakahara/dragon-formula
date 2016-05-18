@@ -4,7 +4,6 @@
 var app = angular.module("comprehensiveCtrl", []);
 app.controller("comprehensiveCtrl", ["$scope", "$rootScope", "$http", "$sce", "$window", "$mdDialog", "questionService", "userService", "userAnswerService",
 function($scope, $rootScope, $http, $sce, $window, $mdDialog, questionService, userService, userAnswerService) {
-  $scope.user = {};
   $scope.processed = false;
   $scope.showAnswerResult = false;
   $scope.rightAnswer = 0;

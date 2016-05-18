@@ -1,18 +1,17 @@
 "use strict";
 
-var app = angular.module('postedContentCtrl', [
-  'categoryService',
-  'questionService',
-  'userService'
+var app = angular.module("postedContentCtrl", [
+  "categoryService",
+  "questionService",
+  "userService"
 ]);
-app.controller('postedContentCtrl', ['$scope', '$http', '$sce', '$window', '$mdDialog', 'categoryService', 'questionService', 'userService',
-function($scope, $http, $sce, $window, $mdDialog, categoryService, questionService, userService) {
+app.controller("postedContentCtrl", ["$scope", "$rootScope", "$http", "$sce", "$window", "$mdDialog", "categoryService", "questionService", "userService",
+function($scope, $rootScope, $http, $sce, $window, $mdDialog, categoryService, questionService, userService) {
   $scope.processed = false;
-  $scope.user = {};
   $scope.qFilter = {};
   $scope.sortReverse = false;
 
-  questionService.search(null, null, null).then(function(data) {
+  questionService.search(null, null, null, $rootScope.user.Key).then(function(data) {
     $scope.postedQuestions = data; 
   }, function(e) {
     console.log(e);
@@ -26,8 +25,8 @@ function($scope, $http, $sce, $window, $mdDialog, categoryService, questionServi
     var confirm = $mdDialog.confirm()
           .title("投稿を取り下げてもよろしいですか？")
           .targetEvent(ev)
-          .ok('OK')
-          .cancel('キャンセル');
+          .ok("OK")
+          .cancel("キャンセル");
     $mdDialog.show(confirm).then(function() {
       submission(ev, question);      
     }, function() { // cancel
@@ -39,9 +38,9 @@ function($scope, $http, $sce, $window, $mdDialog, categoryService, questionServi
     question.Status = "TURNDOWN";
     questionService.update(question).then(function(data) {
       var confirm = $mdDialog.confirm()
-          .title('投稿を取り下げました。')
+          .title("投稿を取り下げました。")
           .targetEvent(ev)
-          .ok('OK')
+          .ok("OK")
       $mdDialog.show(confirm);
 	  });
   };
