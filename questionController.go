@@ -25,7 +25,7 @@ func GetQuestionList(r render.Render, req *http.Request) {
 	if len(p["largeCategoryKey"]) != 0 { // 大項目フィルター
 		q = q.Filter("LargeCategoryKey=", p["largeCategoryKey"][0])
 	}
-    if len(p["userKey"]) != 0 { // userKeyフィルター
+	if len(p["userKey"]) != 0 { // userKeyフィルター
 		q = q.Filter("UserKey=", p["userKey"][0])
 	}
 	questions := make([]Question, 0, 10)
@@ -48,26 +48,26 @@ func GetQuestionList(r render.Render, req *http.Request) {
 		}
 		if len(choices) != 3 {
 			// TODO ○×に合わせて修正する
-            c.Errorf(fmt.Sprintf("size error. choices = %d", len(choices)))
-            // r.JSON(400, fmt.Sprintf("size error. choices = %d", len(choices)))
+			c.Errorf(fmt.Sprintf("size error. choices = %d", len(choices)))
+			// r.JSON(400, fmt.Sprintf("size error. choices = %d", len(choices)))
 			// return
 		}
 		for i := 0; i < len(choices); i++ {
 			choices[i].Key = choicesKeys[i].IntID()
 		}
 		if questions[i].LargeCategoryKey != "rule_3" {
-			shuffleQuestionChoice(choices)	
+			shuffleQuestionChoice(choices)
 		}
 		if 3 <= len(choices) {
-			questions[i].Choice3 = choices[2]	
+			questions[i].Choice3 = choices[2]
 		}
 		if 2 <= len(choices) {
-			questions[i].Choice2 = choices[1]	
+			questions[i].Choice2 = choices[1]
 		}
 		if 1 <= len(choices) {
-			questions[i].Choice1 = choices[0]	
+			questions[i].Choice1 = choices[0]
 		}
-		
+
 		// Get Annotations
 		q = datastore.NewQuery("QuestionAnnotation")
 		if len(p["questionKeyId"]) != 0 {
@@ -82,13 +82,13 @@ func GetQuestionList(r render.Render, req *http.Request) {
 			qaList[i].Key = annotationkeys[i].IntID()
 		}
 		questions[i].Annotations = qaList
-		
+
 		questions[i].Key = keys[i].IntID()
 	}
 	shuffleQuestion(questions)
 	if len(p["limit"]) != 0 {
 		limit := ToInt(p["limit"][0])
-        c.Infof(fmt.Sprintf("limit = %d", limit))
+		c.Infof(fmt.Sprintf("limit = %d", limit))
 		//questions = questions[0:limit]
 	}
 	r.JSON(200, questions)
@@ -122,7 +122,7 @@ func RegistQuestion(r render.Render, req *http.Request) {
 	question.LargeCategoryKey = req.FormValue("largeCategoryKey")
 	question.MediumCategoryKey = req.FormValue("mediumCategoryKey")
 	question.SmallCategoryKey = req.FormValue("smallCategoryKey")
-    question.Rubric = req.FormValue("rubric")
+	question.Rubric = req.FormValue("rubric")
 	question.UserKey = req.FormValue("userKey")
 	// question.UserKey
 	resultkey, err := datastore.Put(c, key, question)
@@ -149,7 +149,7 @@ func UpdateQuestion(r render.Render, req *http.Request) {
 	if err := datastore.Get(c, key, &question); err != nil {
 		c.Criticalf(err.Error())
 	}
-    question.Content = req.FormValue("Content")
+	question.Content = req.FormValue("Content")
 	question.LargeCategoryKey = req.FormValue("LargeCategoryKey")
 	question.MediumCategoryKey = req.FormValue("MediumCategoryKey")
 	question.SmallCategoryKey = req.FormValue("SmallCategoryKey")
@@ -158,7 +158,7 @@ func UpdateQuestion(r render.Render, req *http.Request) {
 	question.Status = req.FormValue("Status")
 	question.Level = req.FormValue("Level")
 	question.UserKey = req.FormValue("UserKey")
-    _, err := datastore.Put(c, key, &question)
+	_, err := datastore.Put(c, key, &question)
 	if err != nil {
 		c.Criticalf("%s", err)
 		r.JSON(400, err)

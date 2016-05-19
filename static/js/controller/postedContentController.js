@@ -1,22 +1,21 @@
+/** 投稿問題確認画面コントローラー **/
 "use strict";
 
-var app = angular.module("postedContentCtrl", [
-  "categoryService",
-  "questionService",
-  "userService"
-]);
+var app = angular.module("postedContentCtrl", []);
 app.controller("postedContentCtrl", ["$scope", "$rootScope", "$http", "$sce", "$window", "$mdDialog", "categoryService", "questionService", "userService",
 function($scope, $rootScope, $http, $sce, $window, $mdDialog, categoryService, questionService, userService) {
   $scope.processed = false;
   $scope.qFilter = {};
   $scope.sortReverse = false;
 
+  console.log($rootScope.user);
+
   questionService.search(null, null, null, $rootScope.user.Key).then(function(data) {
-    $scope.postedQuestions = data; 
+    $scope.postedQuestions = data;
   }, function(e) {
     console.log(e);
   });
-  
+
   /**
    * 取り下げダイアログを表示する
    */
@@ -28,12 +27,12 @@ function($scope, $rootScope, $http, $sce, $window, $mdDialog, categoryService, q
           .ok("OK")
           .cancel("キャンセル");
     $mdDialog.show(confirm).then(function() {
-      submission(ev, question);      
+      submission(ev, question);
     }, function() { // cancel
       $scope.processed = false;
     });
   };
-  
+
   var submission = function(ev, question) {
     question.Status = "TURNDOWN";
     questionService.update(question).then(function(data) {
@@ -44,7 +43,7 @@ function($scope, $rootScope, $http, $sce, $window, $mdDialog, categoryService, q
       $mdDialog.show(confirm);
 	  });
   };
-  
+
   // 問題の確認
   $scope.showContentModal = function($event, question) {
     $mdDialog.show({

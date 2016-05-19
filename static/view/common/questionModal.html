@@ -1,9 +1,9 @@
 <md-dialog aria-label="List dialog">
   <md-dialog-content style="padding: 50px 20px 50px 20px;">
-    
+
     <h6>【問題文】</h6>
     {{q.Content}}
-    
+
     <h6>【選択肢】</h6>
     <ul>
       <li ng-class="q.Choice1.TrueFalse ? 'selected_answer' : ''" ng-if="q.Choice1.Content !== ''">
@@ -13,14 +13,23 @@
       <li ng-class="q.Choice3.TrueFalse ? 'selected_answer' : ''" ng-if="q.Choice3.Content !== ''">
         {{q.Choice3.Content}}</li>
     </ul>
-    
+
     <h6 ng-if="q.Rubric !== ''">【解説】</h6>
     <span ng-if="q.Rubric !== ''">{{q.Rubric}}</span>
-    
+
+    <h6 ng-if="q.UserKey !== ''">【作成者】</h6>
+    <img ng-if="!userInfo" src='/img/twitter.png' class="android-logo-image">
+    <a ng-if="userInfo" href="https://twitter.com/{{userInfo.screen_name}}" target="_new">
+      <img ng-src="{{userInfo.profile_image_url}}" class="android-logo-image">
+    </a>
+    <a ng-href="https://twitter.com/{{q.UserKey}}" ng-if="q.UserKey !== ''" target="_new">
+      @{{q.UserKey}}
+    </a>
+
   </md-dialog-content>
-  
-  <md-dialog-actions> 
+
+  <md-dialog-actions>
     <md-button ng-click="closeDialog()">閉じる</md-button>
-  </md-dialog-actions> 
+  </md-dialog-actions>
 
 </md-dialog>

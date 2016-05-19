@@ -15,5 +15,19 @@ service.factory('userService', ['$http', '$q', function($http, $q) {
     return deferred.promise;
   };
 
+  service.getTwitterUser = function(userId) {
+    var deferred = $q.defer();
+    $http({
+      method: 'GET',
+      url: '/api/twitter/user/' + userId,
+      cache: true
+    }).success(function(data, status, headers, config) {
+      deferred.resolve(data);
+    }).error(function(data, status, headers, config) {
+      deferred.reject(data);
+    });
+    return deferred.promise;
+  };
+
   return service;
 }]);
