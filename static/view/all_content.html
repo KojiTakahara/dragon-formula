@@ -23,12 +23,18 @@ table .material-icons {
                 </a>
                 <input style="margin-left: 20px;" type="text" ng-model="qFilter.Content" placeholder="フィルター" />
             </th>
+            <th>
+                <md-select ng-model="qFilter.LargeCategoryKey" style="margin: 0 -26px 0 0">
+                    <md-option ng-value="c.Key" ng-repeat="c in largeCategories">{{c.Name}}</md-option>
+                </md-select>
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         <tr ng-repeat="q in questions | orderBy:sortType:sortReverse | filter:qFilter">
             <td>{{q.Content | abbreviate:40}}</td>
+            <td>{{categoryJapanese(q.LargeCategoryKey)}}</td>
             <td style="padding:0px;">
                 <md-button class="md-raised" ng-click="showContentModal($event, q)" style="font-size:13px;">
                     確認

@@ -7,14 +7,30 @@ function($scope, $rootScope, $http, $sce, $window, $mdDialog, categoryService, q
   $scope.processed = false;
   $scope.qFilter = {};
   $scope.sortReverse = false;
-
-  console.log($rootScope.user);
-
-  questionService.search(null, null, null, $rootScope.user.Key).then(function(data) {
-    $scope.postedQuestions = data;
-  }, function(e) {
-    console.log(e);
-  });
+  var categories = [];
+  
+  var init = function() {
+    userService.getLoginUser().then(function(data) {
+      var userKey = data.screen_name;
+      questionService.search(null, null, null, userKey).then(function(data) {
+        $scope.postedQuestions = data;
+      }, function(e) {
+        console.log(e);
+      });
+      categoryService.search().then(function(data) {
+        categories = data;
+      });
+      categoryService.search(null, "").then(function(data) {
+        $scope.largeCategories = data;
+        $scope.largeCategories.push({Name:"すべて"});
+      });
+    });
+  };
+  init();
+  
+  $scope.categoryJapanese = function(key) {
+    return categoryService.getCategoryJapanese(categories, key);
+  }
 
   /**
    * 取り下げダイアログを表示する
