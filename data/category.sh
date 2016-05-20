@@ -186,3 +186,5 @@ callAPI "parentKey=rule_2&key=rule_2_12_6&number=12.6&name=非紳士的行為―
 callAPI "parentKey=rule_2&key=rule_2_12_7&number=12.7&name=非紳士的行為―遅延行為"
 callAPI "parentKey=rule_2&key=rule_2_12_8&number=12.8&name=非紳士的行為―故意の違反"
 callAPI "parentKey=rule_2&key=rule_2_13&number=13&name=ペナルティ一覧"
+
+callAPI "key=rule_3&name=カードルール"

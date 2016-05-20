@@ -2,7 +2,7 @@
 URL=http://localhost:8080/api/
 CATEGORY=question
 callAPI () {
-  data="status=APPROVED&content="$1"&choice1Content="$2"&choice2Content="$3"&choice3Content="$4"&choice1Bool=true&choice2Bool=false&choice3Bool=false&largeCategoryKey=rule_1&mediumCategoryKey="$5"&smallCategoryKey="$6
+  data="status=APPROVED&content="$1"&choice1Content="$2"&choice2Content="$3"&choice3Content="$4"&choice1Bool=true&choice2Bool=false&choice3Bool=false&largeCategoryKey=rule_1&mediumCategoryKey="$5"&smallCategoryKey="$6"&userKey=dm_plateau"
   wget --post-data=$data $URL$CATEGORY
   rm $CATEGORY
 }
