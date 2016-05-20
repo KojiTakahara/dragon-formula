@@ -18,13 +18,15 @@
     <span ng-if="q.Rubric !== ''">{{q.Rubric}}</span>
 
     <h6 ng-if="q.UserKey !== ''">【作成者】</h6>
-    <img ng-if="!userInfo" src='/img/twitter.png' class="android-logo-image">
-    <a ng-if="userInfo" href="https://twitter.com/{{userInfo.screen_name}}" target="_new">
-      <img ng-src="{{userInfo.profile_image_url}}" class="android-logo-image">
-    </a>
-    <a ng-href="https://twitter.com/{{q.UserKey}}" ng-if="q.UserKey !== ''" target="_new">
-      @{{q.UserKey}}
-    </a>
+    <div ng-if="q.UserKey !== ''">
+      <img ng-if="!userInfo" src='/img/twitter.png' class="circle android-logo-image">
+      <a ng-if="userInfo" href="https://twitter.com/{{userInfo.screen_name}}" target="_new">
+        <img ng-src="{{userInfo.profile_image_url}}" class="circle android-logo-image">
+      </a>
+      <a ng-href="https://twitter.com/{{q.UserKey}}" target="_new">
+        @{{q.UserKey}}
+      </a>
+    </div>
 
   </md-dialog-content>
 
