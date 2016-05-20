@@ -89,7 +89,7 @@ func GetQuestionList(r render.Render, req *http.Request) {
 	if len(p["limit"]) != 0 {
 		limit := ToInt(p["limit"][0])
 		c.Infof(fmt.Sprintf("limit = %d", limit))
-		//questions = questions[0:limit]
+		questions = questions[0:limit]
 	}
 	r.JSON(200, questions)
 }

@@ -53,7 +53,8 @@ function($scope, $rootScope, $http, $sce, $window, $mdDialog, questionService, q
    * ユーザの解答データを送信する
    */
   var postUserAnswer = function() {
-    var answer = userAnswerService.convertData($scope.questions, $scope.rightAnswer, ruleCategory, $rootScope.user.screen_name, questionService);
+    var answer = userAnswerService.convertData($scope.questions, ruleCategory, $rootScope.user.screen_name, questionService);
+    $scope.rightAnswer = answer.rightAnswer;
     userAnswerService.create(answer).then(function(data) {
       $scope.showAnswerResult = true;
 	  });

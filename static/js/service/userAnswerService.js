@@ -19,11 +19,11 @@ service.factory('userAnswerService', ['$http', '$q', function($http, $q) {
     return deferred.promise;
   };
   
-  service.convertData = function(questions, rightAnswer, category, userName, questionService) {
+  service.convertData = function(questions, category, userName, questionService) {
     var userAnswer = {
       userKey: userName,
       categoryKey: category,
-    }, wrongAnswer = 0;
+    }, rightAnswer = 0, wrongAnswer = 0;
     for (var i = 1; i <= questions.length; i++) {
       userAnswer['question' + i] = questions[i - 1].Key;
       userAnswer['category' + i] = questions[i - 1].SmallCategoryKey;
