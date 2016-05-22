@@ -45,11 +45,25 @@
 						{{q.Content}}
 						<!--<replacecardtext text="{{q.Content}}" annotations="{{q.Annotations}}"></replacecardtext>-->
 					</div>
-					<md-radio-group ng-model="q.selected">
-						<md-radio-button value="{{q.Choice1.Key}}" ng-if="q.Choice1.Content !== ''">{{q.Choice1.Content}}</md-radio-button>
-						<md-radio-button value="{{q.Choice2.Key}}" ng-if="q.Choice2.Content !== ''"> {{q.Choice2.Content}} </md-radio-button>
-						<md-radio-button value="{{q.Choice3.Key}}" ng-if="q.Choice3.Content !== ''">{{q.Choice3.Content}}</md-radio-button>
+
+					<md-radio-group ng-model="q.selected" ng-if="q.LargeCategoryKey != 'rule_3'">
+						<md-radio-button value="{{q.Choice1.Key}}" ng-if="q.Choice1.Content != ''">{{q.Choice1.Content}}</md-radio-button>
+						<md-radio-button value="{{q.Choice2.Key}}" ng-if="q.Choice2.Content != ''"> {{q.Choice2.Content}} </md-radio-button>
+						<md-radio-button value="{{q.Choice3.Key}}" ng-if="q.Choice3.Content != ''">{{q.Choice3.Content}}</md-radio-button>
 					</md-radio-group>
+          <md-radio-group ng-model="q.selected" ng-if="q.LargeCategoryKey == 'rule_3'">
+
+            <md-radio-button value="{{q.Choice1.Key}}" ng-if="q.Choice1.Content != '' && q.Choice1.Content != '×'">{{q.Choice1.Content}}</md-radio-button>
+            <md-radio-button value="{{q.Choice2.Key}}" ng-if="q.Choice2.Content != '' && q.Choice2.Content != '×'"> {{q.Choice2.Content}} </md-radio-button>
+            <md-radio-button value="{{q.Choice3.Key}}" ng-if="q.Choice3.Content != '' && q.Choice3.Content != '×'"> {{q.Choice3.Content}} </md-radio-button>
+
+            <md-radio-button value="{{q.Choice1.Key}}" ng-if="q.Choice1.Content != '' && q.Choice1.Content == '×'">{{q.Choice1.Content}}</md-radio-button>
+            <md-radio-button value="{{q.Choice2.Key}}" ng-if="q.Choice2.Content != '' && q.Choice2.Content == '×'"> {{q.Choice2.Content}} </md-radio-button>
+            <md-radio-button value="{{q.Choice3.Key}}" ng-if="q.Choice3.Content != '' && q.Choice3.Content == '×'"> {{q.Choice3.Content}} </md-radio-button>
+
+
+
+          </md-radio-group>
                     <div style="text-align: right;" ng-if="q.UserKey">
                         作成者:@{{q.UserKey}}
                     </div>

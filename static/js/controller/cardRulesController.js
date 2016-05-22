@@ -48,12 +48,12 @@ function($scope, $rootScope, $http, $sce, $window, $mdDialog, questionService, q
       $scope.processed = false;
     });
   };
-  
+
   /**
    * ユーザの解答データを送信する
    */
   var postUserAnswer = function() {
-    var answer = userAnswerService.convertData($scope.questions, ruleCategory, $rootScope.user.screen_name, questionService);
+    var answer = userAnswerService.convertData($scope.questions, ruleCategory, $rootScope.user, questionService);
     $scope.rightAnswer = answer.rightAnswer;
     userAnswerService.create(answer).then(function(data) {
       $scope.showAnswerResult = true;
@@ -67,7 +67,7 @@ function($scope, $rootScope, $http, $sce, $window, $mdDialog, questionService, q
   $scope.prev = function() {
     $(".slick-prev").click();
   };
-  
+
   $scope.next = function() {
     $(".slick-next").click();
   };

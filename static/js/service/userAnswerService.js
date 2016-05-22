@@ -18,8 +18,12 @@ service.factory('userAnswerService', ['$http', '$q', function($http, $q) {
     });
     return deferred.promise;
   };
-  
-  service.convertData = function(questions, category, userName, questionService) {
+
+  service.convertData = function(questions, category, user, questionService) {
+    var userName = "testUser";
+    if (user != null) {
+      userName = user.screen_name;
+    }
     var userAnswer = {
       userKey: userName,
       categoryKey: category,
