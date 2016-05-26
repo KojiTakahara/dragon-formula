@@ -10,7 +10,7 @@ type Question struct { // key = 自動生成
 	MediumCategoryKey string
 	SmallCategoryKey  string
 	Rubric            string `datastore:",noindex"`
-	Percentage        float32
+	Percentage        float64
 	Status            string // 依頼(REVIEW),最終確認(FINALCHECK),承認(APPROVED),取り下げ(TURNDOWN)
 	Level             string
 	UserKey           string // 作成者
@@ -19,12 +19,21 @@ type Question struct { // key = 自動生成
 	Choice1           QuestionChoice `datastore:"-"`
 	Choice2           QuestionChoice `datastore:"-"`
 	Choice3           QuestionChoice `datastore:"-"`
+	Annotations       []QuestionAnnotation `datastore:"-"`
 }
 
 type QuestionChoice struct { // key = 自動採番
 	Content       string `datastore:",noindex"`
 	QuestionKeyId int64
 	TrueFalse     bool
+	// ignored entirely by the datastore.
+	Key           int64 `datastore:"-"`
+}
+
+type QuestionAnnotation struct { // key = 自動採番
+    QuestionKeyId int64
+    CardName      string
+    Annotation    string `datastore:",noindex"`
 	// ignored entirely by the datastore.
 	Key           int64 `datastore:"-"`
 }

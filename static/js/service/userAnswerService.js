@@ -19,5 +19,26 @@ service.factory('userAnswerService', ['$http', '$q', function($http, $q) {
     return deferred.promise;
   };
 
+  service.convertData = function(questions, category, user, questionService) {
+    var userName = "testUser";
+    if (user != null) {
+      userName = user.screen_name;
+    }
+    var userAnswer = {
+      userKey: userName,
+      categoryKey: category,
+    }, rightAnswer = 0, wrongAnswer = 0;
+    for (var i = 1; i <= questions.length; i++) {
+      userAnswer['question' + i] = questions[i - 1].Key;
+      userAnswer['category' + i] = questions[i - 1].SmallCategoryKey;
+      var result = questionService.getTrueFalse(questions[i -1]);
+      userAnswer['corrected' + i] = result;
+      result ? rightAnswer++ : wrongAnswer++;
+    }
+    userAnswer.rightAnswer = rightAnswer;
+    userAnswer.wrongAnswer = wrongAnswer;
+    return userAnswer;
+  };
+
   return service;
 }]);

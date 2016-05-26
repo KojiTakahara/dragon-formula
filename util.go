@@ -20,6 +20,14 @@ func ToInt(v string) int {
 	return i
 }
 
+func ToInt64(v string) int64 {
+	if v == "-" {
+		return -1
+	}
+	i, _ := strconv.ParseInt(v, 10, 64)
+	return i
+}
+
 func ToFloat32(v string) float64 {
 	f, _ := strconv.ParseFloat(v, 32)
 	return f

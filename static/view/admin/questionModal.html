@@ -1,0 +1,72 @@
+<md-dialog aria-label="List dialog">
+  <md-dialog-content style="padding: 50px 20px 50px 20px;">
+    
+    <md-input-container class="md-icon-float md-block">
+      <label>問題文</label>
+      <input md-maxlength="150" ng-model="question.Content" name="content" required>
+    </md-input-container>
+    
+    <div style="font-size:small;">{{question.Content}}</div>
+    
+    {{question.Choice1}}<br>
+    {{question.Choice2}}<br>
+    {{question.Choice3}}<br>
+    
+    <md-input-container class="md-icon-float md-block">
+      <label>解説</label>
+      <input md-maxlength="150" ng-model="question.Rubric" name="content" required>
+    </md-input-container>
+    
+    <md-input-container class="md-icon-float md-block">
+      <label>大カテゴリ</label>
+      <input md-maxlength="150" ng-model="question.LargeCategoryKey" name="content" required>
+    </md-input-container>
+    
+    <md-input-container class="md-icon-float md-block">
+      <label>中カテゴリ</label>
+      <input md-maxlength="150" ng-model="question.MediumCategoryKey" name="content" required>
+    </md-input-container>
+    
+    <md-input-container class="md-icon-float md-block">
+      <label>小カテゴリ</label>
+      <input md-maxlength="150" ng-model="question.SmallCategoryKey" name="content" required>
+    </md-input-container>
+    
+    <md-select ng-model="question.Status">
+      <md-option ng-value="'REVIEW'">REVIEW</md-option>
+      <md-option ng-value="'APPROVED'">APPROVED</md-option>
+      <md-option ng-value="'REJECTED'">REJECTED</md-option>
+    </md-select>
+    
+    <md-list flex>
+        <md-subheader class="md-no-sticky">Annotation</md-subheader>
+        <md-list-item ng-repeat="a in annotations">
+
+          <md-input-container class="md-icon-float md-block">
+            <label>CardName</label>
+            <input md-maxlength="50" ng-model="a.CardName" name="content" required>
+          </md-input-container>
+    
+          <md-input-container class="md-icon-float md-block">
+            <label>Annotation</label>
+            <input md-maxlength="150" ng-model="a.Annotation" name="content" required>
+          </md-input-container>
+          
+          <md-button ng-click="deleteAnnotation($index)">削除</md-button>
+          <md-button ng-click="submitAnnotation($index)">保存</md-button>
+    
+        </md-list-item>
+        <md-button ng-click="addAnnotation()">追加</md-button>
+    </md-list>
+    
+    
+  </md-dialog-content> 
+  <md-dialog-actions> 
+    <md-button ng-click="closeDialog()"> 
+      閉じる 
+    </md-button>
+    <md-button ng-click="update($event, question)" class="md-primary"> 
+      保存
+    </md-button> 
+  </md-dialog-actions> 
+</md-dialog>

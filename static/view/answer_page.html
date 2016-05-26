@@ -15,16 +15,29 @@
 					問{{$index + 1}}. {{q.Content}}
 				</div>
 				<ul style="list-style:none;">
-					<li ng-class="q.Choice1.TrueFalse ? 'selected_answer' : ''">
+					<li ng-class="q.Choice1.TrueFalse ? 'selected_answer' : ''" ng-if="q.Choice1.Content !== '' && q.Choice1.Content != '×'">
 						<i class="material-icons answer_icon" ng-if="q.selected == q.Choice1.Key">check</i>{{q.Choice1.Content}}
 					</li>
-					<li ng-class="q.Choice2.TrueFalse ? 'selected_answer' : ''">
+					<li ng-class="q.Choice2.TrueFalse ? 'selected_answer' : ''" ng-if="q.Choice2.Content !== '' && q.Choice2.Content != '×'">
 						<i class="material-icons answer_icon" ng-if="q.selected == q.Choice2.Key">check</i>{{q.Choice2.Content}}
 					</li>
-					<li ng-class="q.Choice3.TrueFalse ? 'selected_answer' : ''">
+					<li ng-class="q.Choice3.TrueFalse ? 'selected_answer' : ''" ng-if="q.Choice3.Content !== '' && q.Choice3.Content != '×'">
+						<i class="material-icons answer_icon" ng-if="q.selected == q.Choice3.Key">check</i>{{q.Choice3.Content}}
+					</li>
+					
+					<li ng-class="q.Choice1.TrueFalse ? 'selected_answer' : ''" ng-if="q.Choice1.Content !== '' && q.Choice1.Content == '×'">
+						<i class="material-icons answer_icon" ng-if="q.selected == q.Choice1.Key">check</i>{{q.Choice1.Content}}
+					</li>
+					<li ng-class="q.Choice2.TrueFalse ? 'selected_answer' : ''" ng-if="q.Choice2.Content !== '' && q.Choice2.Content == '×'">
+						<i class="material-icons answer_icon" ng-if="q.selected == q.Choice2.Key">check</i>{{q.Choice2.Content}}
+					</li>
+					<li ng-class="q.Choice3.TrueFalse ? 'selected_answer' : ''" ng-if="q.Choice3.Content !== '' && q.Choice3.Content == '×'">
 						<i class="material-icons answer_icon" ng-if="q.selected == q.Choice3.Key">check</i>{{q.Choice3.Content}}
 					</li>
 				</ul>
+				<div class="t_center" ng-if="q.Rubric !== ''">
+					<rubric-button text="{{q.Rubric}}"></rubric-button>
+				</div>
 			</div>
 		</div>
 		<div class="t_center">
@@ -38,14 +51,29 @@
 			<div ng-repeat="q in questions" style="margin:15px 30px 20px 30px;">
 				<div style="background-color:white; padding: 1px 20px 5px 20px; color: rgba(0,0,0,.54);">
 					<h6>問{{$index + 1}}.</h6>
-					<div style="font-size:20px;word-wrap: break-word; margin-bottom: 18px;">
+					<div style="font-size:20px;word-wrap: break-word; margin-bottom: 18px; line-height: 1.4em;">
 						{{q.Content}}
+						<!--<replacecardtext text="{{q.Content}}" annotations="{{q.Annotations}}"></replacecardtext>-->
 					</div>
-					<md-radio-group ng-model="q.selected">
-						<md-radio-button value="{{q.Choice1.Key}}">{{q.Choice1.Content}}</md-radio-button>
-						<md-radio-button value="{{q.Choice2.Key}}"> {{q.Choice2.Content}} </md-radio-button>
-						<md-radio-button value="{{q.Choice3.Key}}">{{q.Choice3.Content}}</md-radio-button>
+
+					<md-radio-group ng-model="q.selected" ng-if="q.LargeCategoryKey != 'rule_3'">
+						<md-radio-button value="{{q.Choice1.Key}}" ng-if="q.Choice1.Content != ''">{{q.Choice1.Content}}</md-radio-button>
+						<md-radio-button value="{{q.Choice2.Key}}" ng-if="q.Choice2.Content != ''"> {{q.Choice2.Content}} </md-radio-button>
+						<md-radio-button value="{{q.Choice3.Key}}" ng-if="q.Choice3.Content != ''">{{q.Choice3.Content}}</md-radio-button>
 					</md-radio-group>
+          <md-radio-group ng-model="q.selected" ng-if="q.LargeCategoryKey == 'rule_3'">
+
+            <md-radio-button value="{{q.Choice1.Key}}" ng-if="q.Choice1.Content != '' && q.Choice1.Content != '×'">{{q.Choice1.Content}}</md-radio-button>
+            <md-radio-button value="{{q.Choice2.Key}}" ng-if="q.Choice2.Content != '' && q.Choice2.Content != '×'"> {{q.Choice2.Content}} </md-radio-button>
+            <md-radio-button value="{{q.Choice3.Key}}" ng-if="q.Choice3.Content != '' && q.Choice3.Content != '×'"> {{q.Choice3.Content}} </md-radio-button>
+
+            <md-radio-button value="{{q.Choice1.Key}}" ng-if="q.Choice1.Content != '' && q.Choice1.Content == '×'">{{q.Choice1.Content}}</md-radio-button>
+            <md-radio-button value="{{q.Choice2.Key}}" ng-if="q.Choice2.Content != '' && q.Choice2.Content == '×'"> {{q.Choice2.Content}} </md-radio-button>
+            <md-radio-button value="{{q.Choice3.Key}}" ng-if="q.Choice3.Content != '' && q.Choice3.Content == '×'"> {{q.Choice3.Content}} </md-radio-button>
+          </md-radio-group>
+                    <div style="text-align: right;" ng-if="q.UserKey">
+                        作成者:@{{q.UserKey}}
+                    </div>
 				</div>
                 <div class="t_center">
                     <md-button class="md-icon-button move_button" ng-click="prev()" ng-disabled="processed || !user">

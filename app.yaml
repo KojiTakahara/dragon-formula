@@ -1,8 +1,17 @@
 application: aqua-teacher
-version: 1-1-1
+#application: stg-aqua-teacher
+version: 1-2-1
 runtime: go
 api_version: go1
-default_expiration: "7d"
+# default_expiration: "7d"
+# default_expiration: "1m"
+instance_class: F1
+automatic_scaling:
+  min_idle_instances: automatic
+  max_idle_instances: 1
+  min_pending_latency: 3000ms
+  max_pending_latency: automatic
+  max_concurrent_requests: 80
 skip_files:
   - ^(.*/)?.*/node_modules/.*
   - ^(.*/)?.*/test/.*
@@ -38,7 +47,11 @@ handlers:
 - url: /
   static_files: static/index.html
   upload: static/index.html
-  
+
+- url: /cardrules
+  static_files: static/index.html
+  upload: static/index.html
+
 - url: /competition
   static_files: static/index.html
   upload: static/index.html
@@ -54,8 +67,12 @@ handlers:
 - url: /submission
   static_files: static/index.html
   upload: static/index.html
-  
+
 - url: /posted_content
+  static_files: static/index.html
+  upload: static/index.html
+
+- url: /all_content
   static_files: static/index.html
   upload: static/index.html
 
@@ -68,9 +85,9 @@ handlers:
 
 - url: /api/.*
   script: _go_app
-  
+
 # admin
-  
+
 - url: /admin
   static_files: static/view/admin/index.html
   login: admin

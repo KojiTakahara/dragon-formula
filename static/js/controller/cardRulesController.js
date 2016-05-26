@@ -1,22 +1,23 @@
-/** 総合ゲームルールコントローラー */
+/** カードルールコントローラー */
 "use strict";
 
-var app = angular.module("comprehensiveCtrl", []);
-app.controller("comprehensiveCtrl", ["$scope", "$rootScope", "$http", "$sce", "$window", "$mdDialog", "questionService", "userService", "userAnswerService",
-function($scope, $rootScope, $http, $sce, $window, $mdDialog, questionService, userService, userAnswerService) {
+var app = angular.module("cardRulesCtrl", []);
+app.controller("cardRulesCtrl", ["$scope", "$rootScope", "$http", "$sce", "$window", "$mdDialog", "questionService", "questionAnnotationService", "userService", "userAnswerService",
+function($scope, $rootScope, $http, $sce, $window, $mdDialog, questionService, questionAnnotationService, userService, userAnswerService) {
+  $scope.user = {};
   $scope.processed = false;
   $scope.showAnswerResult = false;
   $scope.rightAnswer = 0;
   $scope.questions = [];
   var questionCount = 15;
-  var ruleCategory = "rule_1";
+  var ruleCategory = "rule_3";
 
   /**
    * 初期処理
    */
   var init = function() {
     questionService.search(ruleCategory, "APPROVED", questionCount).then(function(data) {
-	  $scope.questions = data;
+	    $scope.questions = data;
       setTimeout(function() {
         $(".carousel").slick({infinite: false, dots: false, arrows: true});
         $(".slick-prev").css("display", "none");
@@ -56,7 +57,7 @@ function($scope, $rootScope, $http, $sce, $window, $mdDialog, questionService, u
     $scope.rightAnswer = answer.rightAnswer;
     userAnswerService.create(answer).then(function(data) {
       $scope.showAnswerResult = true;
-	});
+	  });
   };
 
   $scope.moveTopPage = function() {

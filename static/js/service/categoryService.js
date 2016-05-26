@@ -19,6 +19,17 @@ service.factory('categoryService', ['$http', '$q', function($http, $q) {
     });
     return deferred.promise;
   };
-
+  
+  /** カテゴリの日本語名を返す */
+  service.getCategoryJapanese = function(categories, key) {
+    for (var i = 0; i < categories.length; i++) {
+      var category = categories[i];
+      if (category.Key === key) {
+        return category.Name;
+      }
+    }
+    return "";
+  };
+  
   return service;
 }]);

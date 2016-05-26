@@ -21,6 +21,9 @@ import (
 	"time"
 )
 
+// var TWITTER_CONSUMER_KEY = "efelQ7UNWZGge5H1p7OMRl0lR"
+// var TWITTER_CALLBACK_URL = "http://stg-aqua-teacher.appspot.com/api/twitter/callback"
+// var TWITTER_CONSUMER_SECRET = "51UF3rlpJWLDwVhP8lsr0fawd0y7xksmatAyln6ANtgZz3kv8s"
 var TWITTER_CONSUMER_KEY = "tFc1luf519X71ihzPS6Mohibn"
 var TWITTER_CALLBACK_URL = "http://aqua-teacher.appspot.com/api/twitter/callback"
 var TWITTER_CONSUMER_SECRET = "KD84L4SqwdrxOiw6T2DTw4TuzcefWqdZCRCGXhxWCmj3aDSPFy"
@@ -34,7 +37,7 @@ var consumer = oauth.NewConsumer(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET, 
 // Twitter ボタンが押された時の処理
 func LoginTwitter(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
-	oauth := NewOAuth1(c, fmt.Sprintf("http://wixoss-tcg.appspot.com/"))
+	oauth := NewOAuth1(c, fmt.Sprintf("http://aqua-teacher.appspot.com/"))
 	result := oauth.RequestToken("https://api.twitter.com/oauth/request_token")
 	oauth.Authenticate(w, r, "https://api.twitter.com/oauth/authenticate", result["oauth_token"])
 }
@@ -42,10 +45,10 @@ func LoginTwitter(w http.ResponseWriter, r *http.Request) {
 func LoginUser(r render.Render, req *http.Request, session sessions.Session) {
 	accessToken := GetAccessToken(session)
 	if accessToken != nil {
-        result := GetTwitterUser(req, accessToken)
-        if result == nil {
-            r.JSON(400, "")
-        }
+		result := GetTwitterUser(req, accessToken)
+		if result == nil {
+			r.JSON(400, "")
+		}
 		r.JSON(200, result)
 		return
 	} else {
@@ -59,13 +62,13 @@ func GetTwitterUser(req *http.Request, accessToken *oauth.AccessToken) mxj.Map {
 	response, _ := consumer.Get("https://api.twitter.com/1.1/account/verify_credentials.json", nil, accessToken)
 	result := make([]byte, 1024*1024)
 	response.Body.Read(result)
-	resultString := string(result)    
-    trimStr := strings.Trim(resultString, "\x00")
+	resultString := string(result)
+	trimStr := strings.Trim(resultString, "\x00")
 	if trimStr == "" {
 		return nil
 	}
-	accountInfo, _ := mxj.NewMapJson([]byte(trimStr))   
-    return accountInfo
+	accountInfo, _ := mxj.NewMapJson([]byte(trimStr))
+	return accountInfo
 }
 
 /**
@@ -97,17 +100,19 @@ func CallbackTwitter(r render.Render, w http.ResponseWriter, req *http.Request, 
 		accountInfo, _ := mxj.NewMapJson([]byte(trimStr))
 
 		// User登録
-		screenName := accountInfo["screen_name"].(string)
-		user := &User{}
-		user.Id = screenName
-		user.Key = screenName
-		user.Token = accessToken.Token
-		key := datastore.NewKey(c, "User", screenName, 0, nil)
-		key, err := datastore.Put(c, key, user)
-		if err != nil {
-			c.Criticalf("%s", err)
-		} else {
-			c.Infof("")
+		if accountInfo["screen_name"] != nil {
+			screenName := accountInfo["screen_name"].(string)
+			user := &User{}
+			user.Id = screenName
+			user.Key = screenName
+			user.Token = accessToken.Token
+			key := datastore.NewKey(c, "User", screenName, 0, nil)
+			key, err := datastore.Put(c, key, user)
+			if err != nil {
+				c.Criticalf("%s", err)
+			} else {
+				c.Infof("")
+			}
 		}
 		// TODO トップページへリダイレクト
 		r.Redirect("/")
