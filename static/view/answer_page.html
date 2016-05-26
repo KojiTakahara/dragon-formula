@@ -15,13 +15,23 @@
 					問{{$index + 1}}. {{q.Content}}
 				</div>
 				<ul style="list-style:none;">
-					<li ng-class="q.Choice1.TrueFalse ? 'selected_answer' : ''" ng-if="q.Choice1.Content !== ''">
+					<li ng-class="q.Choice1.TrueFalse ? 'selected_answer' : ''" ng-if="q.Choice1.Content !== '' && q.Choice1.Content != '×'">
 						<i class="material-icons answer_icon" ng-if="q.selected == q.Choice1.Key">check</i>{{q.Choice1.Content}}
 					</li>
-					<li ng-class="q.Choice2.TrueFalse ? 'selected_answer' : ''" ng-if="q.Choice2.Content !== ''">
+					<li ng-class="q.Choice2.TrueFalse ? 'selected_answer' : ''" ng-if="q.Choice2.Content !== '' && q.Choice2.Content != '×'">
 						<i class="material-icons answer_icon" ng-if="q.selected == q.Choice2.Key">check</i>{{q.Choice2.Content}}
 					</li>
-					<li ng-class="q.Choice3.TrueFalse ? 'selected_answer' : ''" ng-if="q.Choice3.Content !== ''">
+					<li ng-class="q.Choice3.TrueFalse ? 'selected_answer' : ''" ng-if="q.Choice3.Content !== '' && q.Choice3.Content != '×'">
+						<i class="material-icons answer_icon" ng-if="q.selected == q.Choice3.Key">check</i>{{q.Choice3.Content}}
+					</li>
+					
+					<li ng-class="q.Choice1.TrueFalse ? 'selected_answer' : ''" ng-if="q.Choice1.Content !== '' && q.Choice1.Content == '×'">
+						<i class="material-icons answer_icon" ng-if="q.selected == q.Choice1.Key">check</i>{{q.Choice1.Content}}
+					</li>
+					<li ng-class="q.Choice2.TrueFalse ? 'selected_answer' : ''" ng-if="q.Choice2.Content !== '' && q.Choice2.Content == '×'">
+						<i class="material-icons answer_icon" ng-if="q.selected == q.Choice2.Key">check</i>{{q.Choice2.Content}}
+					</li>
+					<li ng-class="q.Choice3.TrueFalse ? 'selected_answer' : ''" ng-if="q.Choice3.Content !== '' && q.Choice3.Content == '×'">
 						<i class="material-icons answer_icon" ng-if="q.selected == q.Choice3.Key">check</i>{{q.Choice3.Content}}
 					</li>
 				</ul>
@@ -60,9 +70,6 @@
             <md-radio-button value="{{q.Choice1.Key}}" ng-if="q.Choice1.Content != '' && q.Choice1.Content == '×'">{{q.Choice1.Content}}</md-radio-button>
             <md-radio-button value="{{q.Choice2.Key}}" ng-if="q.Choice2.Content != '' && q.Choice2.Content == '×'"> {{q.Choice2.Content}} </md-radio-button>
             <md-radio-button value="{{q.Choice3.Key}}" ng-if="q.Choice3.Content != '' && q.Choice3.Content == '×'"> {{q.Choice3.Content}} </md-radio-button>
-
-
-
           </md-radio-group>
                     <div style="text-align: right;" ng-if="q.UserKey">
                         作成者:@{{q.UserKey}}

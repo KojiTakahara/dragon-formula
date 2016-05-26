@@ -1,10 +1,10 @@
 application: aqua-teacher
-#application: aqua-teacher
-version: 1-2-0
+#application: stg-aqua-teacher
+version: 1-2-1
 runtime: go
 api_version: go1
 # default_expiration: "7d"
-default_expiration: "1m"
+# default_expiration: "1m"
 instance_class: F1
 automatic_scaling:
   min_idle_instances: automatic
@@ -19,8 +19,6 @@ skip_files:
 handlers:
 
 # main
-# 相手の場に《偽りの王ナンバーナイン》が１体いる。
-# 自分の場に《不敗のダイハード・リュウセイ》
 
 - url: /(.*\.(gif|png|jpg|pdf))
   static_files: static/\1
