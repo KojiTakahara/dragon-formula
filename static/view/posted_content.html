@@ -50,7 +50,7 @@ table .material-icons {
                 </md-button>
             </td>
             <td style="padding:0px;">
-                <md-button class="md-raised" ng-click="showConfirm($event, q)" style="font-size:13px;" ng-disabled="q.Status === 'TURNDOWN'">
+                <md-button class="md-raised" ng-click="showConfirm($event, q)" style="font-size:13px;" ng-disabled="q.Status === 'TURNDOWN' || q.Status === 'REJECTED'">
                     取り下げ
                 </md-button>
             </td>

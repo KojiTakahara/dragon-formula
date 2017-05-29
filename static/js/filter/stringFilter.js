@@ -28,6 +28,8 @@ f.filter("statusToJapanese", function() {
             return "承認済み";
         case "TURNDOWN":
             return "取り下げ";
+        case "REJECTED":
+            return "却下";
         default:
             return "";
         }

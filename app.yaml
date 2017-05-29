@@ -1,6 +1,6 @@
 application: aqua-teacher
 #application: stg-aqua-teacher
-version: 1-2-3
+version: 1-2-4
 runtime: go
 api_version: go1
 # default_expiration: "7d"
